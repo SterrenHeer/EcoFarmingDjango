@@ -20,6 +20,10 @@ class ProductCategory(models.Model):
     image = models.ImageField("Изображение", upload_to='product_categories')
     color = models.CharField("Цвет", max_length=100)
 
+    class Meta:
+        verbose_name = 'категория продукта'
+        verbose_name_plural = 'Категории продуктов'
+
     def __str__(self):
         return self.title
 
@@ -44,7 +48,12 @@ class Brand(models.Model):
         return self.title
 
     def get_absolute_url(self):
-        return reverse('brands_details', args=[str(self.id)])
+        return reverse('brands_details', args=[str(self.id), str(self.product_category.title)])
+
+
+class BrandEffectImage(models.Model):
+    brand = models.ForeignKey(Brand, on_delete=models.CASCADE, verbose_name="Товар")
+    image = models.ImageField("Изображение", upload_to='brand_effect_images')
 
 
 

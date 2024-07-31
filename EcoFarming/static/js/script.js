@@ -14,7 +14,7 @@ if (document.querySelector('.others') != null) {
     });
 }
 
-if (location.pathname.includes('product_brands')) {
+if (location.pathname.includes('brand')) {
     document.querySelector('.others.products').style.display = 'flex';
 } else if (location.pathname.includes('products') || location.pathname.includes('cultures') || location.pathname.includes('harmful')) {
     document.querySelector('.others.all').style.display = 'flex';

@@ -137,10 +137,11 @@
                 </div>
                 <div class="brand_tab images">
                     <div class="brand_images">
-                        <img src="{% static 'img/categories/products/product_2.png' %}" alt="image">
-                        <img src="{% static 'img/categories/products/product_3.png' %}" alt="image">
-                        <img src="{% static 'img/categories/products/product_4.png' %}" alt="image">
-                        <img src="{% static 'img/categories/products/product_5.png' %}" alt="image">
+                        {% if brand.brandeffectimage_set %}
+                            {% for image in brand.brandeffectimage_set.all %}
+                                <img src="{{ image.image.url }}" alt="image">
+                            {% endfor %}
+                        {% endif %}
                     </div>
                     <div class="title title_24 regular">Текст</div>
                 </div>

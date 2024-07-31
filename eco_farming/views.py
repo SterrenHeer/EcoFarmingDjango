@@ -24,3 +24,8 @@ class BrandDetailView(DetailView):
     model = Brand
     template_name = 'brand_page.html'
 
+    def get_context_data(self, *args, **kwargs):
+        context = super().get_context_data(*args, **kwargs)
+        context["type"] = self.kwargs['type']
+        return context
+
