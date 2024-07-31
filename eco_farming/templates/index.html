@@ -1,0 +1,108 @@
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+<div class="weather">
+    <div class="container">
+        <div class="weather_wrapper">
+            <div class="weather_widget">
+                <div class="weather_left">
+                    <img src="{% static 'img/weather_bg_1.png' %}" class="weather_bg" alt="weather_bg">
+                    <div class="weather_widget_top">
+                        <div class="title title_37">Понедельник</div>
+                        <div class="title title_22 medium">27 мая 2024</div>
+                        <div class="title title_20 semi-bold">
+                            <img src="{% static 'icons/weather_map.svg' %}" alt="map">
+                            <span id="weather_city">город</span>
+                        </div>
+                    </div>
+                    <div class="weather_widget_bottom">
+                        <img src="{% static 'icons/sunny.svg' %}" alt="sunny">
+                        <div class="title title_50 bold">29 °C</div>
+                        <div class="title title_30 bold">Солнечно</div>
+                    </div>
+                </div>
+                <div class="weather_right">
+                    <img src="{% static 'img/weather_bg_2.png' %}" class="weather_bg" alt="weather_bg">
+                    <div class="weather_parameter nomt">
+                        <div class="title title_28 bold">АТМОСФЕРНЫЕ<br>ОСАДКИ</div>
+                        <div class="title title_28 medium">0%</div>
+                    </div>
+                    <div class="weather_parameter">
+                        <div class="title title_28 bold">ВЛАЖНОСТЬ</div>
+                        <div class="title title_28 medium">42%</div>
+                    </div>
+                    <div class="weather_parameter">
+                        <div class="title title_28 bold">ВЕТЕР</div>
+                        <div class="title title_28 medium">3 км/ч</div>
+                    </div>
+                    <div class="weather_degrees">
+                        <div class="weather_degree active">
+                            <img src="{% static 'icons/sunny.svg' %}" alt="sunny">
+                            <div class="title title_20">Вт</div>
+                            <div class="title title_20 bold">30 °C</div>
+                        </div>
+                        <div class="weather_degree">
+                            <img src="{% static 'icons/cloudy.svg' %}" alt="cloudy">
+                            <div class="title title_20">Ср</div>
+                            <div class="title title_20 bold">22 °C</div>
+                        </div>
+                        <div class="weather_degree">
+                            <img src="{% static 'icons/rainy.svg' %}" alt="rainy">
+                            <div class="title title_20">Чт</div>
+                            <div class="title title_20 bold">06 °C</div>
+                        </div>
+                        <div class="weather_degree">
+                            <img src="{% static 'icons/sunny.svg' %}" alt="sunny">
+                            <div class="title title_20">Пт</div>
+                            <div class="title title_20 bold">26 °C</div>
+                        </div>
+                    </div>
+                    <button class="button button_city">
+                        <img src="{% static 'icons/weather_map.svg' %}" alt="map">выбрать город
+                    </button>
+                </div>
+            </div>
+            <div class="weather_controls">
+                <img class="weather_prev rotate" src="{% static 'icons/weather_next.svg' %}" alt="prev">
+                <img class="weather_next" src="{% static 'icons/weather_next.svg' %}" alt="next">
+            </div>
+            <div class="weather_slider">
+                <div class="weather_field">
+                    {% if weather_slide_list %}
+                        {% for slide in weather_slide_list %}
+                            <div class="weather_slide">
+                                <div class="title title_40 semi-bold">{{ slide.title }}</div>
+                                <div class="title title_20 regular">{{ slide.description }}</div>
+                                <img src="{{ slide.image.url }}" alt="template">
+                            </div>
+                        {% empty %}
+                        <h4>Записи будут добавлены в ближайшее время</h4>
+                        {% endfor %}
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<section class="videos">
+    <div class="container">
+        <div class="title title_48 semi-bold">Видеоматерилы</div>
+        <div class="videos_wrapper">
+            <div class="videos_item" data-fancybox data-src="{% static 'video/sample-5s.mp4' %}">
+                <div class="videos_item_image">
+                    <img class="bg" src="{% static 'img/slider_template.png' %}" alt="video">
+                    <img class="start" src="{% static 'icons/start_video.svg' %}" alt="start">
+                </div>
+                <div class="title title_24 semi-bold">Название видеоматериала</div>
+            </div>
+            <div class="videos_item" data-fancybox data-src="{% static 'video/sample-5s.mp4' %}">
+                <div class="videos_item_image">
+                    <img class="bg" src="{% static 'img/weather_bg_2.png' %}" alt="video">
+                    <img class="start" src="{% static 'icons/start_video.svg' %}" alt="start">
+                </div>
+                <div class="title title_24 semi-bold">Название видеоматериала</div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

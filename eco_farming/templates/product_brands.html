@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+<section class="product_brands">
+    <div class="container">
+        <div class="title title_48 semi-bold">{{ type }}</div>
+        <div class="product_brands_wrapper">
+            {% if brands_list %}
+                {% for brand in brands_list %}
+                    <div class="product_brands_item" onclick="location='brand_page.html'">
+                        <img src="{{ brand.image.url }}" alt="brand">
+                        <div class="product_brands_content">
+                            <div class="title title_32 semi-bold">{{ brand.title }}</div>
+                            <div class="title title_20 regular">{{ brand.description }}</div>
+                            <div class="title regular">{{ brand.substance }}</div>
+                        </div>
+                    </div>
+                {% empty %}
+                <h4>Записи будут добавлены в ближайшее время</h4>
+                {% endfor %}
+            {% endif %}
+        </div>
+        <div class="pagination">
+            <div class="pagination_prev rotate">
+                <img src="{% static 'icons/pag_next.svg' %}" alt="prev">
+            </div>
+            <div class="pagination_item active">1</div>
+            <div class="pagination_item">2</div>
+            <div class="pagination_item">3</div>
+            <div class="pagination_item">4</div>
+            <div class="pagination_item">5</div>
+            <div class="pagination_next">
+                <img src="{% static 'icons/pag_next.svg' %}" alt="next">
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

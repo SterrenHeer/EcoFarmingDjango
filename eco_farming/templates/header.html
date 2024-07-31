@@ -1,0 +1,176 @@
+{% load static %}
+<header class="header">
+    <div class="header_top">
+        <img src="{% static 'img/header_bg/bg_1.png' %}" class="header_bg" alt="header_bg">
+        <div class="container">
+            <div class="header_top_content">
+                <div class="header_socials full">
+                    <div>
+                        <a href="#"><img src="{% static 'icons/inst_footer.svg' %}" alt="instagram"></a>
+                    </div>
+                    <div>
+                        <a href="#"><img src="{% static 'icons/tube_footer.svg' %}" alt="youtube"></a>
+                    </div>
+                    <div>
+                        <a href="#"><img src="{% static 'icons/viber_footer.svg' %}" alt="viber"></a>
+                    </div>
+                </div>
+                <div class="title title_48 semi-bold">ОПТОВАЯ ТОРГОВЛЯ СРЕДСТВАМИ<br>ЗАЩИТЫ РАСТЕНИЙ</div>
+            </div>
+        </div>
+        <div class="header_top_brochure full">
+            <div class="title title_20 semi-bold">Просмотреть<br>брошюру</div>
+            <button class="button button_header">Открыть</button>
+            <img src="{% static 'img/brochure.png' %}" alt="brochure">
+        </div>
+    </div>
+    <div class="header_main">
+        <div class="container">
+            <a href="{% url 'index' %}" class="header_logo">
+                <img src="{% static 'img/logo_dark.png' %}" alt="logo">
+                <div class="header_logo_bg"></div>
+            </a>
+            <div class="header_buttons">
+                <img src="{% static 'icons/search.svg' %}" alt="search">
+                <img class="burger_button" src="{% static '' %}icons/burger.svg" alt="burger">
+            </div>
+        </div>
+    </div>
+    <div class="header_bottom">
+        <div class="container main">
+            <div class="title title_48">Продукты</div>
+            <div class="header_products">
+                <a href="{% url 'product_brands' 'Обработка семян' %}" class="header_product">
+                    <img src="{% static 'img/products/categories/category_1.png' %}" alt="category">
+                    <div class="title title_20">Обработка семян</div>
+                </a>
+                <a href="{% url 'product_brands' 'Гербициды' %}" class="header_product">
+                    <img src="{% static 'img/products/categories/category_2.png' %}" alt="category">
+                    <div class="title title_20">Гербициды</div>
+                </a>
+                <a href="{% url 'product_brands' 'Фунгициды' %}" class="header_product">
+                    <img src="{% static 'img/products/categories/category_3.png' %}" alt="category">
+                    <div class="title title_20">Фунгициды</div>
+                </a>
+                <a href="{% url 'product_brands' 'Инсектициды' %}" class="header_product">
+                    <img src="{% static 'img/products/categories/category_4.png' %}" alt="category">
+                    <div class="title title_20">Инсектициды</div>
+                </a>
+                <a href="{% url 'product_brands' 'Фумиганты' %}" class="header_product">
+                    <img src="{% static 'img/products/categories/category_5.png' %}" alt="category">
+                    <div class="title title_20">Фумиганты</div>
+                </a>
+                <a href="{% url 'product_brands' 'ПАВы и адъюванты' %}" class="header_product">
+                    <img src="{% static 'img/products/categories/category_6.png' %}" alt="category">
+                    <div class="title title_20">ПАВы и адъюванты</div>
+                </a>
+                <a href="{% url 'product_brands' 'Микроудобрения' %}" class="header_product">
+                    <img src="{% static 'img/products/categories/category_7.png' %}" alt="category">
+                    <div class="title title_20">Микроудобрения</div>
+                </a>
+                <a href="{% url 'product_brands' 'Регуляторы роста' %}" class="header_product">
+                    <img src="{% static 'img/products/categories/category_8.png' %}" alt="category">
+                    <div class="title title_20">Регуляторы роста</div>
+                </a>
+            </div>
+        </div>
+        <div class="container others all">
+            <a href="products.html" class="title title_24 semi-bold">Продукты</a>
+            <a href="cultures.html" class="title title_24 semi-bold">Культуры</a>
+            <a href="harmful.html" class="title title_24 semi-bold">Вредные объекты</a>
+        </div>
+        <div class="container others products">
+            <a href="{% url 'product_brands' 'Обработка семян' %}" class="title title_24 semi-bold">Обработка семян</a>
+            <a href="{% url 'product_brands' 'Гербициды' %}" class="title title_24 semi-bold">Гербициды</a>
+            <a href="{% url 'product_brands' 'Фунгициды' %}" class="title title_24 semi-bold">Фунгициды</a>
+            <a href="{% url 'product_brands' 'Инсектициды' %}" class="title title_24 semi-bold">Инсектициды</a>
+            <a href="{% url 'product_brands' 'Фумиганты' %}" class="title title_24 semi-bold">Фумиганты</a>
+            <a href="{% url 'product_brands' 'ПАВы и адъюванты' %}" class="title title_24 semi-bold">ПАВы и адъюванты</a>
+            <a href="{% url 'product_brands' 'Микроудобрения' %}" class="title title_24 semi-bold">Микроудобрения</a>
+            <a href="{% url 'product_brands' 'Регуляторы роста' %}" class="title title_24 semi-bold">Регуляторы роста</a>
+        </div>
+        <div class="container others harmful">
+            <a href="weeds.html" class="title title_24 semi-bold">Сорняки</a>
+            <a href="#" class="title title_24 semi-bold">Болезни</a>
+            <a href="#" class="title title_24 semi-bold">Вредители</a>
+        </div>
+        <div class="container others company">
+            <a href="#" class="title title_24 semi-bold">Компания</a>
+            <a href="publications.html" class="title title_24 semi-bold">Наука</a>
+            <a href="publications.html" class="title title_24 semi-bold">Публикации</a>
+            <a href="publications.html" class="title title_24 semi-bold">Видеоматериалы</a>
+            <a href="contacts.html" class="title title_24 semi-bold">Контакты</a>
+        </div>
+    </div>
+    <div class="burger">
+        <div class="burger_modal">
+            <div class="burger_buttons">
+                <img src="{% static 'icons/search.svg' %}" alt="search">
+                <img data-close class="burger_close" src="{% static '' %}icons//close.svg" alt="close">
+            </div>
+            <input class="burger_search" type="text" placeholder="Введите поисковой запрос">
+            <ul class="burger_menu">
+                <li><a href="products.html" class="title title_20 semi-bold">Продукты</a>
+                    <ul>
+                        <li><a href="{% url 'product_brands' 'Обработка семян' %}" class="title medium">Обработка семян</a></li>
+                        <li><a href="{% url 'product_brands' 'Гербициды' %}" class="title medium">Гербициды</a></li>
+                        <li><a href="{% url 'product_brands' 'Фунгициды' %}" class="title medium">Фунгициды</a></li>
+                        <li><a href="{% url 'product_brands' 'Инсектициды' %}" class="title medium">Инстектициды</a></li>
+                        <li><a href="{% url 'product_brands' 'Фумиганты' %}" class="title medium">Фумиганты</a></li>
+                        <li><a href="{% url 'product_brands' 'ПАВы и адъюванты' %}" class="title medium">ПАВы и адъюванты</a></li>
+                        <li><a href="{% url 'product_brands' 'Микроудобрения' %}" class="title medium">Микроудобрения</a></li>
+                        <li><a href="{% url 'product_brands' 'Регуляторы роста' %}" class="title medium">Регуляторы роста</a></li>
+                    </ul>
+                </li>
+                <li><a href="cultures.html" class="title title_20 semi-bold">Культуры</a>
+                    <ul>
+                        <li><a href="culture_page.html" class="title medium">Озимые зерновые</a></li>
+                        <li><a href="#" class="title medium">Яровые зерновые</a></li>
+                        <li><a href="#" class="title medium">Картофель</a></li>
+                        <li><a href="#" class="title medium">Кукуруза</a></li>
+                        <li><a href="#" class="title medium">Подсолнечник</a></li>
+                        <li><a href="#" class="title medium">Рапс</a></li>
+                        <li><a href="#" class="title medium">Сахарная свёкла</a></li>
+                        <li><a href="#" class="title medium">Соя</a></li>
+                        <li><a href="#" class="title medium">Горох</a></li>
+                        <li><a href="#" class="title medium">Лён</a></li>
+                    </ul>
+                </li>
+                <li><a href="#" class="title title_20 semi-bold">О нас</a>
+                    <ul>
+                        <li><a href="#" class="title medium">Компания</a></li>
+                        <li><a href="publications.html" class="title medium">Наука</a></li>
+                        <li><a href="publications.html" class="title medium">Публикации</a></li>
+                        <li><a href="publications.html" class="title medium">Видеоматериалы</a></li>
+                        <li><a href="contacts.html" class="title medium">Контакты</a></li>
+                    </ul>
+                </li>
+                <li><a href="harmful.html" class="title title_20 semi-bold">Вредные объекты</a>
+                    <ul>
+                        <li><a href="weeds.html" class="title medium">Сорняки</a></li>
+                        <li><a href="#" class="title medium">Болезни</a></li>
+                        <li><a href="#" class="title medium">Вредители</a></li>
+                    </ul>
+                </li>
+            </ul>
+            <div class="burger_bottom">
+                <div class="header_socials">
+                    <div>
+                        <a href="#"><img src="{% static 'icons/inst_footer.svg' %}" alt="instagram"></a>
+                    </div>
+                    <div>
+                        <a href="#"><img src="{% static 'icons/tube_footer.svg' %}" alt="youtube"></a>
+                    </div>
+                    <div>
+                        <a href="#"><img src="{% static 'icons/viber_footer.svg' %}" alt="viber"></a>
+                    </div>
+                </div>
+                <div class="header_top_brochure">
+                    <div class="title title_20 semi-bold">Просмотреть <br class="">брошюру</div>
+                    <button class="button button_header">Открыть</button>
+                    <img src="{% static 'img/brochure.png' %}" alt="brochure">
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
