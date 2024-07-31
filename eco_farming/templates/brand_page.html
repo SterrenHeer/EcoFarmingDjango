@@ -90,48 +90,36 @@
                     <div class="brand_table">
                         <div class="brand_table_column">
                             <div class="title title_24 bold left">Культура</div>
-                            <div class="title title_20 regular">Пшеница и ячмень яровые</div>
-                            <div class="title title_20 regular">Пшеница и ячмень озимые</div>
-                            <div class="title title_20 regular">Кукуруза</div>
-                            <div class="title title_20 regular">Подсолнечник</div>
-                            <div class="title title_20 regular">Рапс</div>
-                            <div class="title title_20 regular">Соя</div>
-                            <div class="title title_20 regular">Лён масличный</div>
-                            <div class="title title_20 regular">Картофель</div>
+                            {% if brand.brandusageitem_set %}
+                                {% for usage_item in brand.brandusageitem_set.all %}
+                                    <div class="title title_20 regular">{{ usage_item.culture }}</div>
+                                {% endfor %}
+                            {% endif %}
                         </div>
                         <div class="brand_table_column">
                             <div class="title title_24 bold left">Вредитель</div>
-                            <div class="title title_20 regular">Злаковые мухи, хлебные блошки</div>
-                            <div class="title title_20 regular">Хлебная жужелица, злаковые мухи, хлебные блошки </div>
-                            <div class="title title_20 regular">Проволочники, подгрызающие совки</div>
-                            <div class="title title_20 regular">Проволочники</div>
-                            <div class="title title_20 regular">Крестоцветные блошки</div>
-                            <div class="title title_20 regular">Проволочники</div>
-                            <div class="title title_20 regular">Льняные блошки</div>
-                            <div class="title title_20 regular">Проволочники, колорадский жук, тли, цикадки </div>
+                            {% if brand.brandusageitem_set %}
+                                {% for usage_item in brand.brandusageitem_set.all %}
+                                    <div class="title title_20 regular">{{ usage_item.saboteur }}</div>
+                                {% endfor %}
+                            {% endif %}
                         </div>
                         <div class="brand_table_column">
                             <div class="title title_24 bold top"><span>Препарата</span></div>
-                            <div class="title title_20 regular">0,4 – 0,5</div>
-                            <div class="title title_20 regular">0,6 – 0,8</div>
-                            <div class="title title_20 regular">0,6 – 0,8</div>
-                            <div class="title title_20 regular">0,6 – 0,8</div>
-                            <div class="title title_20 regular">0,6 – 0,8</div>
-                            <div class="title title_20 regular">0,6 – 0,8</div>
-                            <div class="title title_20 regular">0,6 – 0,8</div>
-                            <div class="title title_20 regular">0,6 – 0,8</div>
+                            {% if brand.brandusageitem_set %}
+                                {% for usage_item in brand.brandusageitem_set.all %}
+                                    <div class="title title_20 regular">{{ usage_item.drug_consumption }}</div>
+                                {% endfor %}
+                            {% endif %}
                             <div class="title title_32 bold">Норма расхода, л/т</div>
                         </div>
                         <div class="brand_table_column">
                             <div class="title title_24 bold top"><span>Рабочего р-ра</span></div>
-                            <div class="title title_20 regular">10,5</div>
-                            <div class="title title_20 regular">10,8</div>
-                            <div class="title title_20 regular">10,8</div>
-                            <div class="title title_20 regular">10,8</div>
-                            <div class="title title_20 regular">10,8</div>
-                            <div class="title title_20 regular">10,8</div>
-                            <div class="title title_20 regular">10,8</div>
-                            <div class="title title_20 regular">10,8</div>
+                            {% if brand.brandusageitem_set %}
+                                {% for usage_item in brand.brandusageitem_set.all %}
+                                    <div class="title title_20 regular">{{ usage_item.solution_consumption }}</div>
+                                {% endfor %}
+                            {% endif %}
                         </div>
                     </div>
                 </div>

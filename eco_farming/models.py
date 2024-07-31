@@ -55,5 +55,27 @@ class BrandEffectImage(models.Model):
     brand = models.ForeignKey(Brand, on_delete=models.CASCADE, verbose_name="Товар")
     image = models.ImageField("Изображение", upload_to='brand_effect_images')
 
+    class Meta:
+        verbose_name = 'действие препарата'
+        verbose_name_plural = 'Действие препаратов'
+
+    def __str__(self):
+        return self.brand.title
+
+
+class BrandUsageItem(models.Model):
+    brand = models.ForeignKey(Brand, on_delete=models.CASCADE, verbose_name="Товар")
+    culture = models.CharField("Культура", max_length=100)
+    saboteur = models.CharField("Вредитель", max_length=100)
+    drug_consumption = models.CharField("Норма расхода препарата", max_length=100)
+    solution_consumption = models.CharField("Норма расхода рабочего раствора", max_length=100)
+
+    class Meta:
+        verbose_name = 'норма расхода'
+        verbose_name_plural = 'Нормы расхода'
+
+    def __str__(self):
+        return self.brand.title
+
 
 
