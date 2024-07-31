@@ -1,5 +1,10 @@
 {% extends "base.html" %}
 {% load static %}
+
+{% block title %}
+    {{ type }}
+{% endblock %}
+
 {% block content %}
 <section class="product_brands">
     <div class="container">
@@ -7,7 +12,7 @@
         <div class="product_brands_wrapper">
             {% if brands_list %}
                 {% for brand in brands_list %}
-                    <div class="product_brands_item" onclick="location='brand_page.html'">
+                    <div class="product_brands_item" onclick="location='{{ brand.get_absolute_url }}'">
                         <img src="{{ brand.image.url }}" alt="brand">
                         <div class="product_brands_content">
                             <div class="title title_32 semi-bold">{{ brand.title }}</div>

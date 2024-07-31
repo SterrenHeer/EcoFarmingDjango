@@ -1,0 +1,151 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}
+    {{ type }}
+{% endblock %}
+
+{% block content %}
+<section class="brand">
+    <div class="container">
+        <div class="brand_wrapper">
+            <div class="brand_others">
+                <div class="title title_32 bold">
+                    {{ brand.product_category }}
+                    <img class="mobile" src="{% static 'icons/product_drop.svg' %}" alt="drop">
+                </div>
+                <div class="brand_items">
+                    <a href="#" class="title title_20 medium">Название</a>
+                    <a href="#" class="title title_20 medium">Название</a>
+                    <a href="#" class="title title_20 medium">Название</a>
+                    <a href="#" class="title title_20 medium">Название</a>
+                    <a href="#" class="title title_20 medium">Название</a>
+                    <a href="#" class="title title_20 medium">Название</a>
+                    <a href="#" class="title title_20 medium">Название</a>
+                    <a href="#" class="title title_20 medium">Название</a>
+                    <a href="#" class="title title_20 medium">Название</a>
+                </div>
+            </div>
+            <div class="brand_descr">
+                <div class="brand_title">
+                    <img src="{{ brand.image.url }}" alt="logo">
+                    <div class="title title_48 bold" style="color: #a15a96;">{{ brand.title }}</div>
+                </div>
+                <div class="title title_24 regular">{{ brand.description }}</div>
+                <div class="brand_headers">
+                    <div class="brand_header title title_24">Основное</div>
+                    <div class="brand_header title title_24">Регламент применения</div>
+                    <div class="brand_header title title_24">Действие препарата</div>
+                </div>
+                <div class="divider"></div>
+                <div class="brand_tab">
+                    <div class="brand_params">
+                        <div class="brand_params_row">
+                            <img src="{% static 'icons/product_type.svg' %}" alt="type">
+                            <div class="brand_params_column">
+                                <div class="brand_params_item">
+                                    <div class="title title_20 semi-bold">Тип продукта:</div>
+                                    <div class="title title_24 semi-bold">{{ brand.type }}</div>
+                                </div>
+                                <div class="brand_params_item">
+                                    <div class="title title_20 semi-bold">Действующее вещество:</div>
+                                    <div class="title title_24 semi-bold">{{ brand.substance }}</div>
+                                </div>
+                                <div class="brand_params_item">
+                                    <div class="title title_20 semi-bold">Препаративная форма:</div>
+                                    <div class="title title_24 semi-bold">{{ brand.preparative }}</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="brand_params_row">
+                            <img src="{% static 'icons/product_expense.svg' %}" alt="expense">
+                            <div class="brand_params_column">
+                                <div class="brand_params_item">
+                                    <div class="title title_20 semi-bold">Норма расхода:</div>
+                                    <div class="title title_24 semi-bold">{{ brand.consumption }}</div>
+                                </div>
+                                <div class="brand_params_item">
+                                    <div class="title title_20 semi-bold">Упаковка:</div>
+                                    <div class="title title_24 semi-bold">{{ brand.packaging }}</div>
+                                </div>
+                                <div class="brand_params_item">
+                                    <div class="title title_20 semi-bold">Срок годности:</div>
+                                    <div class="title title_24 semi-bold">{{ brand.expiration }}</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="brand_params_bottom">
+                        <div class="divider"></div>
+                        <div class="title title_24 medium">Преимущества препарата:</div>
+                        <ul class="brand_advantages">
+                            <li class="title title_20 regular">Надежная и продолжительная защита от комплекса вредителей</li>
+                            <li class="title title_20 regular">Экономия средств за счёт отмены инсектицидных обработок по вегетации</li>
+                            <li class="title title_20 regular">Стабильное защитное действие независимо от внешних условий</li>
+                            <li class="title title_20 regular">Отличная совместимость<br>с фунгицидными протравителями</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="brand_tab table">
+                    <div class="brand_table">
+                        <div class="brand_table_column">
+                            <div class="title title_24 bold left">Культура</div>
+                            <div class="title title_20 regular">Пшеница и ячмень яровые</div>
+                            <div class="title title_20 regular">Пшеница и ячмень озимые</div>
+                            <div class="title title_20 regular">Кукуруза</div>
+                            <div class="title title_20 regular">Подсолнечник</div>
+                            <div class="title title_20 regular">Рапс</div>
+                            <div class="title title_20 regular">Соя</div>
+                            <div class="title title_20 regular">Лён масличный</div>
+                            <div class="title title_20 regular">Картофель</div>
+                        </div>
+                        <div class="brand_table_column">
+                            <div class="title title_24 bold left">Вредитель</div>
+                            <div class="title title_20 regular">Злаковые мухи, хлебные блошки</div>
+                            <div class="title title_20 regular">Хлебная жужелица, злаковые мухи, хлебные блошки </div>
+                            <div class="title title_20 regular">Проволочники, подгрызающие совки</div>
+                            <div class="title title_20 regular">Проволочники</div>
+                            <div class="title title_20 regular">Крестоцветные блошки</div>
+                            <div class="title title_20 regular">Проволочники</div>
+                            <div class="title title_20 regular">Льняные блошки</div>
+                            <div class="title title_20 regular">Проволочники, колорадский жук, тли, цикадки </div>
+                        </div>
+                        <div class="brand_table_column">
+                            <div class="title title_24 bold top"><span>Препарата</span></div>
+                            <div class="title title_20 regular">0,4 – 0,5</div>
+                            <div class="title title_20 regular">0,6 – 0,8</div>
+                            <div class="title title_20 regular">0,6 – 0,8</div>
+                            <div class="title title_20 regular">0,6 – 0,8</div>
+                            <div class="title title_20 regular">0,6 – 0,8</div>
+                            <div class="title title_20 regular">0,6 – 0,8</div>
+                            <div class="title title_20 regular">0,6 – 0,8</div>
+                            <div class="title title_20 regular">0,6 – 0,8</div>
+                            <div class="title title_32 bold">Норма расхода, л/т</div>
+                        </div>
+                        <div class="brand_table_column">
+                            <div class="title title_24 bold top"><span>Рабочего р-ра</span></div>
+                            <div class="title title_20 regular">10,5</div>
+                            <div class="title title_20 regular">10,8</div>
+                            <div class="title title_20 regular">10,8</div>
+                            <div class="title title_20 regular">10,8</div>
+                            <div class="title title_20 regular">10,8</div>
+                            <div class="title title_20 regular">10,8</div>
+                            <div class="title title_20 regular">10,8</div>
+                            <div class="title title_20 regular">10,8</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="brand_tab images">
+                    <div class="brand_images">
+                        <img src="{% static 'img/categories/products/product_2.png' %}" alt="image">
+                        <img src="{% static 'img/categories/products/product_3.png' %}" alt="image">
+                        <img src="{% static 'img/categories/products/product_4.png' %}" alt="image">
+                        <img src="{% static 'img/categories/products/product_5.png' %}" alt="image">
+                    </div>
+                    <div class="title title_24 regular">Текст</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

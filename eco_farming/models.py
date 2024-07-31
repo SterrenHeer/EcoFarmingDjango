@@ -43,5 +43,8 @@ class Brand(models.Model):
     def __str__(self):
         return self.title
 
+    def get_absolute_url(self):
+        return reverse('brands_details', args=[str(self.id)])
+
 
 

@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from django.views.generic import ListView
+from django.views.generic import ListView, DetailView
 from .models import WeatherSlide, Brand
 
 
@@ -18,4 +18,9 @@ class BrandsListView(ListView):
         context = super().get_context_data(*args, **kwargs)
         context["type"] = self.kwargs['type']
         return context
+
+
+class BrandDetailView(DetailView):
+    model = Brand
+    template_name = 'brand_page.html'
 
