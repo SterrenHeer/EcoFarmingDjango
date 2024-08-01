@@ -75,9 +75,9 @@
             </div>
         </div>
         <div class="container others all">
-            <a href="products.html" class="title title_24 semi-bold">Продукты</a>
+            <a href="{% url 'product_categories' 'Продукты' %}" class="title title_24 semi-bold">Продукты</a>
             <a href="cultures.html" class="title title_24 semi-bold">Культуры</a>
-            <a href="harmful.html" class="title title_24 semi-bold">Вредные объекты</a>
+            <a href="{% url 'harmful_categories' 'Вредные объекты' %}" class="title title_24 semi-bold">Вредные объекты</a>
         </div>
         <div class="container others products">
             <a href="{% url 'product_brands' 'Обработка семян' %}" class="title title_24 semi-bold">Обработка семян</a>
@@ -110,7 +110,7 @@
             </div>
             <input class="burger_search" type="text" placeholder="Введите поисковой запрос">
             <ul class="burger_menu">
-                <li><a href="{% url 'product_categories' %}" class="title title_20 semi-bold">Продукты</a>
+                <li><a href="{% url 'product_categories' 'Продукты' %}" class="title title_20 semi-bold">Продукты</a>
                     <ul>
                         <li><a href="{% url 'product_brands' 'Обработка семян' %}" class="title medium">Обработка семян</a></li>
                         <li><a href="{% url 'product_brands' 'Гербициды' %}" class="title medium">Гербициды</a></li>
@@ -145,7 +145,7 @@
                         <li><a href="contacts.html" class="title medium">Контакты</a></li>
                     </ul>
                 </li>
-                <li><a href="harmful.html" class="title title_20 semi-bold">Вредные объекты</a>
+                <li><a href="{% url 'harmful_categories' 'Вредные объекты' %}" class="title title_20 semi-bold">Вредные объекты</a>
                     <ul>
                         <li><a href="weeds.html" class="title medium">Сорняки</a></li>
                         <li><a href="#" class="title medium">Болезни</a></li>

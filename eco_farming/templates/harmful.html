@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}
+    Вредные объекты
+{% endblock %}
+
+{% block content %}
+<section class="categories">
+    <div class="container">
+        <div class="title title_48 semi-bold">Вредные объекты</div>
+        <div class="categories_wrapper">
+            <div class="categories_item other white" onclick="location='weeds.html'">
+                <img src="{% static 'img/categories/harmful/harmful_1.png' %}" alt="category">
+                <div class="title title_36 semi-bold">Сорняки</div>
+            </div>
+            <div class="categories_item other white">
+                <img src="{% static 'img/categories/harmful/harmful_2.png' %}" alt="category">
+                <div class="title title_36 semi-bold">Болезни</div>
+            </div>
+            <div class="categories_item other white">
+                <img src="{% static 'img/categories/harmful/harmful_3.png' %}" alt="category">
+                <div class="title title_36 semi-bold">Вредители</div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}
