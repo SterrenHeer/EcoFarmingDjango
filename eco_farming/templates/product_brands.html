@@ -26,17 +26,31 @@
             {% endif %}
         </div>
         <div class="pagination">
-            <div class="pagination_prev rotate">
+            {% if page_obj.has_previous %}
+            <a href="?page={{ page_obj.previous_page_number }}" class="pagination_prev rotate">
+                <img src="{% static 'icons/pag_next.svg' %}" alt="prev">
+            </a>
+            {% else %}
+            <div class="pagination_prev rotate lock">
                 <img src="{% static 'icons/pag_next.svg' %}" alt="prev">
             </div>
-            <div class="pagination_item active">1</div>
-            <div class="pagination_item">2</div>
-            <div class="pagination_item">3</div>
-            <div class="pagination_item">4</div>
-            <div class="pagination_item">5</div>
-            <div class="pagination_next">
+            {% endif %}
+            {% for page in page_obj.paginator.page_range %}
+                {% if page == page_obj.number %}
+                <div class="pagination_item active">{{ page }}</div>
+                {% else %}
+                <a href="?page={{ page }}" class="pagination_item">{{ page }}</a>
+                {% endif %}
+            {% endfor %}
+            {% if page_obj.has_next %}
+            <a href="?page={{ page_obj.next_page_number }}" class="pagination_next">
+                <img src="{% static 'icons/pag_next.svg' %}" alt="next">
+            </a>
+            {% else %}
+            <div class="pagination_next lock">
                 <img src="{% static 'icons/pag_next.svg' %}" alt="next">
             </div>
+            {% endif %}
         </div>
     </div>
 </section>

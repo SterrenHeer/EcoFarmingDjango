@@ -131,6 +131,8 @@ a {
 }
 .pagination .rotate img {
   transform: rotate(180deg);
+}
+.pagination .lock img {
   filter: brightness(0) saturate(100%) invert(70%) sepia(0%) saturate(446%) hue-rotate(180deg) brightness(111%) contrast(86%);
 }
 
@@ -356,7 +358,7 @@ a {
   height: 13.437vw;
   border-radius: 100%;
   background: rgba(255, 255, 255, 0.65);
-  filter: blur(70px);
+  filter: blur(50px);
 }
 .header_logo img {
   height: 4.8vw;
@@ -1919,10 +1921,25 @@ a {
     display: none;
   }
   .header .others {
-    flex-wrap: wrap;
-    gap: 2.777vw 5.555vw;
+    overflow-x: auto;
+    padding-bottom: 4.055vw;
+    gap: 5.555vw;
+  }
+  .header .others::-webkit-scrollbar {
+    height: 1.666vw;
+    border-radius: 1.388vw;
+    background-color: #fff;
+  }
+  .header .others::-webkit-scrollbar-thumb {
+    border-radius: 1.388vw;
+    background: #ffb800;
+  }
+  .header .others::-webkit-scrollbar-track {
+    border-radius: 1.388vw;
+    background: #fff;
   }
   .header .others .title {
+    text-wrap: nowrap;
     font-size: 3.333vw;
   }
   .header .others .active::after {
@@ -2704,11 +2721,27 @@ a {
     font-size: 4.444vw;
   }
   .culture_headers {
-    flex-wrap: wrap;
-    gap: 2.777vw 5.555vw;
+    overflow-x: auto;
+    padding-bottom: 4.055vw;
+    gap: 5.555vw;
     margin-top: 3.055vw;
   }
+  .culture_headers::-webkit-scrollbar {
+    height: 1.666vw;
+    box-shadow: 0 0 4px 0 rgba(0, 0, 0, 0.25);
+    border-radius: 1.388vw;
+    background-color: #fff;
+  }
+  .culture_headers::-webkit-scrollbar-thumb {
+    border-radius: 1.388vw;
+    background: #ffb800;
+  }
+  .culture_headers::-webkit-scrollbar-track {
+    border-radius: 1.388vw;
+    background: #fff;
+  }
   .culture_headers .title {
+    text-wrap: nowrap;
     font-size: 3.333vw;
   }
   .culture .head {
