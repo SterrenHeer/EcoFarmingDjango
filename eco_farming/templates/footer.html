@@ -21,14 +21,14 @@
             </div>
             <div class="footer_links">
                 <a href="products.html" class="title title_20 semi_bold">Продукты</a>
-                <a href="product_brands.html" class="title">Обработка семян</a>
-                <a href="#" class="title">Гербициды</a>
-                <a href="#" class="title">Фунгициды</a>
-                <a href="#" class="title">Инсектициды</a>
-                <a href="#" class="title">Фумиганты</a>
-                <a href="#" class="title">ПАВы и адъюванты</a>
-                <a href="#" class="title">Микроудобрения</a>
-                <a href="#" class="title">Регуляторы роста</a>
+                <a href="{% url 'product_brands' 'Обработка семян' %}" class="title">Обработка семян</a>
+                <a href="{% url 'product_brands' 'Гербициды' %}" class="title">Гербициды</a>
+                <a href="{% url 'product_brands' 'Фунгициды' %}" class="title">Фунгициды</a>
+                <a href="{% url 'product_brands' 'Инсектициды' %}" class="title">Инсектициды</a>
+                <a href="{% url 'product_brands' 'Фумиганты' %}" class="title">Фумиганты</a>
+                <a href="{% url 'product_brands' 'ПАВы и адъюванты' %}" class="title">ПАВы и адъюванты</a>
+                <a href="{% url 'product_brands' 'Микроудобрения' %}" class="title">Микроудобрения</a>
+                <a href="{% url 'product_brands' 'Регуляторы роста' %}" class="title">Регуляторы роста</a>
             </div>
             <div class="footer_links">
                 <a href="cultures.html" class="title title_20 semi_bold">Культуры</a>
@@ -53,9 +53,9 @@
             </div>
             <div class="footer_links">
                 <a href="#" class="title title_20 semi-bold">Сервисы</a>
-                <a href="#" class="title">Болезни</a>
-                <a href="#" class="title">Вредители</a>
-                <a href="weeds.html" class="title">Сорняки</a>
+                <a href="{% url 'harmful_items' 'Болезни' %}" class="title">Болезни</a>
+                <a href="{% url 'harmful_items' 'Вредители' %}" class="title">Вредители</a>
+                <a href="{% url 'harmful_items' 'Сорняки' %}" class="title">Сорняки</a>
             </div>
             <div class="footer_right">
                 <div class="footer_contacts">

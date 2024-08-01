@@ -1,0 +1,80 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}
+    { type }}
+{% endblock %}
+
+{% block content %}
+<section class="weeds">
+    <div class="container">
+        <div class="weeds_wrapper">
+            <div class="weeds_others">
+                <div class="title title_48 semi-bold">{{ type }}</div>
+                {% if categories %}
+                    {% for category in categories %}
+                        <div class="title title_32 bold">
+                            {{ category }}
+                            <img class="mobile" src="{% static 'icons/product_drop.svg' %}" alt="drop">
+                        </div>
+                        <div class="weeds_links">
+                        {% if category.get_items %}
+                        {% for item in category.get_items %}
+                            <a href="#" class="title title_20 medium">{{ item }}</a>
+                        {% endfor %}
+                        {% else %}
+                        <div class="title title_20 regular">Нет записей</div>
+                        {% endif %}
+                        </div>
+                    {% endfor %}
+                {% endif %}
+            </div>
+            <div class="weeds_catalog">
+                <div class="weeds_search">
+                    <input type="text" placeholder="Поиск">
+                    <img src="{% static 'icons/search.svg' %}" alt="search">
+                </div>
+                <div class="weeds_items">
+                    {% if harmful_list %}
+                    {% for item in harmful_list %}
+                        <div class="weeds_item" onclick="location='weed_page.html'">
+                            <img src="{{ item.image.url }}" alt="weed">
+                            <div class="title title_24 semi-bold">{{ item.title }}</div>
+                        </div>
+                    {% endfor %}
+                    {% else %}
+                        <div class="title title_20 regular">Записи будут добавлены в ближайшее время</div>
+                    {% endif %}
+                </div>
+                <div class="pagination">
+                    {% if page_obj.has_previous %}
+                    <a href="?page={{ page_obj.previous_page_number }}" class="pagination_prev rotate">
+                        <img src="{% static 'icons/pag_next.svg' %}" alt="prev">
+                    </a>
+                    {% else %}
+                    <div class="pagination_prev rotate lock">
+                        <img src="{% static 'icons/pag_next.svg' %}" alt="prev">
+                    </div>
+                    {% endif %}
+                    {% for page in page_obj.paginator.page_range %}
+                        {% if page == page_obj.number %}
+                        <div class="pagination_item active">{{ page }}</div>
+                        {% else %}
+                        <a href="?page={{ page }}" class="pagination_item">{{ page }}</a>
+                        {% endif %}
+                    {% endfor %}
+                    {% if page_obj.has_next %}
+                    <a href="?page={{ page_obj.next_page_number }}" class="pagination_next">
+                        <img src="{% static 'icons/pag_next.svg' %}" alt="next">
+                    </a>
+                    {% else %}
+                    <div class="pagination_next lock">
+                        <img src="{% static 'icons/pag_next.svg' %}" alt="next">
+                    </div>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

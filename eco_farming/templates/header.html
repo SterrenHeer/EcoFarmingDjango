@@ -32,7 +32,7 @@
             </a>
             <div class="header_buttons">
                 <img src="{% static 'icons/search.svg' %}" alt="search">
-                <img class="burger_button" src="{% static '' %}icons/burger.svg" alt="burger">
+                <img class="burger_button" src="{% static 'icons/burger.svg' %}" alt="burger">
             </div>
         </div>
     </div>
@@ -90,9 +90,9 @@
             <a href="{% url 'product_brands' 'Регуляторы роста' %}" class="title title_24 semi-bold">Регуляторы роста</a>
         </div>
         <div class="container others harmful">
-            <a href="weeds.html" class="title title_24 semi-bold">Сорняки</a>
-            <a href="#" class="title title_24 semi-bold">Болезни</a>
-            <a href="#" class="title title_24 semi-bold">Вредители</a>
+            <a href="{% url 'harmful_items' 'Сорняки' %}" class="title title_24 semi-bold">Сорняки</a>
+            <a href="{% url 'harmful_items' 'Болезни' %}" class="title title_24 semi-bold">Болезни</a>
+            <a href="{% url 'harmful_items' 'Вредители' %}" class="title title_24 semi-bold">Вредители</a>
         </div>
         <div class="container others company">
             <a href="#" class="title title_24 semi-bold">Компания</a>
@@ -106,7 +106,7 @@
         <div class="burger_modal">
             <div class="burger_buttons">
                 <img src="{% static 'icons/search.svg' %}" alt="search">
-                <img data-close class="burger_close" src="{% static '' %}icons//close.svg" alt="close">
+                <img data-close class="burger_close" src="{% static 'icons//close.svg' %}" alt="close">
             </div>
             <input class="burger_search" type="text" placeholder="Введите поисковой запрос">
             <ul class="burger_menu">
@@ -147,9 +147,9 @@
                 </li>
                 <li><a href="{% url 'harmful_categories' 'Вредные объекты' %}" class="title title_20 semi-bold">Вредные объекты</a>
                     <ul>
-                        <li><a href="weeds.html" class="title medium">Сорняки</a></li>
-                        <li><a href="#" class="title medium">Болезни</a></li>
-                        <li><a href="#" class="title medium">Вредители</a></li>
+                        <li><a href="{% url 'harmful_items' 'Сорняки' %}" class="title medium">Сорняки</a></li>
+                        <li><a href="{% url 'harmful_items' 'Болезни' %}" class="title medium">Болезни</a></li>
+                        <li><a href="{% url 'harmful_items' 'Вредители' %}" class="title medium">Вредители</a></li>
                     </ul>
                 </li>
             </ul>

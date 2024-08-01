@@ -16,10 +16,10 @@ if (document.querySelector('.others') != null) {
 
 if (location.pathname.includes('brand')) {
     document.querySelector('.others.products').style.display = 'flex';
+} else if (location.pathname.includes('harmful/items')) {
+    document.querySelector('.others.harmful').style.display = 'flex';
 } else if (location.pathname.includes('products') || location.pathname.includes('cultures') || location.pathname.includes('harmful')) {
     document.querySelector('.others.all').style.display = 'flex';
-} else if (location.pathname.includes('weed')) {
-    document.querySelector('.others.harmful').style.display = 'flex';
 } else if (location.pathname.includes('contacts') || location.pathname.includes('publication')) {
     document.querySelector('.others.company').style.display = 'flex';
 } else {
@@ -46,9 +46,12 @@ utms_names.forEach(name => {
 $('.brand_others img, .brand_items a').click(() => {
     $('.brand_items').toggleClass('flex');
 });
-$('.weeds_others img, .weeds_links a').click(() => {
+$('.weeds_links a').click(() => {
     $('.weeds_links').toggleClass('flex');
 });
+$('.weeds_others img').on( "click", function() {
+  $( this ).parent().next().toggleClass('flex');
+} );
 $('.publications_others img, .publications_links a').click(() => {
     $('.publications_links').toggleClass('flex');
 });

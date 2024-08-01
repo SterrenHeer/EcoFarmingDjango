@@ -93,4 +93,61 @@ class BrandAdvantage(models.Model):
         return self.brand.title
 
 
+class HarmfulCategory(models.Model):
+    TYPE_CHOICES = (
+        ('Сорняки', 'Сорняки'),
+        ('Болезни', 'Болезни'),
+        ('Вредители', 'Вредители'),
+    )
+    title = models.CharField("Название", max_length=100)
+    type = models.CharField("Тип", max_length=100, choices=TYPE_CHOICES)
+
+    class Meta:
+        verbose_name = 'категория вредных объектов'
+        verbose_name_plural = 'Категории вредных объектов'
+
+    def __str__(self):
+        return self.title
+
+    def get_items(self):
+        return self.harmful_set.all()
+
+
+class Harmful(models.Model):
+    TYPE_CHOICES = (
+        ('Сорняки', 'Сорняки'),
+        ('Болезни', 'Болезни'),
+        ('Вредители', 'Вредители'),
+    )
+    title = models.CharField("Название", max_length=100)
+    title_latin = models.CharField("Название (лат.)", max_length=100)
+    image = models.ImageField("Изображение (главное)", upload_to='harmful_logos')
+    description = models.TextField("Описание", max_length=600)
+    family = models.CharField("Семейство", max_length=100)
+    subtype = models.CharField("Подтип", max_length=100)
+    bio_group = models.CharField("Биологическая группа", max_length=100)
+    biology = models.TextField("Биология", max_length=400)
+    product_category = models.ForeignKey(ProductCategory, on_delete=models.CASCADE, verbose_name="Категория препаратов")
+    category = models.ForeignKey(HarmfulCategory, on_delete=models.CASCADE, verbose_name="Категория")
+
+    class Meta:
+        verbose_name = 'вредный объект'
+        verbose_name_plural = 'Вредные объекты'
+
+    def __str__(self):
+        return self.title
+
+
+class HarmfulImage(models.Model):
+    harmful = models.ForeignKey(Harmful, on_delete=models.CASCADE, verbose_name="Товар")
+    image = models.ImageField("Изображение", upload_to='brand_effect_images')
+
+    class Meta:
+        verbose_name = 'изображение'
+        verbose_name_plural = 'Изображения'
+
+    def __str__(self):
+        return self.harmful.title
+
+
 
