@@ -21,8 +21,8 @@ class ProductCategory(models.Model):
     color = models.CharField("Цвет", max_length=100)
 
     class Meta:
-        verbose_name = 'категория продукта'
-        verbose_name_plural = 'Категории продуктов'
+        verbose_name = 'категория препаратов'
+        verbose_name_plural = 'Категории препаратов'
 
     def __str__(self):
         return self.title
@@ -57,7 +57,7 @@ class BrandEffectImage(models.Model):
 
     class Meta:
         verbose_name = 'действие препарата'
-        verbose_name_plural = 'Действие препаратов'
+        verbose_name_plural = 'Действие препарата'
 
     def __str__(self):
         return self.brand.title
@@ -73,6 +73,18 @@ class BrandUsageItem(models.Model):
     class Meta:
         verbose_name = 'норма расхода'
         verbose_name_plural = 'Нормы расхода'
+
+    def __str__(self):
+        return self.brand.title
+
+
+class BrandAdvantage(models.Model):
+    brand = models.ForeignKey(Brand, on_delete=models.CASCADE, verbose_name="Товар")
+    description = models.CharField("Описание", max_length=400)
+
+    class Meta:
+        verbose_name = 'преимущество'
+        verbose_name_plural = 'Преимущества препарата'
 
     def __str__(self):
         return self.brand.title

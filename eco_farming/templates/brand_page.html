@@ -79,10 +79,11 @@
                         <div class="divider"></div>
                         <div class="title title_24 medium">Преимущества препарата:</div>
                         <ul class="brand_advantages">
-                            <li class="title title_20 regular">Надежная и продолжительная защита от комплекса вредителей</li>
-                            <li class="title title_20 regular">Экономия средств за счёт отмены инсектицидных обработок по вегетации</li>
-                            <li class="title title_20 regular">Стабильное защитное действие независимо от внешних условий</li>
-                            <li class="title title_20 regular">Отличная совместимость<br>с фунгицидными протравителями</li>
+                            {% if brand.brandadvantage_set %}
+                                {% for advantage in brand.brandadvantage_set.all %}
+                                    <li class="title title_20 regular">{{ advantage.description }}</li>
+                                {% endfor %}
+                            {% endif %}
                         </ul>
                     </div>
                 </div>
