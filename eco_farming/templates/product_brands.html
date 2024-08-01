@@ -20,9 +20,9 @@
                             <div class="title regular">{{ brand.substance }}</div>
                         </div>
                     </div>
-                {% empty %}
-                <h4>Записи будут добавлены в ближайшее время</h4>
                 {% endfor %}
+            {% else %}
+                <div class="title title_20 regular">Записи будут добавлены в ближайшее время</div>
             {% endif %}
         </div>
         <div class="pagination">

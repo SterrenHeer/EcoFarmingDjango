@@ -110,7 +110,7 @@
             </div>
             <input class="burger_search" type="text" placeholder="Введите поисковой запрос">
             <ul class="burger_menu">
-                <li><a href="products.html" class="title title_20 semi-bold">Продукты</a>
+                <li><a href="{% url 'product_categories' %}" class="title title_20 semi-bold">Продукты</a>
                     <ul>
                         <li><a href="{% url 'product_brands' 'Обработка семян' %}" class="title medium">Обработка семян</a></li>
                         <li><a href="{% url 'product_brands' 'Гербициды' %}" class="title medium">Гербициды</a></li>

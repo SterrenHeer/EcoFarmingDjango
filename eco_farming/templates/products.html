@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}
+    Продукты
+{% endblock %}
+
+{% block content %}
+<section class="categories">
+    <div class="container">
+        <div class="title title_48 semi-bold">Продукты</div>
+        <div class="categories_wrapper">
+            {% if productcategory_list %}
+                {% for category in productcategory_list %}
+                    <div class="categories_item" style="background: {{ category.color }}" onclick="location='{{ category.get_absolute_url }}'">
+                        <img src="{{ category.image.url }}" alt="category">
+                        <div class="title title_36 semi-bold">{{ category.title }}</div>
+                    </div>
+                {% endfor %}
+            {% else %}
+                <div class="title title_20 regular">Записи будут добавлены в ближайшее время</div>
+            {% endif %}
+        </div>
+    </div>
+</section>
+{% endblock %}

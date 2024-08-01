@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from django.views.generic import ListView, DetailView
-from .models import WeatherSlide, Brand
+from .models import WeatherSlide, ProductCategory, Brand
 
 
 class WeatherSlideListView(ListView):
@@ -9,10 +9,18 @@ class WeatherSlideListView(ListView):
     template_name = 'index.html'
 
 
+class ProductCategoryView(ListView):
+    model = ProductCategory
+    template_name = 'products.html'
+
+
 class BrandsListView(ListView):
     model = Brand
     context_object_name = 'brands_list'
     template_name = 'product_brands.html'
+
+    def get_queryset(self):
+        return Brand.objects.filter(product_category__title=self.kwargs['type'])
 
     def get_context_data(self, *args, **kwargs):
         context = super().get_context_data(*args, **kwargs)
