@@ -16,7 +16,7 @@ if (document.querySelector('.others') != null) {
 
 if (location.pathname.includes('brand')) {
     document.querySelector('.others.products').style.display = 'flex';
-} else if (location.pathname.includes('harmful/items')) {
+} else if (location.pathname.includes('harmful/items') || location.pathname.includes('harmful_page')) {
     document.querySelector('.others.harmful').style.display = 'flex';
 } else if (location.pathname.includes('products') || location.pathname.includes('cultures') || location.pathname.includes('harmful')) {
     document.querySelector('.others.all').style.display = 'flex';

@@ -1,0 +1,89 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}
+    {{ harmful.title }}
+{% endblock %}
+
+{% block content %}
+<section class="weeds">
+    <div class="container">
+        <div class="weeds_wrapper">
+            <div class="weeds_others">
+                <div class="title title_32 bold nomt">
+                    {{ harmful.category }}
+                    <img class="mobile" src="{% static 'icons/product_drop.svg' %}" alt="drop">
+                </div>
+                <div class="weeds_links">
+                    {% for item in harmful.category.get_items %}
+                        <a href="{{ item.get_absolute_url }}" class="title title_20 medium">{{ item }}</a>
+                    {% endfor %}
+                </div>
+            </div>
+            <div class="weeds_descr">
+                <div class="title title_48 semi-bold">{{ harmful.title }}</div>
+                <div class="title title_24 semi-bold">{{ harmful.title_latin }}</div>
+                <div class="weeds_descr_wrapper">
+                    <div class="weeds_descr_images">
+                        <img class="main_image" src="{{ harmful.harmfulimage_set.all.0.image.url }}" alt="main_image">
+                        {% if harmful.harmfulimage_set.all.1 %}
+                        <div class="weeds_descr_images_bottom">
+                            <img class="weeds_prev" src="{% static 'icons/image_next.svg' %}" alt="prev">
+                            <div class="weeds_slider">
+                                <div class="weeds_field">
+                                    {% for image in harmful.harmfulimage_set.all %}
+                                    <div class="weeds_slide">
+                                        <img src="{{ image.image.url }}" alt="weed">
+                                    </div>
+                                    {% endfor %}
+                                </div>
+                            </div>
+                            <img class="weeds_next" src="{% static 'icons/image_next.svg' %}" alt="next">
+                        </div>
+                        {% endif %}
+                    </div>
+                    <div class="weeds_descr_content">
+                        <div class="weeds_descr_params">
+                            <div class="weeds_descr_param">
+                                <div class="title title_20 semi-bold">Семейство:</div>
+                                <div class="title title_24 semi-bold">{{ harmful.family }}</div>
+                            </div>
+                            <div class="weeds_descr_param">
+                                <div class="title title_20 semi-bold">Подтип:</div>
+                                <div class="title title_24 semi-bold">{{ harmful.subtype }}</div>
+                            </div>
+                            <div class="weeds_descr_param">
+                                <div class="title title_20 semi-bold">Биологическая группа:</div>
+                                <div class="title title_24 semi-bold">{{ harmful.bio_group }}</div>
+                            </div>
+                        </div>
+                        <div class="weeds_descr_prop">
+                            <div class="title title_20 semi-bold">Описание:</div>
+                            <div class="title title_20">{{ harmful.description }}</div>
+                        </div>
+                        <div class="weeds_descr_prop">
+                            <div class="title title_20 semi-bold">Биология:</div>
+                            <div class="title title_20">{{ harmful.biology}}</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="weeds_medication">
+                    <div class="title title_20 semi-bold head">Препараты для защиты</div>
+                    <div class="weeds_medication_wrapper">
+                        {% for brand in harmful.product_category.brand_set.all %}
+                        <div class="weeds_medication_item" onclick="location='{{ brand.get_absolute_url }}'">
+                            <img src="{{ brand.image.url }}" alt="brand">
+                            <div class="weeds_medication_content">
+                                <div class="title title_32 semi-bold">{{ brand.title }}</div>
+                                <div class="title title_20 regular">{{ brand.description }}</div>
+                                <div class="title regular">{{ brand.substance }}</div>
+                            </div>
+                        </div>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

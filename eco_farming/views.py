@@ -53,3 +53,13 @@ class HarmfulListView(ListView):
         context["categories"] = HarmfulCategory.objects.all().filter(type=self.kwargs['type'])
         return context
 
+
+class HarmfulDetailView(DetailView):
+    model = Harmful
+    template_name = 'harmful_page.html'
+
+    def get_context_data(self, *args, **kwargs):
+        context = super().get_context_data(*args, **kwargs)
+        context["type"] = self.kwargs['type']
+        return context
+

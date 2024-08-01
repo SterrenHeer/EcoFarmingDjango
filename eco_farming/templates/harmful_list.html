@@ -2,7 +2,7 @@
 {% load static %}
 
 {% block title %}
-    { type }}
+    {{ type }}
 {% endblock %}
 
 {% block content %}
@@ -20,7 +20,7 @@
                         <div class="weeds_links">
                         {% if category.get_items %}
                         {% for item in category.get_items %}
-                            <a href="#" class="title title_20 medium">{{ item }}</a>
+                            <a href="{{ item.get_absolute_url }}" class="title title_20 medium">{{ item }}</a>
                         {% endfor %}
                         {% else %}
                         <div class="title title_20 regular">Нет записей</div>
@@ -37,7 +37,7 @@
                 <div class="weeds_items">
                     {% if harmful_list %}
                     {% for item in harmful_list %}
-                        <div class="weeds_item" onclick="location='weed_page.html'">
+                        <div class="weeds_item" onclick="location='{{ item.get_absolute_url }}'">
                             <img src="{{ item.image.url }}" alt="weed">
                             <div class="title title_24 semi-bold">{{ item.title }}</div>
                         </div>

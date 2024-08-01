@@ -15,15 +15,9 @@
                     <img class="mobile" src="{% static 'icons/product_drop.svg' %}" alt="drop">
                 </div>
                 <div class="brand_items">
-                    <a href="#" class="title title_20 medium">Название</a>
-                    <a href="#" class="title title_20 medium">Название</a>
-                    <a href="#" class="title title_20 medium">Название</a>
-                    <a href="#" class="title title_20 medium">Название</a>
-                    <a href="#" class="title title_20 medium">Название</a>
-                    <a href="#" class="title title_20 medium">Название</a>
-                    <a href="#" class="title title_20 medium">Название</a>
-                    <a href="#" class="title title_20 medium">Название</a>
-                    <a href="#" class="title title_20 medium">Название</a>
+                    {% for brand in brand.product_category.brand_set.all %}
+                    <a href="{{ brand.get_absolute_url }}" class="title title_20 medium">{{ brand.title }}</a>
+                    {% endfor %}
                 </div>
             </div>
             <div class="brand_descr">

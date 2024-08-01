@@ -114,11 +114,6 @@ class HarmfulCategory(models.Model):
 
 
 class Harmful(models.Model):
-    TYPE_CHOICES = (
-        ('Сорняки', 'Сорняки'),
-        ('Болезни', 'Болезни'),
-        ('Вредители', 'Вредители'),
-    )
     title = models.CharField("Название", max_length=100)
     title_latin = models.CharField("Название (лат.)", max_length=100)
     image = models.ImageField("Изображение (главное)", upload_to='harmful_logos')
@@ -136,6 +131,9 @@ class Harmful(models.Model):
 
     def __str__(self):
         return self.title
+
+    def get_absolute_url(self):
+        return reverse('harmful_details', args=[str(self.id), str(self.category.type)])
 
 
 class HarmfulImage(models.Model):

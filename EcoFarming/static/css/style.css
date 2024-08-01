@@ -1087,6 +1087,9 @@ a {
   margin-top: 3.541vw;
   color: #015019;
 }
+.weeds_others .nomt {
+  margin-top: 0;
+}
 .weeds_others img {
   display: none;
 }
