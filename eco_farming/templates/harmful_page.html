@@ -70,7 +70,7 @@
                 <div class="weeds_medication">
                     <div class="title title_20 semi-bold head">Препараты для защиты</div>
                     <div class="weeds_medication_wrapper">
-                        {% for brand in harmful.product_category.brand_set.all %}
+                        {% for brand in brands %}
                         <div class="weeds_medication_item" onclick="location='{{ brand.get_absolute_url }}'">
                             <img src="{{ brand.image.url }}" alt="brand">
                             <div class="weeds_medication_content">
@@ -80,6 +80,33 @@
                             </div>
                         </div>
                         {% endfor %}
+                    </div>
+                    <div class="pagination">
+                        {% if page_obj.has_previous %}
+                        <a href="?page={{ page_obj.previous_page_number }}" class="pagination_prev rotate">
+                            <img src="{% static 'icons/pag_next.svg' %}" alt="prev">
+                        </a>
+                        {% else %}
+                        <div class="pagination_prev rotate lock">
+                            <img src="{% static 'icons/pag_next.svg' %}" alt="prev">
+                        </div>
+                        {% endif %}
+                        {% for page in page_obj.paginator.page_range %}
+                            {% if page == page_obj.number %}
+                            <div class="pagination_item active">{{ page }}</div>
+                            {% else %}
+                            <a href="?page={{ page }}" class="pagination_item">{{ page }}</a>
+                            {% endif %}
+                        {% endfor %}
+                        {% if page_obj.has_next %}
+                        <a href="?page={{ page_obj.next_page_number }}" class="pagination_next">
+                            <img src="{% static 'icons/pag_next.svg' %}" alt="next">
+                        </a>
+                        {% else %}
+                        <div class="pagination_next lock">
+                            <img src="{% static 'icons/pag_next.svg' %}" alt="next">
+                        </div>
+                        {% endif %}
                     </div>
                 </div>
             </div>

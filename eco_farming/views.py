@@ -1,6 +1,7 @@
 from django.shortcuts import render
 from django.views.generic import ListView, DetailView
 from .models import WeatherSlide, ProductCategory, Brand, Harmful, HarmfulCategory
+from django.core.paginator import Paginator
 
 
 class WeatherSlideListView(ListView):
@@ -60,6 +61,16 @@ class HarmfulDetailView(DetailView):
 
     def get_context_data(self, *args, **kwargs):
         context = super().get_context_data(*args, **kwargs)
+        brands = self.get_brands()
+        context['brands'] = brands
+        context['page_obj'] = brands
         context["type"] = self.kwargs['type']
         return context
+
+    def get_brands(self):
+        queryset = self.object.product_category.brand_set.all()
+        paginator = Paginator(queryset, 2)
+        page = self.request.GET.get('page')
+        brands = paginator.get_page(page)
+        return brands
 
