@@ -79,3 +79,15 @@ class CultureCategoryView(ListView):
     model = CultureCategory
     template_name = 'cultures.html'
 
+
+class CultureCategoryDetailView(DetailView):
+    model = CultureCategory
+    template_name = 'cultures_category_page.html'
+
+    def get_context_data(self, *args, **kwargs):
+        context = super().get_context_data(*args, **kwargs)
+        context['brands'] = self.object.culturebrands_set.all()
+        context['categories'] = self.object.culturebrands_set.all().values_list('brand__product_category__title', flat=True).distinct()
+        context["type"] = self.kwargs['type']
+        return context
+

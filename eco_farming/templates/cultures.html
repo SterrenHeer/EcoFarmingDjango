@@ -12,7 +12,7 @@
         <div class="categories_wrapper">
             {% if culturecategory_list %}
                 {% for category in culturecategory_list %}
-                    <div class="categories_item other" onclick="location='#'">
+                    <div class="categories_item other" onclick="location='{{ category.get_absolute_url }}'">
                         <img src="{{ category.image.url }}" alt="category">
                         <div class="title title_36 semi-bold">{{ category.title }}</div>
                     </div>

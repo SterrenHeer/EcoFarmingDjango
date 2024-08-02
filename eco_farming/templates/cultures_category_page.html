@@ -1,0 +1,69 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}
+    {{ culturecategory.title }}
+{% endblock %}
+
+{% block content %}
+<section class="culture">
+    <div class="container">
+        <div class="title title_48 semi-bold">{{ culturecategory.title }}</div>
+        <div class="culture_wrapper">
+            <div class="culture_items">
+                {% for culture in culturecategory.culture_set.all %}
+                    <div class="culture_item">
+                        <img src="{{ culture.image.url }}" alt="culture">
+                        <div class="title semi-bold">{{ culture.title }}</div>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+        <div class="culture_text">
+            <div class="title title_20">{{ culturecategory.description|safe|linebreaks }}</div>
+        </div>
+        <div class="title title_20 semi-bold head">Препараты для защиты</div>
+        <div class="culture_headers">
+            <div class="culture_header title title_20 semi-bold">Все препараты</div>
+            {% for category in categories %}
+                <div class="culture_header title title_20 semi-bold">{{ category }}</div>
+            {% endfor %}
+        </div>
+        <div class="culture_tab">
+            <div class="culture_tab_wrapper">
+                {% for c_brand in brands %}
+                    <div class="culture_tab_item" onclick="location='{{ c_brand.brand.get_absolute_url }}'">
+                        <img src="{{ c_brand.brand.image.url }}" alt="brand">
+                        <div class="culture_tab_content">
+                            <div class="title title_32 semi-bold">{{ c_brand.brand.title }}</div>
+                            <div class="title title_20 regular">{{ c_brand.brand.description }}</div>
+                            <div class="title regular">{{ c_brand.brand.substance }}</div>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+        {% for category in categories %}
+            <div class="culture_tab">
+                <div class="culture_tab_wrapper">
+                    {% for c_brand in brands %}
+                        {% if category == c_brand.brand.product_category.title %}
+                        <div class="culture_tab_item" onclick="location='{{ c_brand.brand.get_absolute_url }}'">
+                            <img src="{{ c_brand.brand.image.url }}" alt="brand">
+                            <div class="culture_tab_content">
+                                <div class="title title_32 semi-bold">{{ c_brand.brand.title }}</div>
+                                <div class="title title_20 regular">{{ c_brand.brand.description }}</div>
+                                <div class="title regular">{{ c_brand.brand.substance }}</div>
+                            </div>
+                        </div>
+                        {% endif %}
+                    {% endfor %}
+                </div>
+            </div>
+        {% endfor %}
+        <div class="culture_icon">
+            <img src="{{ culturecategory.icon.url }}" alt="icon">
+        </div>
+    </div>
+</section>
+{% endblock %}
