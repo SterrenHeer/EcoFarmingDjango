@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}
+    Культуры
+{% endblock %}
+
+{% block content %}
+<section class="categories">
+    <div class="container">
+        <div class="title title_48 semi-bold">Культуры</div>
+        <div class="categories_wrapper">
+            {% if culturecategory_list %}
+                {% for category in culturecategory_list %}
+                    <div class="categories_item other" onclick="location='#'">
+                        <img src="{{ category.image.url }}" alt="category">
+                        <div class="title title_36 semi-bold">{{ category.title }}</div>
+                    </div>
+                {% endfor %}
+            {% else %}
+                <div class="title title_20 regular">Записи будут добавлены в ближайшее время</div>
+            {% endif %}
+        </div>
+    </div>
+</section>
+{% endblock %}

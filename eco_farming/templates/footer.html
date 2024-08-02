@@ -20,7 +20,7 @@
                 </div>
             </div>
             <div class="footer_links">
-                <a href="products.html" class="title title_20 semi_bold">Продукты</a>
+                <a href="{% url 'culture_categories' 'Продукты' %}" class="title title_20 semi_bold">Продукты</a>
                 <a href="{% url 'product_brands' 'Обработка семян' %}" class="title">Обработка семян</a>
                 <a href="{% url 'product_brands' 'Гербициды' %}" class="title">Гербициды</a>
                 <a href="{% url 'product_brands' 'Фунгициды' %}" class="title">Фунгициды</a>
@@ -31,7 +31,7 @@
                 <a href="{% url 'product_brands' 'Регуляторы роста' %}" class="title">Регуляторы роста</a>
             </div>
             <div class="footer_links">
-                <a href="cultures.html" class="title title_20 semi_bold">Культуры</a>
+                <a href="{% url 'product_categories' 'Культуры' %}" class="title title_20 semi_bold">Культуры</a>
                 <a href="#" class="title">Озимые зерновые</a>
                 <a href="#" class="title">Яровые зерновые</a>
                 <a href="#" class="title">Картофель</a>

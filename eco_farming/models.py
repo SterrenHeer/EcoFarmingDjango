@@ -148,4 +148,50 @@ class HarmfulImage(models.Model):
         return self.harmful.title
 
 
+class CultureCategory(models.Model):
+    title = models.CharField("Название", max_length=100)
+    image = models.ImageField("Изображение", upload_to='product_categories')
+    icon = models.ImageField("Иконка", upload_to='culture_categories')
+    description = models.TextField("Описание")
+
+    class Meta:
+        verbose_name = 'категория культур'
+        verbose_name_plural = 'Категории культур'
+
+    def __str__(self):
+        return self.title
+
+    def get_absolute_url(self):
+        return reverse('', args=[str(self.title)])
+
+
+class Culture(models.Model):
+    title = models.CharField("Название", max_length=100)
+    image = models.ImageField("Изображение", upload_to='culture_items')
+    description = models.TextField("Описание")
+    culture = models.ForeignKey(CultureCategory, on_delete=models.CASCADE, verbose_name="Культура")
+
+    class Meta:
+        verbose_name = 'культура'
+        verbose_name_plural = 'Культуры'
+
+    def __str__(self):
+        return self.title
+
+    def get_absolute_url(self):
+        return reverse('brands_details', args=[str(self.id), str(self.product_category.title)])
+
+
+class CultureBrands(models.Model):
+    category = models.ForeignKey(CultureCategory, on_delete=models.CASCADE, verbose_name="Культура")
+    brand = models.ForeignKey(Brand, on_delete=models.CASCADE, verbose_name="Препарат")
+
+    class Meta:
+        verbose_name = 'препарат для категории культур'
+        verbose_name_plural = 'Препараты для категории культур'
+
+    def __str__(self):
+        return self.brand.title
+
+
 
