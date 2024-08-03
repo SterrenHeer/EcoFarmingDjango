@@ -1,6 +1,7 @@
 from django.shortcuts import render
 from django.views.generic import ListView, DetailView
-from .models import WeatherSlide, ProductCategory, Brand, Harmful, HarmfulCategory, Culture, CultureCategory
+from .models import (WeatherSlide, ProductCategory, Brand, Harmful, HarmfulCategory, Culture, CultureCategory,
+                     Publication)
 from django.core.paginator import Paginator
 
 
@@ -91,8 +92,38 @@ class CultureCategoryDetailView(DetailView):
         context["type"] = self.kwargs['type']
         return context
 
-    
+
 class CultureDetailView(DetailView):
     model = Culture
     template_name = 'culture_page.html'
+
+
+class PublicationView(ListView):
+    model = Publication
+    paginate_by = 2
+    template_name = 'publications.html'
+
+    def get_queryset(self):
+        return Publication.objects.all().filter(type=self.kwargs['type'])
+
+    def get_context_data(self, *args, **kwargs):
+        context = super().get_context_data(*args, **kwargs)
+        context["type"] = self.kwargs['type']
+        context["categories"] = Publication.objects.all().filter(type=self.kwargs['type']).values_list('category__title', flat=True).distinct()
+        return context
+
+
+class PublicationSubView(ListView):
+    model = Publication
+    paginate_by = 2
+    template_name = 'publications.html'
+
+    def get_queryset(self):
+        return Publication.objects.all().filter(type=self.kwargs['type'], category__title=self.kwargs['category'])
+
+    def get_context_data(self, *args, **kwargs):
+        context = super().get_context_data(*args, **kwargs)
+        context["type"] = self.kwargs['type']
+        context["categories"] = Publication.objects.all().filter(type=self.kwargs['type']).values_list('category__title', flat=True).distinct()
+        return context
 

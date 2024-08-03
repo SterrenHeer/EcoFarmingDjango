@@ -52,7 +52,7 @@ $('.weeds_links a').click(() => {
 $('.weeds_others img').on( "click", function() {
   $( this ).parent().next().toggleClass('flex');
 } );
-$('.publications_others img, .publications_links a').click(() => {
+$('.publications_others img').click(() => {
     $('.publications_links').toggleClass('flex');
 });
 $(window).on( "resize, scroll", () => {

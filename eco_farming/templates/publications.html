@@ -1,0 +1,87 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}
+    {{ type }}
+{% endblock %}
+
+{% block content %}
+<section class="publications">
+    <div class="container">
+        <div class="title title_48 semi-bold">{{ type }}</div>
+        <div class="publications_wrapper">
+            <div class="publications_others">
+                {% if categories %}
+                <div class="title title_32 bold">
+                    по категориям
+                    <img class="mobile" src="icons/product_drop.svg" alt="drop">
+                </div>
+                <div class="publications_links">
+                    {% for category in categories %}
+                    <a href="{% url 'publications_sub' type category  %}" class="title title_20 medium">{{ category }}</a>
+                    {% endfor %}
+                </div>
+                {% endif %}
+            </div>
+            <div class="publications_list">
+                <div class="publications_items">
+                {% if publication_list %}
+                    {% for publication in publication_list %}
+                    <div class="publications_item">
+                        <div class="divider"></div>
+                        <div class="publications_item_wrapper">
+                            <div class="title mobile">{{ publication.date }}</div>
+                            {% if publication.video %}
+                            <div class="publications_item_image video" data-fancybox data-src="{{ publication.video.url }}">
+                                <img class="bg" src="{{ publication.image.url }}" alt="video">
+                                <img class="start" src="{% static 'icons/start_video.svg' %}" alt="start">
+                            </div>
+                            {% else %}
+                            <div class="publications_item_image" onclick="location='#'">
+                                <img class="bg" src="{{ publication.image.url }}" alt="image">
+                            </div>
+                            {% endif %}
+                            <div class="publications_item_content">
+                                <div class="title full">{{ publication.date }}</div>
+                                <div class="title title_24 semi-bold">{{ publication.title }}</div>
+                                <div class="title">{{ publication.description }}</div>
+                            </div>
+                        </div>
+                    </div>
+                    {% endfor %}
+                {% else %}
+                    <div class="title title_20 regular">Записи будут добавлены в ближайшее время</div>
+                {% endif %}
+                </div>
+                <div class="pagination">
+                    {% if page_obj.has_previous %}
+                    <a href="?page={{ page_obj.previous_page_number }}" class="pagination_prev rotate">
+                        <img src="{% static 'icons/pag_next.svg' %}" alt="prev">
+                    </a>
+                    {% else %}
+                    <div class="pagination_prev rotate lock">
+                        <img src="{% static 'icons/pag_next.svg' %}" alt="prev">
+                    </div>
+                    {% endif %}
+                    {% for page in page_obj.paginator.page_range %}
+                        {% if page == page_obj.number %}
+                        <div class="pagination_item active">{{ page }}</div>
+                        {% else %}
+                        <a href="?page={{ page }}" class="pagination_item">{{ page }}</a>
+                        {% endif %}
+                    {% endfor %}
+                    {% if page_obj.has_next %}
+                    <a href="?page={{ page_obj.next_page_number }}" class="pagination_next">
+                        <img src="{% static 'icons/pag_next.svg' %}" alt="next">
+                    </a>
+                    {% else %}
+                    <div class="pagination_next lock">
+                        <img src="{% static 'icons/pag_next.svg' %}" alt="next">
+                    </div>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

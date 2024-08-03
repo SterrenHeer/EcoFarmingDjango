@@ -65,9 +65,9 @@
         </div>
         <div class="container others company">
             <a href="#" class="title title_24 semi-bold">Компания</a>
-            <a href="publications.html" class="title title_24 semi-bold">Наука</a>
-            <a href="publications.html" class="title title_24 semi-bold">Публикации</a>
-            <a href="publications.html" class="title title_24 semi-bold">Видеоматериалы</a>
+            <a href="{% url 'publications' 'Наука' %}" class="title title_24 semi-bold">Наука</a>
+            <a href="{% url 'publications' 'Публикации' %}" class="title title_24 semi-bold">Публикации</a>
+            <a href="{% url 'publications' 'Видеоматериалы' %}" class="title title_24 semi-bold">Видеоматериалы</a>
             <a href="{% url 'contacts' %}" class="title title_24 semi-bold">Контакты</a>
         </div>
     </div>
@@ -96,9 +96,9 @@
                 <li><a href="#" class="title title_20 semi-bold">О нас</a>
                     <ul>
                         <li><a href="#" class="title medium">Компания</a></li>
-                        <li><a href="publications.html" class="title medium">Наука</a></li>
-                        <li><a href="publications.html" class="title medium">Публикации</a></li>
-                        <li><a href="publications.html" class="title medium">Видеоматериалы</a></li>
+                        <li><a href="{% url 'publications' 'Наука' %}" class="title medium">Наука</a></li>
+                        <li><a href="{% url 'publications' 'Публикации' %}" class="title medium">Публикации</a></li>
+                        <li><a href="{% url 'publications' 'Видеоматериалы' %}" class="title medium">Видеоматериалы</a></li>
                         <li><a href="{% url 'contacts' %}" class="title medium">Контакты</a></li>
                     </ul>
                 </li>

@@ -194,4 +194,51 @@ class CultureBrands(models.Model):
         return self.brand.title
 
 
+class PublicationCategory(models.Model):
+    title = models.CharField("Название", max_length=100)
+
+    class Meta:
+        verbose_name = 'категория публикаций'
+        verbose_name_plural = 'Категории публикаций'
+
+    def __str__(self):
+        return self.title
+
+
+class Publication(models.Model):
+    TYPE_CHOICES = (
+        ('Наука', 'Наука'),
+        ('Публикации', 'Публикации'),
+        ('Видеоматериалы', 'Видеоматериалы'),
+    )
+    type = models.CharField("Тип публикации", max_length=100, choices=TYPE_CHOICES)
+    title = models.CharField("Заголовок", max_length=100)
+    image = models.ImageField("Изображение (главное) или превью видео", upload_to='publications_main_images')
+    video = models.FileField(upload_to="publications_videos", blank=True)
+    description = models.TextField("Описание", max_length=600)
+    date = models.DateField("Дата размещения")
+    category = models.ForeignKey(PublicationCategory, on_delete=models.CASCADE, verbose_name="Категория публикации")
+
+    class Meta:
+        verbose_name = 'публикация'
+        verbose_name_plural = 'Публикации'
+
+    def __str__(self):
+        return self.title
+
+    def get_absolute_url(self):
+        return reverse('', args=[str(self.id), str(self.type)])
+
+
+class PublicationImage(models.Model):
+    publication = models.ForeignKey(Publication, on_delete=models.CASCADE, verbose_name="Публикация")
+    image = models.ImageField("Изображение", upload_to='publications_images')
+
+    class Meta:
+        verbose_name = 'изображение'
+        verbose_name_plural = 'Изображения'
+
+    def __str__(self):
+        return self.publication.title
+
 

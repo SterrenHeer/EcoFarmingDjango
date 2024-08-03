@@ -1,10 +1,12 @@
 from django.contrib import admin
 from eco_farming.models import (WeatherSlide, Brand, ProductCategory, BrandEffectImage, BrandUsageItem, BrandAdvantage,
-                                Harmful, HarmfulImage, HarmfulCategory, Culture, CultureCategory, CultureBrands)
+                                Harmful, HarmfulImage, HarmfulCategory, Culture, CultureCategory, CultureBrands,
+                                Publication, PublicationCategory, PublicationImage)
 
 admin.site.register(WeatherSlide)
 admin.site.register(ProductCategory)
 admin.site.register(HarmfulCategory)
+admin.site.register(PublicationCategory)
 admin.site.register(Culture)
 
 
@@ -33,6 +35,11 @@ class HarmfulImageInline(admin.StackedInline):
     extra = 1
 
 
+class PublicationImageInline(admin.StackedInline):
+    model = PublicationImage
+    extra = 1
+
+
 class BrandAdmin(admin.ModelAdmin):
     inlines = [
         BrandAdvantageInline,
@@ -53,9 +60,16 @@ class CultureCategoryAdmin(admin.ModelAdmin):
     ]
 
 
+class PublicationAdmin(admin.ModelAdmin):
+    inlines = [
+        PublicationImageInline,
+    ]
+
+
 admin.site.register(BrandUsageItem)
 admin.site.register(BrandEffectImage)
 admin.site.register(BrandAdvantage)
 admin.site.register(Brand, BrandAdmin)
 admin.site.register(Harmful, HarmfulAdmin)
 admin.site.register(CultureCategory, CultureCategoryAdmin)
+admin.site.register(Publication, PublicationAdmin)

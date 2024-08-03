@@ -34,9 +34,9 @@
             <div class="footer_links">
                 <a href="#" class="title title_20 semi_bold">О нас</a>
                 <a href="#" class="title">Компания</a>
-                <a href="publications.html" class="title">Наука</a>
-                <a href="publications.html" class="title">Публикации</a>
-                <a href="publications.html" class="title">Видеоматериалы</a>
+                <a href="{% url 'publications' 'Наука' %}" class="title">Наука</a>
+                <a href="{% url 'publications' 'Публикации' %}" class="title">Публикации</a>
+                <a href="{% url 'publications' 'Видеоматериалы' %}" class="title">Видеоматериалы</a>
                 <a href="{% url 'contacts' %}" class="title">Контакты</a>
             </div>
             <div class="footer_links">
