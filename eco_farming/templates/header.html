@@ -40,38 +40,12 @@
         <div class="container main">
             <div class="title title_48">Продукты</div>
             <div class="header_products">
-                <a href="{% url 'product_brands' 'Обработка семян' %}" class="header_product">
-                    <img src="{% static 'img/products/categories/category_1.png' %}" alt="category">
-                    <div class="title title_20">Обработка семян</div>
+                {% for category in product_categories %}
+                <a href="{{ category.get_absolute_url }}" class="header_product">
+                    <img src="{{ category.image.url }}" alt="category">
+                    <div class="title title_20">{{ category.title }}</div>
                 </a>
-                <a href="{% url 'product_brands' 'Гербициды' %}" class="header_product">
-                    <img src="{% static 'img/products/categories/category_2.png' %}" alt="category">
-                    <div class="title title_20">Гербициды</div>
-                </a>
-                <a href="{% url 'product_brands' 'Фунгициды' %}" class="header_product">
-                    <img src="{% static 'img/products/categories/category_3.png' %}" alt="category">
-                    <div class="title title_20">Фунгициды</div>
-                </a>
-                <a href="{% url 'product_brands' 'Инсектициды' %}" class="header_product">
-                    <img src="{% static 'img/products/categories/category_4.png' %}" alt="category">
-                    <div class="title title_20">Инсектициды</div>
-                </a>
-                <a href="{% url 'product_brands' 'Фумиганты' %}" class="header_product">
-                    <img src="{% static 'img/products/categories/category_5.png' %}" alt="category">
-                    <div class="title title_20">Фумиганты</div>
-                </a>
-                <a href="{% url 'product_brands' 'ПАВы и адъюванты' %}" class="header_product">
-                    <img src="{% static 'img/products/categories/category_6.png' %}" alt="category">
-                    <div class="title title_20">ПАВы и адъюванты</div>
-                </a>
-                <a href="{% url 'product_brands' 'Микроудобрения' %}" class="header_product">
-                    <img src="{% static 'img/products/categories/category_7.png' %}" alt="category">
-                    <div class="title title_20">Микроудобрения</div>
-                </a>
-                <a href="{% url 'product_brands' 'Регуляторы роста' %}" class="header_product">
-                    <img src="{% static 'img/products/categories/category_8.png' %}" alt="category">
-                    <div class="title title_20">Регуляторы роста</div>
-                </a>
+                {% endfor %}
             </div>
         </div>
         <div class="container others all">
@@ -80,14 +54,9 @@
             <a href="{% url 'harmful_categories' 'Вредные объекты' %}" class="title title_24 semi-bold">Вредные объекты</a>
         </div>
         <div class="container others products">
-            <a href="{% url 'product_brands' 'Обработка семян' %}" class="title title_24 semi-bold">Обработка семян</a>
-            <a href="{% url 'product_brands' 'Гербициды' %}" class="title title_24 semi-bold">Гербициды</a>
-            <a href="{% url 'product_brands' 'Фунгициды' %}" class="title title_24 semi-bold">Фунгициды</a>
-            <a href="{% url 'product_brands' 'Инсектициды' %}" class="title title_24 semi-bold">Инсектициды</a>
-            <a href="{% url 'product_brands' 'Фумиганты' %}" class="title title_24 semi-bold">Фумиганты</a>
-            <a href="{% url 'product_brands' 'ПАВы и адъюванты' %}" class="title title_24 semi-bold">ПАВы и адъюванты</a>
-            <a href="{% url 'product_brands' 'Микроудобрения' %}" class="title title_24 semi-bold">Микроудобрения</a>
-            <a href="{% url 'product_brands' 'Регуляторы роста' %}" class="title title_24 semi-bold">Регуляторы роста</a>
+            {% for category in product_categories %}
+            <a href="{{ category.get_absolute_url }}" class="title title_24 semi-bold">{{ category.title }}</a>
+            {% endfor %}
         </div>
         <div class="container others harmful">
             <a href="{% url 'harmful_items' 'Сорняки' %}" class="title title_24 semi-bold">Сорняки</a>
@@ -112,28 +81,16 @@
             <ul class="burger_menu">
                 <li><a href="{% url 'product_categories' 'Продукты' %}" class="title title_20 semi-bold">Продукты</a>
                     <ul>
-                        <li><a href="{% url 'product_brands' 'Обработка семян' %}" class="title medium">Обработка семян</a></li>
-                        <li><a href="{% url 'product_brands' 'Гербициды' %}" class="title medium">Гербициды</a></li>
-                        <li><a href="{% url 'product_brands' 'Фунгициды' %}" class="title medium">Фунгициды</a></li>
-                        <li><a href="{% url 'product_brands' 'Инсектициды' %}" class="title medium">Инстектициды</a></li>
-                        <li><a href="{% url 'product_brands' 'Фумиганты' %}" class="title medium">Фумиганты</a></li>
-                        <li><a href="{% url 'product_brands' 'ПАВы и адъюванты' %}" class="title medium">ПАВы и адъюванты</a></li>
-                        <li><a href="{% url 'product_brands' 'Микроудобрения' %}" class="title medium">Микроудобрения</a></li>
-                        <li><a href="{% url 'product_brands' 'Регуляторы роста' %}" class="title medium">Регуляторы роста</a></li>
+                        {% for category in product_categories %}
+                        <li><a href="{{ category.get_absolute_url }}" class="title medium">{{ category.title }}</a></li>
+                        {% endfor %}
                     </ul>
                 </li>
                 <li><a href="{% url 'culture_categories' 'Культуры' %}" class="title title_20 semi-bold">Культуры</a>
                     <ul>
-                        <li><a href="cultures_category_page.html" class="title medium">Озимые зерновые</a></li>
-                        <li><a href="#" class="title medium">Яровые зерновые</a></li>
-                        <li><a href="#" class="title medium">Картофель</a></li>
-                        <li><a href="#" class="title medium">Кукуруза</a></li>
-                        <li><a href="#" class="title medium">Подсолнечник</a></li>
-                        <li><a href="#" class="title medium">Рапс</a></li>
-                        <li><a href="#" class="title medium">Сахарная свёкла</a></li>
-                        <li><a href="#" class="title medium">Соя</a></li>
-                        <li><a href="#" class="title medium">Горох</a></li>
-                        <li><a href="#" class="title medium">Лён</a></li>
+                        {% for category in culture_categories %}
+                        <li><a href="{{ category.get_absolute_url }}" class="title medium">{{ category.title }}</a></li>
+                        {% endfor %}
                     </ul>
                 </li>
                 <li><a href="#" class="title title_20 semi-bold">О нас</a>

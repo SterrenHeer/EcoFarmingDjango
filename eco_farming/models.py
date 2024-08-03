@@ -107,7 +107,7 @@ class HarmfulCategory(models.Model):
         verbose_name_plural = 'Категории вредных объектов'
 
     def __str__(self):
-        return self.title
+        return f'{self.title} ({self.type})'
 
     def get_items(self):
         return self.harmful_set.all()

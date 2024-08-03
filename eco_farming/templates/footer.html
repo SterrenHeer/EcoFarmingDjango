@@ -21,14 +21,9 @@
             </div>
             <div class="footer_links">
                 <a href="{% url 'culture_categories' 'Продукты' %}" class="title title_20 semi_bold">Продукты</a>
-                <a href="{% url 'product_brands' 'Обработка семян' %}" class="title">Обработка семян</a>
-                <a href="{% url 'product_brands' 'Гербициды' %}" class="title">Гербициды</a>
-                <a href="{% url 'product_brands' 'Фунгициды' %}" class="title">Фунгициды</a>
-                <a href="{% url 'product_brands' 'Инсектициды' %}" class="title">Инсектициды</a>
-                <a href="{% url 'product_brands' 'Фумиганты' %}" class="title">Фумиганты</a>
-                <a href="{% url 'product_brands' 'ПАВы и адъюванты' %}" class="title">ПАВы и адъюванты</a>
-                <a href="{% url 'product_brands' 'Микроудобрения' %}" class="title">Микроудобрения</a>
-                <a href="{% url 'product_brands' 'Регуляторы роста' %}" class="title">Регуляторы роста</a>
+                {% for category in product_categories %}
+                <a href="{{ category.get_absolute_url }}" class="title">{{ category.title }}</a>
+                {% endfor %}
             </div>
             <div class="footer_links">
                 <a href="{% url 'product_categories' 'Культуры' %}" class="title title_20 semi_bold">Культуры</a>

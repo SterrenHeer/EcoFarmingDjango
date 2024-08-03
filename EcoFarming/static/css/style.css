@@ -407,15 +407,32 @@ a {
   color: #fff;
 }
 .header_products {
+  overflow-x: auto;
   display: flex;
   justify-content: space-between;
+  gap: 0 1.041vw;
   margin-top: 1.041vw;
+  padding-bottom: 0.625vw;
+}
+.header_products::-webkit-scrollbar {
+  height: 0.416vw;
+  border-radius: 0.26vw;
+  background-color: #fff;
+}
+.header_products::-webkit-scrollbar-thumb {
+  border-radius: 0.26vw;
+  background: #ffb800;
+}
+.header_products::-webkit-scrollbar-track {
+  border-radius: 0.26vw;
+  background: #fff;
 }
 .header_product img {
   width: 9.21vw;
   height: 9.21vw;
   -o-object-fit: cover;
      object-fit: cover;
+  border-radius: 0.781vw;
 }
 .header_product img:hover {
   filter: contrast(150%);
@@ -1921,6 +1938,7 @@ a {
   .header_product img {
     width: 41.666vw;
     height: 41.666vw;
+    border-radius: 4.166vw;
   }
   .header_product .title {
     margin-top: 1.388vw;
