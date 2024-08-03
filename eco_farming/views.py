@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from django.views.generic import ListView, DetailView
-from .models import WeatherSlide, ProductCategory, Brand, Harmful, HarmfulCategory, CultureCategory
+from .models import WeatherSlide, ProductCategory, Brand, Harmful, HarmfulCategory, Culture, CultureCategory
 from django.core.paginator import Paginator
 
 
@@ -90,4 +90,9 @@ class CultureCategoryDetailView(DetailView):
         context['categories'] = self.object.culturebrands_set.all().values_list('brand__product_category__title', flat=True).distinct()
         context["type"] = self.kwargs['type']
         return context
+
+    
+class CultureDetailView(DetailView):
+    model = Culture
+    template_name = 'culture_page.html'
 

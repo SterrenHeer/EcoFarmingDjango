@@ -169,7 +169,7 @@ class Culture(models.Model):
     title = models.CharField("Название", max_length=100)
     image = models.ImageField("Изображение", upload_to='culture_items')
     description = models.TextField("Описание")
-    culture = models.ForeignKey(CultureCategory, on_delete=models.CASCADE, verbose_name="Культура")
+    category = models.ForeignKey(CultureCategory, on_delete=models.CASCADE, verbose_name="Культура")
 
     class Meta:
         verbose_name = 'культура'
@@ -179,7 +179,7 @@ class Culture(models.Model):
         return self.title
 
     def get_absolute_url(self):
-        return reverse('brands_details', args=[str(self.id), str(self.product_category.title)])
+        return reverse('culture_details', args=[str(self.id)])
 
 
 class CultureBrands(models.Model):

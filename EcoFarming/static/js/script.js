@@ -18,7 +18,7 @@ if (location.pathname.includes('brand')) {
     document.querySelector('.others.products').style.display = 'flex';
 } else if (location.pathname.includes('harmful/items') || location.pathname.includes('harmful_page')) {
     document.querySelector('.others.harmful').style.display = 'flex';
-} else if (location.pathname.includes('products') || location.pathname.includes('cultures') || location.pathname.includes('harmful')) {
+} else if (location.pathname.includes('products') || location.pathname.includes('culture') || location.pathname.includes('harmful')) {
     document.querySelector('.others.all').style.display = 'flex';
 } else if (location.pathname.includes('contacts') || location.pathname.includes('publication')) {
     document.querySelector('.others.company').style.display = 'flex';

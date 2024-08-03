@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}
+    {{ culture.title }}
+{% endblock %}
+
+{% block content %}
+<section class="culture">
+    <div class="container">
+        <div class="title title_48 semi-bold">{{ culture.title }}</div>
+        <div class="culture_text small title title_20">{{ culture.description }}</div>
+        <div class="culture_icon big">
+            <img src="{{ culture.category.icon.url }}" alt="icon">
+        </div>
+    </div>
+</section>
+{% endblock %}

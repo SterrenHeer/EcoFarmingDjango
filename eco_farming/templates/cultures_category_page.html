@@ -12,7 +12,7 @@
         <div class="culture_wrapper">
             <div class="culture_items">
                 {% for culture in culturecategory.culture_set.all %}
-                    <div class="culture_item">
+                    <div class="culture_item" onclick="location='{{ culture.get_absolute_url }}'">
                         <img src="{{ culture.image.url }}" alt="culture">
                         <div class="title semi-bold">{{ culture.title }}</div>
                     </div>

@@ -1548,6 +1548,11 @@ a {
   width: 100%;
   height: 100%;
 }
+.culture_icon.big {
+  padding: 3.229vw;
+  width: 18.125vw;
+  height: 18.125vw;
+}
 .culture_items {
   display: flex;
   flex-wrap: wrap;
@@ -1585,9 +1590,13 @@ a {
 }
 .culture_text {
   margin-top: 4.062vw;
+  width: 65.3%;
 }
 .culture_text ul {
   margin: 1.718vw 0 0 1.518vw;
+}
+.culture_text.small {
+  min-height: 18.125vw;
 }
 .culture_tab {
   margin-top: 5.26vw;
@@ -2649,7 +2658,7 @@ a {
   .culture_wrapper {
     width: 100%;
   }
-  .culture_icon {
+  .culture_icon, .culture_icon.big {
     position: absolute;
     top: 0;
     right: 0;
@@ -2677,9 +2686,14 @@ a {
   }
   .culture_text {
     margin-top: 8.333vw;
+    width: 100%;
   }
   .culture_text ul {
     margin: 6.111vw 0 0 5.111vw;
+  }
+  .culture_text.small {
+    margin-top: 15.555vw;
+    min-height: auto;
   }
   .culture_tab {
     margin-top: 11.666vw;
