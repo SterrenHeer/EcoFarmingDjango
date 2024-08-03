@@ -68,7 +68,7 @@
             <a href="publications.html" class="title title_24 semi-bold">Наука</a>
             <a href="publications.html" class="title title_24 semi-bold">Публикации</a>
             <a href="publications.html" class="title title_24 semi-bold">Видеоматериалы</a>
-            <a href="contacts.html" class="title title_24 semi-bold">Контакты</a>
+            <a href="{% url 'contacts' %}" class="title title_24 semi-bold">Контакты</a>
         </div>
     </div>
     <div class="burger">
@@ -99,7 +99,7 @@
                         <li><a href="publications.html" class="title medium">Наука</a></li>
                         <li><a href="publications.html" class="title medium">Публикации</a></li>
                         <li><a href="publications.html" class="title medium">Видеоматериалы</a></li>
-                        <li><a href="contacts.html" class="title medium">Контакты</a></li>
+                        <li><a href="{% url 'contacts' %}" class="title medium">Контакты</a></li>
                     </ul>
                 </li>
                 <li><a href="{% url 'harmful_categories' 'Вредные объекты' %}" class="title title_20 semi-bold">Вредные объекты</a>

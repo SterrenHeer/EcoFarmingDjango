@@ -7,6 +7,7 @@ from django.views.generic import TemplateView
 urlpatterns = [
     path("", views.WeatherSlideListView.as_view(), name="index"),
     path("harmful/categories/<str:type>", TemplateView.as_view(template_name="harmful.html"), name="harmful_categories"),
+    path("contacts/", TemplateView.as_view(template_name="contacts.html"), name="contacts"),
     path('harmful/items/<str:type>', views.HarmfulListView.as_view(), name='harmful_items'),
     path('harmful_page/details/<int:pk>/<str:type>/', views.HarmfulDetailView.as_view(), name='harmful_details'),
     path('products/categories/<str:type>', views.ProductCategoryView.as_view(), name='product_categories'),

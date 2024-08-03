@@ -27,16 +27,9 @@
             </div>
             <div class="footer_links">
                 <a href="{% url 'product_categories' 'Культуры' %}" class="title title_20 semi_bold">Культуры</a>
-                <a href="#" class="title">Озимые зерновые</a>
-                <a href="#" class="title">Яровые зерновые</a>
-                <a href="#" class="title">Картофель</a>
-                <a href="#" class="title">Кукуруза</a>
-                <a href="#" class="title">Лен</a>
-                <a href="#" class="title">Подсолнечники</a>
-                <a href="#" class="title">Рапс</a>
-                <a href="#" class="title">Сахарная свёкла</a>
-                <a href="#" class="title">Соя</a>
-                <a href="#" class="title">Горох</a>
+                {% for category in culture_categories %}
+                    <a href="{{ category.get_absolute_url }}" class="title">{{ category.title }}</a>
+                {% endfor %}
             </div>
             <div class="footer_links">
                 <a href="#" class="title title_20 semi_bold">О нас</a>
@@ -44,7 +37,7 @@
                 <a href="publications.html" class="title">Наука</a>
                 <a href="publications.html" class="title">Публикации</a>
                 <a href="publications.html" class="title">Видеоматериалы</a>
-                <a href="contacts.html" class="title">Контакты</a>
+                <a href="{% url 'contacts' %}" class="title">Контакты</a>
             </div>
             <div class="footer_links">
                 <a href="#" class="title title_20 semi-bold">Сервисы</a>
