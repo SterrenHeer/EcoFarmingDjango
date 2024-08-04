@@ -3,6 +3,7 @@ from django.views.generic import ListView, DetailView
 from .models import (WeatherSlide, ProductCategory, Brand, Harmful, HarmfulCategory, Culture, CultureCategory,
                      Publication)
 from django.core.paginator import Paginator
+from django.db.models import Q
 
 
 class WeatherSlideListView(ListView):
@@ -81,6 +82,28 @@ class HarmfulDetailView(DetailView):
         return brands
 
 
+class HarmfulSearch(ListView):
+    template_name = 'harmful_list.html'
+
+    def get_queryset(self):
+        search = self.request.GET.get("search")
+        print(search)
+        return Harmful.objects.filter(category__type=self.kwargs['type']).filter(Q(title__iregex=search) |
+                                      Q(title_latin__iregex=search) |
+                                      Q(description__iregex=search) |
+                                      Q(family__iregex=search) |
+                                      Q(subtype__iregex=search) |
+                                      Q(bio_group__iregex=search) |
+                                      Q(biology__iregex=search)).order_by('title')
+
+    def get_context_data(self, *args, **kwargs):
+        context = super().get_context_data(*args, **kwargs)
+        context["search"] = f"search={self.request.GET.get('search')}&"
+        context["type"] = self.kwargs['type']
+        context["categories"] = HarmfulCategory.objects.all().filter(type=self.kwargs['type'])
+        return context
+
+
 class CultureCategoryView(ListView):
     model = CultureCategory
     template_name = 'cultures.html'
@@ -93,7 +116,8 @@ class CultureCategoryDetailView(DetailView):
     def get_context_data(self, *args, **kwargs):
         context = super().get_context_data(*args, **kwargs)
         context['brands'] = self.object.culturebrands_set.all()
-        context['categories'] = self.object.culturebrands_set.all().values_list('brand__product_category__title', flat=True).distinct()
+        context['categories'] = self.object.culturebrands_set.all().values_list('brand__product_category__title',
+                                                                                flat=True).distinct()
         context["type"] = self.kwargs['type']
         return context
 
@@ -114,7 +138,8 @@ class PublicationView(ListView):
     def get_context_data(self, *args, **kwargs):
         context = super().get_context_data(*args, **kwargs)
         context["type"] = self.kwargs['type']
-        context["categories"] = Publication.objects.all().filter(type=self.kwargs['type']).values_list('category__title', flat=True).distinct()
+        context["categories"] = Publication.objects.all().filter(type=self.kwargs['type']).values_list(
+            'category__title', flat=True).distinct()
         return context
 
 
@@ -129,7 +154,8 @@ class PublicationSubView(ListView):
     def get_context_data(self, *args, **kwargs):
         context = super().get_context_data(*args, **kwargs)
         context["type"] = self.kwargs['type']
-        context["categories"] = Publication.objects.all().filter(type=self.kwargs['type']).values_list('category__title', flat=True).distinct()
+        context["categories"] = Publication.objects.all().filter(type=self.kwargs['type']).values_list(
+            'category__title', flat=True).distinct()
         return context
 
 

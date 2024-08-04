@@ -30,10 +30,10 @@
                 {% endif %}
             </div>
             <div class="weeds_catalog">
-                <div class="weeds_search">
-                    <input type="text" placeholder="Поиск">
+                <form action="{% url 'harmful_search' type %}" class="weeds_search" method="get">
+                    <input type="text" placeholder="Поиск" name="search" onchange="submit();">
                     <img src="{% static 'icons/search.svg' %}" alt="search">
-                </div>
+                </form>
                 <div class="weeds_items">
                     {% if harmful_list %}
                     {% for item in harmful_list %}

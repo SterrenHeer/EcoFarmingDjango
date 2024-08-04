@@ -10,6 +10,7 @@ urlpatterns = [
     path("contacts/", TemplateView.as_view(template_name="contacts.html"), name="contacts"),
     path('harmful/items/<str:type>', views.HarmfulListView.as_view(), name='harmful_items'),
     path('harmful_page/details/<int:pk>/<str:type>/', views.HarmfulDetailView.as_view(), name='harmful_details'),
+    path('harmful/items/<str:type>/search/', views.HarmfulSearch.as_view(), name='harmful_search'),
     path('products/categories/<str:type>', views.ProductCategoryView.as_view(), name='product_categories'),
     path('product_brands/<str:type>/', views.BrandsListView.as_view(), name='product_brands'),
     path('brand_page/details/<int:pk>/<str:type>/', views.BrandDetailView.as_view(), name='brands_details'),
