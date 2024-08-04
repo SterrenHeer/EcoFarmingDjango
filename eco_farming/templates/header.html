@@ -1,7 +1,16 @@
 {% load static %}
 <header class="header">
     <div class="header_top">
-        <img src="{% static 'img/header_bg/bg_1.png' %}" class="header_bg" alt="header_bg">
+        {% if header_images %}
+            {% for image in header_images %}
+                {% if image.path in request.path %}
+                <img src="{{ image.image.url }}" class="header_bg" alt="header_bg">
+                {% endif %}
+            {% endfor %}
+            {% if not header_exists %}
+            <img src="{% static 'img/header_bg/bg_1.png' %}" class="header_bg" alt="header_bg">
+            {% endif %}
+        {% endif %}
         <div class="container">
             <div class="header_top_content">
                 <div class="header_socials full">
@@ -75,7 +84,7 @@
         <div class="burger_modal">
             <div class="burger_buttons">
                 <img src="{% static 'icons/search.svg' %}" alt="search">
-                <img data-close class="burger_close" src="{% static 'icons//close.svg' %}" alt="close">
+                <img data-close class="burger_close" src="{% static 'icons/close.svg' %}" alt="close">
             </div>
             <input class="burger_search" type="text" placeholder="Введите поисковой запрос">
             <ul class="burger_menu">

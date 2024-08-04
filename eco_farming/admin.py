@@ -1,13 +1,14 @@
 from django.contrib import admin
 from eco_farming.models import (WeatherSlide, Brand, ProductCategory, BrandEffectImage, BrandUsageItem, BrandAdvantage,
                                 Harmful, HarmfulImage, HarmfulCategory, Culture, CultureCategory, CultureBrands,
-                                Publication, PublicationCategory, PublicationImage)
+                                Publication, PublicationCategory, PublicationImage, HeaderImage)
 
 admin.site.register(WeatherSlide)
 admin.site.register(ProductCategory)
 admin.site.register(HarmfulCategory)
 admin.site.register(PublicationCategory)
 admin.site.register(Culture)
+admin.site.register(HeaderImage)
 
 
 class BrandEffectImageInline(admin.StackedInline):

@@ -243,3 +243,14 @@ class PublicationImage(models.Model):
         return self.publication.title
 
 
+class HeaderImage(models.Model):
+    title = models.CharField("Название страницы", max_length=100)
+    path = models.CharField("Адрес страницы", max_length=300)
+    image = models.ImageField("Изображение для шапки страницы", upload_to='header_images')
+
+    class Meta:
+        verbose_name = 'изображение для шапки страницы'
+        verbose_name_plural = 'Изображения для шапок страниц'
+
+    def __str__(self):
+        return self.title
