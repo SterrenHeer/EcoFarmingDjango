@@ -93,20 +93,15 @@
     <div class="container">
         <div class="title title_48 semi-bold">Видеоматерилы</div>
         <div class="videos_wrapper">
-            <div class="videos_item" data-fancybox data-src="{% static 'video/sample-5s.mp4' %}">
+            {% for video in videos %}
+            <div class="videos_item" data-fancybox data-src="{{ video.video.url }}">
                 <div class="videos_item_image">
-                    <img class="bg" src="{% static 'img/slider_template.png' %}" alt="video">
+                    <img class="bg" src="{{ video.image.url }}" alt="video">
                     <img class="start" src="{% static 'icons/start_video.svg' %}" alt="start">
                 </div>
-                <div class="title title_24 semi-bold">Название видеоматериала</div>
+                <div class="title title_24 semi-bold">{{ video.title }}</div>
             </div>
-            <div class="videos_item" data-fancybox data-src="{% static 'video/sample-5s.mp4' %}">
-                <div class="videos_item_image">
-                    <img class="bg" src="{% static 'img/weather_bg_2.png' %}" alt="video">
-                    <img class="start" src="{% static 'icons/start_video.svg' %}" alt="start">
-                </div>
-                <div class="title title_24 semi-bold">Название видеоматериала</div>
-            </div>
+            {% endfor %}
         </div>
     </div>
 </section>
