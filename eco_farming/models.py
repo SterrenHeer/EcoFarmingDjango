@@ -216,6 +216,7 @@ class Publication(models.Model):
     image = models.ImageField("Изображение (главное) или превью видео", upload_to='publications_main_images')
     video = models.FileField(upload_to="publications_videos", blank=True)
     description = models.TextField("Описание", max_length=600)
+    description_2 = models.TextField("Описание (дополнительное)", blank=True)
     date = models.DateField("Дата размещения")
     category = models.ForeignKey(PublicationCategory, on_delete=models.CASCADE, verbose_name="Категория публикации")
 
@@ -227,7 +228,7 @@ class Publication(models.Model):
         return self.title
 
     def get_absolute_url(self):
-        return reverse('', args=[str(self.id), str(self.type)])
+        return reverse('publication_details', args=[str(self.id), str(self.type)])
 
 
 class PublicationImage(models.Model):

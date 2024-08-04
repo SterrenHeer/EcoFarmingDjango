@@ -18,4 +18,5 @@ urlpatterns = [
     path('culture/details/<int:pk>/', views.CultureDetailView.as_view(), name='culture_details'),
     path('publications/<str:type>', views.PublicationView.as_view(), name='publications'),
     path('publications/<str:type>/<str:category>', views.PublicationSubView.as_view(), name='publications_sub'),
+    path('publication/details/<int:pk>/<str:type>/', views.PublicationDetailView.as_view(), name='publication_details'),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

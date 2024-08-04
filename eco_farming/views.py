@@ -127,3 +127,7 @@ class PublicationSubView(ListView):
         context["categories"] = Publication.objects.all().filter(type=self.kwargs['type']).values_list('category__title', flat=True).distinct()
         return context
 
+
+class PublicationDetailView(DetailView):
+    model = Publication
+    template_name = 'publication_page.html'

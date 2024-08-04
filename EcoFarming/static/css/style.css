@@ -1497,21 +1497,20 @@ a {
 }
 .publications_images {
   width: 48.07%;
-}
-.publications_images_top, .publications_images_bottom {
   display: flex;
-  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 1.145vw 0.48vw;
 }
-.publications_images_top .image {
+.publications_images .image {
+  width: 24.125%;
+  height: 10.052vw;
+}
+.publications_images .image:nth-child(1), .publications_images .image:nth-child(2) {
   width: 48.625%;
   height: 20.26vw;
 }
-.publications_images_bottom {
-  margin-top: 1.145vw;
-}
-.publications_images_bottom .image {
-  width: 24.125%;
-  height: 10.052vw;
+.publications_images .image:nth-child(1) {
+  margin-right: 0.625vw;
 }
 .publications_slider, .publications_indicators {
   display: none;

@@ -37,7 +37,7 @@
                                 <img class="start" src="{% static 'icons/start_video.svg' %}" alt="start">
                             </div>
                             {% else %}
-                            <div class="publications_item_image" onclick="location='#'">
+                            <div class="publications_item_image" onclick="location='{{ publication.get_absolute_url }}'">
                                 <img class="bg" src="{{ publication.image.url }}" alt="image">
                             </div>
                             {% endif %}
