@@ -3,6 +3,25 @@ from .models import (WeatherSlide, ProductCategory, Brand, Harmful, HarmfulCateg
                      Publication)
 from django.core.paginator import Paginator
 from django.db.models import Q
+import requests
+from datetime import datetime
+
+
+def get_forecast():
+    city = 'Гомель'
+    appid = "bf67f45c5820583170fa862576056717"
+    res = requests.get("http://api.openweathermap.org/data/2.5/forecast",
+                       params={'q': city, 'units': 'metric', 'lang': 'ru', 'APPID': appid})
+    data = res.json()
+    result = []
+    print('city:', data['city']['name'], data['city']['country'])
+    for i in data['list']:
+        result.append({'city': city,
+                       'date': datetime.strptime(i['dt_txt'], "%Y-%m-%d %H:%M:%S"),
+                       'temp': round(i['main']['temp']),
+                       'wind': i['wind']['speed'],
+                       'weather': i['weather'][0]['description']})
+    return result
 
 
 class WeatherSlideListView(ListView):
@@ -13,6 +32,7 @@ class WeatherSlideListView(ListView):
     def get_context_data(self, *args, **kwargs):
         context = super().get_context_data(*args, **kwargs)
         context["videos"] = Publication.objects.all().filter(type='Видеоматериалы')[:2]
+        context["weather"] = get_forecast()
         return context
 
 

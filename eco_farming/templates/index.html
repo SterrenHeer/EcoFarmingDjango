@@ -13,17 +13,17 @@
                 <div class="weather_left">
                     <img src="{% static 'img/weather_bg_1.png' %}" class="weather_bg" alt="weather_bg">
                     <div class="weather_widget_top">
-                        <div class="title title_37">Понедельник</div>
-                        <div class="title title_22 medium">27 мая 2024</div>
+                        <div class="title title_37">{{ weather.0.date|date:'l' }}</div>
+                        <div class="title title_22 medium">{{ weather.0.date|date:'j E Y' }}</div>
                         <div class="title title_20 semi-bold">
                             <img src="{% static 'icons/weather_map.svg' %}" alt="map">
-                            <span id="weather_city">город</span>
+                            <span id="weather_city">{{ weather.0.city }}</span>
                         </div>
                     </div>
                     <div class="weather_widget_bottom">
                         <img src="{% static 'icons/sunny.svg' %}" alt="sunny">
-                        <div class="title title_50 bold">29 °C</div>
-                        <div class="title title_30 bold">Солнечно</div>
+                        <div class="title title_50 bold">{{ weather }} °C</div>
+                        <div class="title title_30 bold">{{ weather.0.weather|capfirst }}</div>
                     </div>
                 </div>
                 <div class="weather_right">
@@ -43,23 +43,23 @@
                     <div class="weather_degrees">
                         <div class="weather_degree active">
                             <img src="{% static 'icons/sunny.svg' %}" alt="sunny">
-                            <div class="title title_20">Вт</div>
-                            <div class="title title_20 bold">30 °C</div>
+                            <div class="title title_20">{{ weather.1.date|date:'D' }}</div>
+                            <div class="title title_20 bold">{{ weather.1.temp }} °C</div>
                         </div>
                         <div class="weather_degree">
                             <img src="{% static 'icons/cloudy.svg' %}" alt="cloudy">
-                            <div class="title title_20">Ср</div>
-                            <div class="title title_20 bold">22 °C</div>
+                            <div class="title title_20">{{ weather.2.date|date:'D' }}</div>
+                            <div class="title title_20 bold">{{ weather.2.temp }} °C</div>
                         </div>
                         <div class="weather_degree">
                             <img src="{% static 'icons/rainy.svg' %}" alt="rainy">
-                            <div class="title title_20">Чт</div>
-                            <div class="title title_20 bold">06 °C</div>
+                            <div class="title title_20">{{ weather.3.date|date:'D' }}</div>
+                            <div class="title title_20 bold">{{ weather.3.temp }} °C</div>
                         </div>
                         <div class="weather_degree">
                             <img src="{% static 'icons/sunny.svg' %}" alt="sunny">
-                            <div class="title title_20">Пт</div>
-                            <div class="title title_20 bold">26 °C</div>
+                            <div class="title title_20">{{ weather.4.date|date:'D' }}</div>
+                            <div class="title title_20 bold">{{ weather.4.temp }} °C</div>
                         </div>
                     </div>
                     <button class="button button_city">
