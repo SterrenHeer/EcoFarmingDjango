@@ -444,11 +444,27 @@ a {
   color: #fff;
 }
 .header .others, .header .products {
+  overflow-x: auto;
   display: flex;
   gap: 3.385vw;
+  padding-bottom: 0.625vw;
+}
+.header .others::-webkit-scrollbar, .header .products::-webkit-scrollbar {
+  height: 0.416vw;
+  border-radius: 0.26vw;
+  background-color: #fff;
+}
+.header .others::-webkit-scrollbar-thumb, .header .products::-webkit-scrollbar-thumb {
+  border-radius: 0.26vw;
+  background: #ffb800;
+}
+.header .others::-webkit-scrollbar-track, .header .products::-webkit-scrollbar-track {
+  border-radius: 0.26vw;
+  background: #fff;
 }
 .header .others .title, .header .products .title {
   color: #fff;
+  text-wrap: nowrap;
 }
 .header .others .active::after, .header .products .active::after {
   position: relative;
@@ -460,6 +476,9 @@ a {
   height: 0.156vw;
   border-radius: 0.26vw;
   background: #fff;
+}
+.header .cultures_details {
+  gap: 1.562vw;
 }
 .header .products {
   gap: 1.562vw;
@@ -1586,6 +1605,8 @@ a {
   width: 100%;
   height: 100%;
   border-radius: 0.52vw;
+  -o-object-fit: cover;
+     object-fit: cover;
 }
 .culture_item img:hover {
   filter: saturate(180%);
@@ -1947,25 +1968,20 @@ a {
     display: none;
   }
   .header .others {
-    overflow-x: auto;
     padding-bottom: 4.055vw;
     gap: 5.555vw;
   }
   .header .others::-webkit-scrollbar {
     height: 1.666vw;
     border-radius: 1.388vw;
-    background-color: #fff;
   }
   .header .others::-webkit-scrollbar-thumb {
     border-radius: 1.388vw;
-    background: #ffb800;
   }
   .header .others::-webkit-scrollbar-track {
     border-radius: 1.388vw;
-    background: #fff;
   }
   .header .others .title {
-    text-wrap: nowrap;
     font-size: 3.333vw;
   }
   .header .others .active::after {
