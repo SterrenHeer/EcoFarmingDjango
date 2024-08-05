@@ -179,7 +179,7 @@ class Culture(models.Model):
         return self.title
 
     def get_absolute_url(self):
-        return reverse('culture_details', args=[str(self.id)])
+        return reverse('culture_details', args=[str(self.category.title), str(self.id), str(self.title)])
 
 
 class CultureBrands(models.Model):

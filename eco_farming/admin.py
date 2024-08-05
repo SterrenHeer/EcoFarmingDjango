@@ -8,7 +8,12 @@ admin.site.register(ProductCategory)
 admin.site.register(HarmfulCategory)
 admin.site.register(PublicationCategory)
 admin.site.register(Culture)
-admin.site.register(HeaderImage)
+
+
+@admin.register(HeaderImage)
+class HeaderImageAdmin(admin.ModelAdmin):
+    model = HeaderImage
+    list_display = ('title', 'path', 'image')
 
 
 class BrandEffectImageInline(admin.StackedInline):

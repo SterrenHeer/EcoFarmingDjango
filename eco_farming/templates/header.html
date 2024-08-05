@@ -79,6 +79,20 @@
             <a href="{% url 'publications' 'Видеоматериалы' %}" class="title title_24 semi-bold">Видеоматериалы</a>
             <a href="{% url 'contacts' %}" class="title title_24 semi-bold">Контакты</a>
         </div>
+        <div class="container others cultures_details">
+            {% for category in culture_categories %}
+            <a href="{{ category.get_absolute_url }}" class="title title_20 semi-bold">{{ category.title }}</a>
+            {% endfor %}
+        </div>
+        <div class="container others culture_details">
+            {% for category in culture_categories %}
+                {% if category.title == culture_category %}
+                    {% for item in category.culture_set.all %}
+                        <a href="{{ item.get_absolute_url }}" class="title title_24 semi-bold">{{ item.title }}</a>
+                    {% endfor %}
+                {% endif %}
+            {% endfor %}
+        </div>
     </div>
     <div class="burger">
         <div class="burger_modal">

@@ -18,6 +18,10 @@ if (location.pathname.includes('brand')) {
     document.querySelector('.others.products').style.display = 'flex';
 } else if (location.pathname.includes('harmful/items') || location.pathname.includes('harmful_page')) {
     document.querySelector('.others.harmful').style.display = 'flex';
+} else if (location.pathname.includes('cultures_category/details')) {
+    document.querySelector('.others.cultures_details').style.display = 'flex';
+} else if (location.pathname.includes('culture/details')) {
+    document.querySelector('.others.culture_details').style.display = 'flex';
 } else if (location.pathname.includes('products') || location.pathname.includes('culture') || location.pathname.includes('harmful')) {
     document.querySelector('.others.all').style.display = 'flex';
 } else if (location.pathname.includes('contacts') || location.pathname.includes('publication')) {
