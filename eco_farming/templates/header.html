@@ -100,7 +100,9 @@
                 <img src="{% static 'icons/search.svg' %}" alt="search">
                 <img data-close class="burger_close" src="{% static 'icons/close.svg' %}" alt="close">
             </div>
-            <input class="burger_search" type="text" placeholder="Введите поисковой запрос">
+            <form action="{% url 'search_results' %}#result" class="all_search" method="get">
+                <input class="burger_search" type="text" name="search" placeholder="Введите поисковой запрос" onchange="submit();">
+            </form>
             <ul class="burger_menu">
                 <li><a href="{% url 'product_categories' 'Продукты' %}" class="title title_20 semi-bold">Продукты</a>
                     <ul>

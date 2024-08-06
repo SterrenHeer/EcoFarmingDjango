@@ -1,10 +1,11 @@
-from django.views.generic import ListView, DetailView
+from django.views.generic import ListView, DetailView, TemplateView
 from .models import (WeatherSlide, ProductCategory, Brand, Harmful, HarmfulCategory, Culture, CultureCategory,
                      Publication)
 from django.core.paginator import Paginator
 from django.db.models import Q
 import requests
 from datetime import datetime
+from itertools import chain
 
 
 def get_forecast(req):
@@ -215,3 +216,49 @@ class PublicationSubView(ListView):
 class PublicationDetailView(DetailView):
     model = Publication
     template_name = 'publication_page.html'
+
+
+class SearchResultsView(TemplateView):
+    template_name = "search_results.html"
+
+    def get_context_data(self, *args, **kwargs):
+        context = super().get_context_data(*args, **kwargs)
+        q = self.request.GET.get("search")
+        product_category_set = ProductCategory.objects.filter(title__iregex=q).order_by('title')
+        brand_set = Brand.objects.filter(Q(title__iregex=q) |
+                                         Q(description__iregex=q) |
+                                         Q(type__iregex=q) |
+                                         Q(substance__iregex=q) |
+                                         Q(preparative__iregex=q) |
+                                         Q(consumption__iregex=q) |
+                                         Q(packaging__iregex=q) |
+                                         Q(brandadvantage__description__iregex=q) |
+                                         Q(expiration__iregex=q)).order_by('title')
+        harmful_set = Harmful.objects.filter(Q(title__iregex=q) |
+                                             Q(title_latin__iregex=q) |
+                                             Q(description__iregex=q) |
+                                             Q(family__iregex=q) |
+                                             Q(subtype__iregex=q) |
+                                             Q(bio_group__iregex=q) |
+                                             Q(category__title__iregex=q) |
+                                             Q(category__type__iregex=q) |
+                                             Q(biology__iregex=q)).order_by('title')
+        culture_category_set = CultureCategory.objects.filter(Q(title__iregex=q) |
+                                                              Q(description__iregex=q)).order_by('title')
+        culture_set = Culture.objects.filter(Q(title__iregex=q) |
+                                             Q(description__iregex=q)).order_by('title')
+        publication_set = Publication.objects.filter(Q(title__iregex=q) |
+                                                     Q(type__iregex=q) |
+                                                     Q(description__iregex=q) |
+                                                     Q(description_2__iregex=q) |
+                                                     Q(category__title__iregex=q)).order_by('title')
+        result_set = list(chain(product_category_set, brand_set, harmful_set,
+                                culture_category_set, culture_set, publication_set))
+        print(result_set)
+        paginator = Paginator(result_set, 6)
+        page = self.request.GET.get('page')
+        result = paginator.get_page(page)
+        context['search_results'] = result
+        context['page_obj'] = result
+        context['search'] = q
+        return context

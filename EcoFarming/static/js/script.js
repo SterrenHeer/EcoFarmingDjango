@@ -27,7 +27,9 @@ if (location.pathname.includes('brand')) {
 } else if (location.pathname.includes('contacts') || location.pathname.includes('publication')) {
     document.querySelector('.others.company').style.display = 'flex';
 } else {
-    document.querySelector('.main').style.display = 'block';
+    if (!location.pathname.includes('search/results')) {
+        document.querySelector('.main').style.display = 'block';
+    }
 }
 window.onscroll = function() {
     let header = document.querySelector(".header_main .container");

@@ -1,0 +1,53 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}
+    Результаты поиска
+{% endblock %}
+
+{% block content %}
+<section class="search_results" id="result">
+    <div class="container">
+        <div class="title title_48 semi-bold">Результаты поиска:</div>
+        <div class="search_results_wrapper">
+            {% for item in search_results %}
+                <div class="search_results_item" onclick="location='{{ item.get_absolute_url }}'">
+                    <div class="title title_32 semi-bold">{{ item.title }}</div>
+                    {% if item.description %}
+                    <div class="title title_20 regular">{{ item.description|truncatechars:230 }}</div>
+                    {% endif %}
+                </div>
+            {% empty %}
+                <div class="title title_32 semi-bold">Поиск не дал результатов</div>
+            {% endfor %}
+        </div>
+        <div class="pagination">
+            {% if page_obj.has_previous %}
+            <a href="?page={{ page_obj.previous_page_number }}&search={{ search }}#result" class="pagination_prev rotate">
+                <img src="{% static 'icons/pag_next.svg' %}" alt="prev">
+            </a>
+            {% else %}
+            <div class="pagination_prev rotate lock">
+                <img src="{% static 'icons/pag_next.svg' %}" alt="prev">
+            </div>
+            {% endif %}
+            {% for page in page_obj.paginator.page_range %}
+                {% if page == page_obj.number %}
+                <div class="pagination_item active">{{ page }}</div>
+                {% else %}
+                <a href="?page={{ page }}&search={{ search }}#result" class="pagination_item">{{ page }}</a>
+                {% endif %}
+            {% endfor %}
+            {% if page_obj.has_next %}
+            <a href="?page={{ page_obj.next_page_number }}&search={{ search }}#result" class="pagination_next">
+                <img src="{% static 'icons/pag_next.svg' %}" alt="next">
+            </a>
+            {% else %}
+            <div class="pagination_next lock">
+                <img src="{% static 'icons/pag_next.svg' %}" alt="next">
+            </div>
+            {% endif %}
+        </div>
+    </div>
+</section>
+{% endblock %}
