@@ -59,6 +59,11 @@ $('.weeds_others img').on( "click", function() {
 $('.publications_others img').click(() => {
     $('.publications_links').toggleClass('flex');
 });
+
+$('.weather_right .button_city').click(() => {
+    $('.button_city').toggleClass('hide');
+    $('.weather_form').toggleClass('flex');
+});
 $(window).on( "resize, scroll", () => {
     $('.brand_items').removeClass("flex")
     $('.weeds_links').removeClass("flex")
@@ -117,12 +122,17 @@ if (document.querySelector('.brand_tab') != null) {
 if (document.querySelector('.culture_tab') != null) {
     tabs('.culture_header', '.culture_tab', '.culture_headers', 'culture_tab_active');
 }
+if (document.querySelector('.weather_right') != null) {
+    tabs('.weather_degree', '.weather_parameters', '.weather_degrees', 'active');
+}
 
 $("form").submit(function (event) {
     event.preventDefault();
     let name = event.target.classList.value.slice(0, -5);
     let formData = new FormData(document.querySelector(`.${name}_form`));
-    sendPhp(name, formData);
+    if (name !== 'weather') {
+        sendPhp(name, formData);
+    }
 });
 
 function sendPhp(name, data) {

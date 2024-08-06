@@ -6,7 +6,7 @@
 {% endblock %}
 
 {% block content %}
-<div class="weather">
+<div class="weather" id="weather">
     <div class="container">
         <div class="weather_wrapper">
             <div class="weather_widget">
@@ -21,43 +21,87 @@
                         </div>
                     </div>
                     <div class="weather_widget_bottom">
-                        <img src="{% static 'icons/sunny.svg' %}" alt="sunny">
-                        <div class="title title_50 bold">{{ weather }} °C</div>
+                        <img src="http://openweathermap.org/img/w/{{ weather.0.icon }}.png" alt="sunny">
+                        <div class="title title_50 bold">{{ weather.0.temp }} °C</div>
                         <div class="title title_30 bold">{{ weather.0.weather|capfirst }}</div>
                     </div>
                 </div>
                 <div class="weather_right">
                     <img src="{% static 'img/weather_bg_2.png' %}" class="weather_bg" alt="weather_bg">
-                    <div class="weather_parameter nomt">
-                        <div class="title title_28 bold">АТМОСФЕРНЫЕ<br>ОСАДКИ</div>
-                        <div class="title title_28 medium">0%</div>
+                    <div class="weather_parameters">
+                        <div class="weather_parameter nomt">
+                            <div class="title title_28 bold">ОБЛАЧНОСТЬ</div>
+                            <div class="title title_28 medium">{{ weather.1.clouds }}%</div>
+                        </div>
+                        <div class="weather_parameter">
+                            <div class="title title_28 bold">ВЛАЖНОСТЬ</div>
+                            <div class="title title_28 medium">{{ weather.1.humidity }}%</div>
+                        </div>
+                        <div class="weather_parameter">
+                            <div class="title title_28 bold">ВЕТЕР</div>
+                            <div class="title title_28 medium">{{ weather.1.wind }} км/ч</div>
+                        </div>
                     </div>
-                    <div class="weather_parameter">
-                        <div class="title title_28 bold">ВЛАЖНОСТЬ</div>
-                        <div class="title title_28 medium">42%</div>
+                    <div class="weather_parameters">
+                        <div class="weather_parameter nomt">
+                            <div class="title title_28 bold">ОБЛАЧНОСТЬ</div>
+                            <div class="title title_28 medium">{{ weather.2.clouds }}%</div>
+                        </div>
+                        <div class="weather_parameter">
+                            <div class="title title_28 bold">ВЛАЖНОСТЬ</div>
+                            <div class="title title_28 medium">{{ weather.2.humidity }}%</div>
+                        </div>
+                        <div class="weather_parameter">
+                            <div class="title title_28 bold">ВЕТЕР</div>
+                            <div class="title title_28 medium">{{ weather.2.wind }} км/ч</div>
+                        </div>
                     </div>
-                    <div class="weather_parameter">
-                        <div class="title title_28 bold">ВЕТЕР</div>
-                        <div class="title title_28 medium">3 км/ч</div>
+                    <div class="weather_parameters">
+                        <div class="weather_parameter nomt">
+                            <div class="title title_28 bold">ОБЛАЧНОСТЬ</div>
+                            <div class="title title_28 medium">{{ weather.3.clouds }}%</div>
+                        </div>
+                        <div class="weather_parameter">
+                            <div class="title title_28 bold">ВЛАЖНОСТЬ</div>
+                            <div class="title title_28 medium">{{ weather.3.humidity }}%</div>
+                        </div>
+                        <div class="weather_parameter">
+                            <div class="title title_28 bold">ВЕТЕР</div>
+                            <div class="title title_28 medium">{{ weather.3.wind }} км/ч</div>
+                        </div>
+                    </div>
+                    <div class="weather_parameters">
+                        <div class="weather_parameter nomt">
+                            <div class="title title_28 bold">ОБЛАЧНОСТЬ</div>
+                            <div class="title title_28 medium">{{ weather.4.clouds }}%</div>
+                        </div>
+                        <div class="weather_parameter">
+                            <div class="title title_28 bold">ВЛАЖНОСТЬ</div>
+                            <div class="title title_28 medium">{{ weather.4.humidity }}%</div>
+                        </div>
+                        <div class="weather_parameter">
+                            <div class="title title_28 bold">ВЕТЕР</div>
+                            <div class="title title_28 medium">{{ weather.4.wind }} км/ч</div>
+                        </div>
                     </div>
                     <div class="weather_degrees">
                         <div class="weather_degree active">
-                            <img src="{% static 'icons/sunny.svg' %}" alt="sunny">
+                            <img src="http://openweathermap.org/img/w/{{ weather.0.icon }}.png" alt="sunny">
                             <div class="title title_20">{{ weather.1.date|date:'D' }}</div>
                             <div class="title title_20 bold">{{ weather.1.temp }} °C</div>
                         </div>
                         <div class="weather_degree">
-                            <img src="{% static 'icons/cloudy.svg' %}" alt="cloudy">
+                            <img src="http://openweathermap.org/img/w/{{ weather.0.icon }}.png" alt="cloudy">
                             <div class="title title_20">{{ weather.2.date|date:'D' }}</div>
                             <div class="title title_20 bold">{{ weather.2.temp }} °C</div>
                         </div>
                         <div class="weather_degree">
-                            <img src="{% static 'icons/rainy.svg' %}" alt="rainy">
+                            <img src="http://openweathermap.org/img/w/{{ weather.0.icon }}.png" alt="rainy">
                             <div class="title title_20">{{ weather.3.date|date:'D' }}</div>
                             <div class="title title_20 bold">{{ weather.3.temp }} °C</div>
                         </div>
                         <div class="weather_degree">
-                            <img src="{% static 'icons/sunny.svg' %}" alt="sunny">
+                            <img src="http://openweathermap.org/img/w/{{ weather.0.icon }}.png" alt="sunny">
                             <div class="title title_20">{{ weather.4.date|date:'D' }}</div>
                             <div class="title title_20 bold">{{ weather.4.temp }} °C</div>
                         </div>
@@ -65,6 +109,9 @@
                     <button class="button button_city">
                         <img src="{% static 'icons/weather_map.svg' %}" alt="map">выбрать город
                     </button>
+                    <form action="{% url 'index' %}#weather" class="weather_form" method="get">
+                        <input type="text" placeholder="Введите название города" name="city" onchange="submit();">
+                    </form>
                 </div>
             </div>
             <div class="weather_controls">

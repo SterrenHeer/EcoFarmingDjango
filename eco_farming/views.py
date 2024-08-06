@@ -7,20 +7,54 @@ import requests
 from datetime import datetime
 
 
-def get_forecast():
-    city = 'Гомель'
+def get_forecast(req):
+    city = 'Минск'
+    if "city" in req.GET:
+        city = req.GET.get('city')
     appid = "bf67f45c5820583170fa862576056717"
+    try:
+        result = get_list(city, appid)
+    except:
+        result = get_list('Минск', appid)
+    return result
+
+
+def get_list(city, appid):
     res = requests.get("http://api.openweathermap.org/data/2.5/forecast",
                        params={'q': city, 'units': 'metric', 'lang': 'ru', 'APPID': appid})
     data = res.json()
+    if data['list'] is None:
+        city = 'Минск'
+        res = requests.get("http://api.openweathermap.org/data/2.5/forecast",
+                           params={'q': city, 'units': 'metric', 'lang': 'ru', 'APPID': appid})
+        data = res.json()
     result = []
-    print('city:', data['city']['name'], data['city']['country'])
+    day = -1
     for i in data['list']:
-        result.append({'city': city,
-                       'date': datetime.strptime(i['dt_txt'], "%Y-%m-%d %H:%M:%S"),
-                       'temp': round(i['main']['temp']),
-                       'wind': i['wind']['speed'],
-                       'weather': i['weather'][0]['description']})
+        date = datetime.strptime(i['dt_txt'], "%Y-%m-%d %H:%M:%S")
+        if date.weekday() != day:
+            day = date.weekday()
+            day_result = [[], [], [], []]
+            for item in data['list']:
+                item_date = datetime.strptime(item['dt_txt'], "%Y-%m-%d %H:%M:%S").weekday()
+                if item_date == day:
+                    day_result[0].append(item['main']['temp'])
+                    day_result[1].append(item['wind']['speed'])
+                    day_result[2].append(item['main']['humidity'])
+                    day_result[3].append(item['clouds']['all'])
+            average_temp = round(sum(day_result[0]) / len(day_result[0]))
+            average_wind = round(sum(day_result[1]) / len(day_result[1]) * 3.6, 1)
+            average_humidity = round(sum(day_result[2]) / len(day_result[2]))
+            average_clouds = round(sum(day_result[3]) / len(day_result[3]))
+            result.append({'city': city,
+                           'date': date,
+                           'day': date.weekday(),
+                           'temp': average_temp,
+                           'wind': average_wind,
+                           'humidity': average_humidity,
+                           'clouds': average_clouds,
+                           'weather': i['weather'][0]['description'],
+                           'icon': i['weather'][0]['icon']})
     return result
 
 
@@ -32,7 +66,7 @@ class WeatherSlideListView(ListView):
     def get_context_data(self, *args, **kwargs):
         context = super().get_context_data(*args, **kwargs)
         context["videos"] = Publication.objects.all().filter(type='Видеоматериалы')[:2]
-        context["weather"] = get_forecast()
+        context["weather"] = get_forecast(self.request)
         return context
 
 
@@ -106,14 +140,14 @@ class HarmfulSearch(ListView):
 
     def get_queryset(self):
         search = self.request.GET.get("search")
-        print(search)
         return Harmful.objects.filter(category__type=self.kwargs['type']).filter(Q(title__iregex=search) |
-                                      Q(title_latin__iregex=search) |
-                                      Q(description__iregex=search) |
-                                      Q(family__iregex=search) |
-                                      Q(subtype__iregex=search) |
-                                      Q(bio_group__iregex=search) |
-                                      Q(biology__iregex=search)).order_by('title')
+                                                                                 Q(title_latin__iregex=search) |
+                                                                                 Q(description__iregex=search) |
+                                                                                 Q(family__iregex=search) |
+                                                                                 Q(subtype__iregex=search) |
+                                                                                 Q(bio_group__iregex=search) |
+                                                                                 Q(biology__iregex=search)).order_by(
+            'title')
 
     def get_context_data(self, *args, **kwargs):
         context = super().get_context_data(*args, **kwargs)

@@ -24,7 +24,10 @@ function tabs(tabsSelector, tabsContentSelector, tabsParentSelector, activeClass
     showTabContent();
 
 	tabsParent.addEventListener('click', function(event) {
-		const target = event.target;
+		let target = event.target;
+        if (!target.classList.contains(tabsSelector.slice(1))) {
+            target = target.parentNode;
+        }
 		if(target && target.classList.contains(tabsSelector.slice(1))) {
             tabs.forEach((item, i) => {
                 if (target == item) {

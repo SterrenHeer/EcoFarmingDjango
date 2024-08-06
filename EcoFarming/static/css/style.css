@@ -80,7 +80,6 @@
   font-family: "Lato", sans-serif;
   margin: 0;
   padding: 0;
-  scroll-behavior: smooth;
 }
 
 .container {
@@ -703,6 +702,11 @@ a {
   box-shadow: 1px 2px 4px 0 #222831;
   background: #053a15;
 }
+.weather_degree > * {
+  -webkit-user-select: none;
+     -moz-user-select: none;
+          user-select: none;
+}
 .weather_degree img {
   width: 2.552vw;
 }
@@ -747,6 +751,32 @@ a {
   border-radius: 0.26vw;
   background: rgba(214, 214, 214, 0.4);
   cursor: pointer;
+}
+.weather_form {
+  display: none;
+  margin-top: 3.385vw;
+  width: 100%;
+}
+.weather_form input {
+  width: calc(100% - 0.468vw - 0.468vw);
+  padding: 0.572vw 0.468vw;
+  border: 1px solid #fff;
+  border-radius: 0.52vw;
+  background: linear-gradient(131deg, #fff 0%, rgba(255, 255, 255, 0.8) 100%);
+  font-weight: 400;
+  font-size: 0.833vw;
+  color: rgba(0, 0, 0, 0.6);
+  outline: none;
+}
+.weather_form input::-moz-placeholder {
+  font-weight: 400;
+  font-size: 0.833vw;
+  color: rgba(0, 0, 0, 0.6);
+}
+.weather_form input::placeholder {
+  font-weight: 400;
+  font-size: 0.833vw;
+  color: rgba(0, 0, 0, 0.6);
 }
 .weather_active {
   background: #004705;
@@ -2106,7 +2136,8 @@ a {
   .weather_left {
     padding: 7.5vw 5.277vw 7.222vw;
     width: calc(100% - 5.277vw - 5.277vw);
-    height: 65.278vw;
+    min-height: 65.278vw;
+    height: auto;
   }
   .weather_right {
     padding: 7.222vw 6.388vw 9.166vw 7.777vw;
@@ -2115,6 +2146,21 @@ a {
   }
   .weather_right .button {
     margin-top: 5.555vw;
+  }
+  .weather_form {
+    margin-top: 5.555vw;
+  }
+  .weather_form input {
+    width: calc(100% - 3.611vw - 3.611vw);
+    padding: 3.055vw 3.611vw;
+    border-radius: 2.777vw;
+    font-size: 4.444vw;
+  }
+  .weather_form input::-moz-placeholder {
+    font-size: 4.444vw;
+  }
+  .weather_form input::placeholder {
+    font-size: 4.444vw;
   }
   .weather_bg {
     border-radius: 8.333vw;
