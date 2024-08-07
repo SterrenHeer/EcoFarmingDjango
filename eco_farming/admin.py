@@ -6,13 +6,24 @@ from eco_farming.models import (WeatherSlide, Brand, ProductCategory, BrandEffec
 admin.site.register(ProductCategory)
 admin.site.register(HarmfulCategory)
 admin.site.register(PublicationCategory)
-admin.site.register(Culture)
+
+
+@admin.register(Culture)
+class CultureAdmin(admin.ModelAdmin):
+    model = Culture
+    list_display = ('title', 'category')
 
 
 @admin.register(HeaderImage)
 class HeaderImageAdmin(admin.ModelAdmin):
     model = HeaderImage
     list_display = ('title', 'path', 'image')
+
+
+@admin.register(BrandUsageItem)
+class BrandUsageItemAdmin(admin.ModelAdmin):
+    model = BrandUsageItem
+    list_display = ('brand', 'culture', 'saboteur', 'drug_consumption', 'solution_consumption')
 
 
 class BrandEffectImageInline(admin.StackedInline):
@@ -46,6 +57,8 @@ class PublicationImageInline(admin.StackedInline):
 
 
 class BrandAdmin(admin.ModelAdmin):
+    list_display = ('title', 'product_category', 'type', 'substance', 'preparative', 'consumption', 'packaging',
+                    'expiration')
     inlines = [
         BrandAdvantageInline,
         BrandUsageItemInline,
@@ -54,6 +67,7 @@ class BrandAdmin(admin.ModelAdmin):
 
 
 class HarmfulAdmin(admin.ModelAdmin):
+    list_display = ('title', 'category', 'family', 'subtype', 'bio_group')
     inlines = [
         HarmfulImageInline,
     ]
@@ -66,12 +80,12 @@ class CultureCategoryAdmin(admin.ModelAdmin):
 
 
 class PublicationAdmin(admin.ModelAdmin):
+    list_display = ('title', 'type', 'category', 'date')
     inlines = [
         PublicationImageInline,
     ]
 
 
-admin.site.register(BrandUsageItem)
 admin.site.register(BrandEffectImage)
 admin.site.register(BrandAdvantage)
 admin.site.register(Brand, BrandAdmin)

@@ -169,7 +169,7 @@ class Culture(models.Model):
     title = models.CharField("Название", max_length=100)
     image = models.ImageField("Изображение", upload_to='culture_items')
     description = models.TextField("Описание")
-    category = models.ForeignKey(CultureCategory, on_delete=models.CASCADE, verbose_name="Культура")
+    category = models.ForeignKey(CultureCategory, on_delete=models.CASCADE, verbose_name="Категория")
 
     class Meta:
         verbose_name = 'культура'
