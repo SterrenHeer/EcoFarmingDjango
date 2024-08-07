@@ -66,6 +66,7 @@ class WeatherSlideListView(ListView):
 
     def get_context_data(self, *args, **kwargs):
         context = super().get_context_data(*args, **kwargs)
+        context["news"] = Publication.objects.all().filter(type__in=['Наука', 'Публикации']).order_by('-date')[:4]
         context["videos"] = Publication.objects.all().filter(type='Видеоматериалы')[:2]
         context["weather"] = get_forecast(self.request)
         return context

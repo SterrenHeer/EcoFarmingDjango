@@ -120,11 +120,11 @@
             </div>
             <div class="weather_slider">
                 <div class="weather_field">
-                    {% if weather_slide_list %}
-                        {% for slide in weather_slide_list %}
-                            <div class="weather_slide">
+                    {% if news%}
+                        {% for slide in news %}
+                            <div class="weather_slide" onclick="location='{{ slide.get_absolute_url }}'">
                                 <div class="title title_40 semi-bold">{{ slide.title }}</div>
-                                <div class="title title_20 regular">{{ slide.description }}</div>
+                                <div class="title title_20 regular">{{ slide.description|truncatechars:280|safe }}</div>
                                 <img src="{{ slide.image.url }}" alt="template">
                             </div>
                         {% endfor %}

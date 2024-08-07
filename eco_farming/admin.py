@@ -3,7 +3,6 @@ from eco_farming.models import (WeatherSlide, Brand, ProductCategory, BrandEffec
                                 Harmful, HarmfulImage, HarmfulCategory, Culture, CultureCategory, CultureBrands,
                                 Publication, PublicationCategory, PublicationImage, HeaderImage)
 
-admin.site.register(WeatherSlide)
 admin.site.register(ProductCategory)
 admin.site.register(HarmfulCategory)
 admin.site.register(PublicationCategory)
