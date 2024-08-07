@@ -21,4 +21,5 @@ urlpatterns = [
     path('publications/<str:type>/<str:category>', views.PublicationSubView.as_view(), name='publications_sub'),
     path('publication/details/<int:pk>/<str:type>/', views.PublicationDetailView.as_view(), name='publication_details'),
     path('search/results/', views.SearchResultsView.as_view(), name='search_results'),
+    path('contacts/send/telegram/', views.SendTelegramMessageView.as_view(), name='send_contacts'),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

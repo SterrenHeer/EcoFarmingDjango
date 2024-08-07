@@ -6,6 +6,8 @@ from django.db.models import Q
 import requests
 from datetime import datetime
 from itertools import chain
+import urllib.request
+import json
 
 
 def get_forecast(req):
@@ -57,6 +59,32 @@ def get_list(city, appid):
                            'weather': i['weather'][0]['description'],
                            'icon': i['weather'][0]['icon']})
     return result
+
+
+def send_telegram_message(data):
+    token = "7243538546:AAGpadMB8B0_mSnr4tqpXVuOc4ggBsM-PC0"
+    chat_id = "-4226805402"
+    api_url = f'https://api.telegram.org/bot{token}/sendMessage'
+
+    input_data = json.dumps(
+        {
+            'chat_id': chat_id,
+            'text': data,
+            'parse_mode': "HTML"
+        }
+    ).encode()
+
+    try:
+        req = urllib.request.Request(
+            url=api_url,
+            data=input_data,
+            headers={'Content-Type': 'application/json'}
+        )
+        with urllib.request.urlopen(req) as response:
+            print(response.read().decode('utf-8'))
+
+    except Exception as e:
+        print(e)
 
 
 class WeatherSlideListView(ListView):
@@ -263,3 +291,22 @@ class SearchResultsView(TemplateView):
         context['page_obj'] = result
         context['search'] = q
         return context
+
+
+class SendTelegramMessageView(TemplateView):
+    template_name = "contacts.html"
+
+    def get_context_data(self):
+        data = ''
+        for item in self.request.GET.items():
+            if not item[1]:
+                continue
+            elif item[0] == 'theme':
+                data += f'Тема: {item[1]}\n'
+            elif item[0] == 'name':
+                data += f'Имя: {item[1]}\n'
+            elif item[0] == 'message':
+                data += f'Сообщение: {item[1]}\n'
+            else:
+                data += f'{item[0]}: {item[1]}\n'
+        send_telegram_message(data)

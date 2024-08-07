@@ -127,27 +127,3 @@ if (document.querySelector('.culture_tab') != null) {
 if (document.querySelector('.weather_right') != null) {
     tabs('.weather_degree', '.weather_parameters', '.weather_degrees', 'active');
 }
-
-$("form").submit(function (event) {
-    event.preventDefault();
-    let name = event.target.classList.value.slice(0, -5);
-    let formData = new FormData(document.querySelector(`.${name}_form`));
-    if (name !== 'weather') {
-        sendPhp(name, formData);
-    }
-});
-
-function sendPhp(name, data) {
-    $.ajax({
-        url: `./php/send_${name}.php`,
-        type: 'POST',
-        cache: false,
-        data: data,
-        dataType: 'html',
-        processData: false,
-        contentType: false,
-        success: function (data) {
-            $(`.${name}_form`).trigger('reset');
-        }
-    });
-}
