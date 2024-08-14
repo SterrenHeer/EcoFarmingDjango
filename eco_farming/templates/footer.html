@@ -9,24 +9,24 @@
                 <a href="#" class="footer_policy title light">Политика конфиденциальности</a>
                 <div class="footer_socials">
                     <div>
-                        <a href="#"><img src="{% static 'icons/inst_footer.svg' %}" alt="instagram"></a>
+                        <a href="https://www.instagram.com/grodnoekofarming/?igsh=MTFudHh1MnBtbzh4YQ%3D%3D"><img src="{% static 'icons/inst_footer.svg' %}" alt="instagram"></a>
                     </div>
                     <div>
-                        <a href="#"><img src="{% static 'icons/tube_footer.svg' %}" alt="youtube"></a>
+                        <a href="https://youtube.com/@aleksandrbondarenko7430?si=cUzTs3LBUzMjZyTe"><img src="{% static 'icons/tube_footer.svg' %}" alt="youtube"></a>
                     </div>
                     <div>
-                        <a href="#"><img src="{% static 'icons/viber_footer.svg' %}" alt="viber"></a>
+                        <a href="https://invite.viber.com/?g2=AQBAHO0JnUR1BEzpWJPfbZlG3ZT6E%2F2H99IObgxZFxqidEP%2FJd8FVug54Y%2FGi5aP"><img src="{% static 'icons/viber_footer.svg' %}" alt="viber"></a>
                     </div>
                 </div>
             </div>
             <div class="footer_links">
-                <a href="{% url 'culture_categories' 'Продукты' %}" class="title title_20 semi_bold">Продукты</a>
+                <a href="{% url 'culture_categories' %}?type=Продукты" class="title title_20 semi_bold">Продукты</a>
                 {% for category in product_categories %}
                 <a href="{{ category.get_absolute_url }}" class="title">{{ category.title }}</a>
                 {% endfor %}
             </div>
             <div class="footer_links">
-                <a href="{% url 'product_categories' 'Культуры' %}" class="title title_20 semi_bold">Культуры</a>
+                <a href="{% url 'product_categories' %}?type=Культуры" class="title title_20 semi_bold">Культуры</a>
                 {% for category in culture_categories %}
                     <a href="{{ category.get_absolute_url }}" class="title">{{ category.title }}</a>
                 {% endfor %}
@@ -34,16 +34,16 @@
             <div class="footer_links">
                 <a href="#" class="title title_20 semi_bold">О нас</a>
                 <a href="#" class="title">Компания</a>
-                <a href="{% url 'publications' 'Наука' %}" class="title">Наука</a>
-                <a href="{% url 'publications' 'Публикации' %}" class="title">Публикации</a>
-                <a href="{% url 'publications' 'Видеоматериалы' %}" class="title">Видеоматериалы</a>
+                <a href="{% url 'publications' %}?type=Наука" class="title">Наука</a>
+                <a href="{% url 'publications' %}?type=Публикации" class="title">Публикации</a>
+                <a href="{% url 'publications' %}?type=Видеоматериалы" class="title">Видеоматериалы</a>
                 <a href="{% url 'contacts' %}" class="title">Контакты</a>
             </div>
             <div class="footer_links">
-                <a href="#" class="title title_20 semi-bold">Сервисы</a>
-                <a href="{% url 'harmful_items' 'Болезни' %}" class="title">Болезни</a>
-                <a href="{% url 'harmful_items' 'Вредители' %}" class="title">Вредители</a>
-                <a href="{% url 'harmful_items' 'Сорняки' %}" class="title">Сорняки</a>
+                <a href="{% url 'harmful_categories' %}?type=Вредные объекты' %}" class="title title_20 semi-bold">Сервисы</a>
+                <a href="{% url 'harmful_items' %}?type=Болезни" class="title">Болезни</a>
+                <a href="{% url 'harmful_items' %}?type=Вредители" class="title">Вредители</a>
+                <a href="{% url 'harmful_items' %}?type=Сорняки" class="title">Сорняки</a>
             </div>
             <div class="footer_right">
                 <div class="footer_contacts">
@@ -70,3 +70,15 @@
         </div>
     </div>
 </footer>
+<script>
+    let type = new URLSearchParams(document.location.search).get('type');
+    if (document.querySelector('.others') != null) {
+        document.querySelectorAll('.others a').forEach((element) => {
+            if ('{{ type|escapejs }}' !== '' && element.innerHTML.includes('{{ type|escapejs }}')) {
+                element.classList.add('active')
+            } else if (element.innerHTML.includes(type)) {
+                element.classList.add('active')
+            }
+        });
+    }
+</script>

@@ -17,22 +17,24 @@ class WeatherSlide(models.Model):
 
 class ProductCategory(models.Model):
     title = models.CharField("Название", max_length=100)
+    slug = models.SlugField(null=True, unique=True)
     image = models.ImageField("Изображение", upload_to='product_categories')
     color = models.CharField("Цвет", max_length=100)
 
     class Meta:
-        verbose_name = 'категория препаратов'
-        verbose_name_plural = 'Категории препаратов'
+        verbose_name = 'продукт'
+        verbose_name_plural = 'Продукты'
 
     def __str__(self):
         return self.title
 
     def get_absolute_url(self):
-        return reverse('product_brands', args=[str(self.title)])
+        return reverse('product_brands', args=[str(self.slug)])
 
 
 class Brand(models.Model):
     title = models.CharField("Название", max_length=100)
+    slug = models.SlugField(null=True, unique=True)
     description = models.TextField("Описание", max_length=400)
     image = models.ImageField("Логотип", upload_to='brand_logos')
     type = models.CharField("Тип продукта", max_length=100)
@@ -41,6 +43,7 @@ class Brand(models.Model):
     consumption = models.CharField("Норма расхода", max_length=100)
     packaging = models.CharField("Упаковка", max_length=100)
     expiration = models.CharField("Срок годности", max_length=100)
+    effect = models.TextField("Действие", max_length=600, null=True, blank=True)
     product_category = models.ForeignKey(ProductCategory, on_delete=models.CASCADE, verbose_name="Категория")
 
     class Meta:
@@ -51,7 +54,7 @@ class Brand(models.Model):
         return self.title
 
     def get_absolute_url(self):
-        return reverse('brands_details', args=[str(self.id), str(self.product_category.title)])
+        return reverse('brands_details', args=[str(self.product_category.slug), str(self.id)])
 
 
 class BrandEffectImage(models.Model):
@@ -101,6 +104,7 @@ class HarmfulCategory(models.Model):
     )
     title = models.CharField("Название", max_length=100)
     type = models.CharField("Тип", max_length=100, choices=TYPE_CHOICES)
+    slug = models.SlugField(null=True)
 
     class Meta:
         verbose_name = 'категория вредных объектов'
@@ -115,6 +119,7 @@ class HarmfulCategory(models.Model):
 
 class Harmful(models.Model):
     title = models.CharField("Название", max_length=100)
+    slug = models.SlugField(null=True, unique=True)
     title_latin = models.CharField("Название (лат.)", max_length=100)
     image = models.ImageField("Изображение (главное)", upload_to='harmful_logos')
     description = models.TextField("Описание", max_length=600)
@@ -122,7 +127,7 @@ class Harmful(models.Model):
     subtype = models.CharField("Подтип", max_length=100)
     bio_group = models.CharField("Биологическая группа", max_length=100)
     biology = models.TextField("Биология", max_length=400)
-    product_category = models.ForeignKey(ProductCategory, on_delete=models.CASCADE, verbose_name="Категория препаратов")
+    product_category = models.ForeignKey(ProductCategory, on_delete=models.CASCADE, verbose_name="Продукт")
     category = models.ForeignKey(HarmfulCategory, on_delete=models.CASCADE, verbose_name="Категория")
 
     class Meta:
@@ -133,7 +138,7 @@ class Harmful(models.Model):
         return self.title
 
     def get_absolute_url(self):
-        return reverse('harmful_details', args=[str(self.id), str(self.category.type)])
+        return reverse('harmful_details', args=[str(self.category.slug), str(self.id)])
 
 
 class HarmfulImage(models.Model):
@@ -150,7 +155,8 @@ class HarmfulImage(models.Model):
 
 class CultureCategory(models.Model):
     title = models.CharField("Название", max_length=100)
-    image = models.ImageField("Изображение", upload_to='product_categories')
+    slug = models.SlugField(null=True, unique=True)
+    image = models.ImageField("Изображение", upload_to='culture_categories')
     icon = models.ImageField("Иконка", upload_to='culture_categories')
     description = models.TextField("Описание")
 
@@ -162,11 +168,12 @@ class CultureCategory(models.Model):
         return self.title
 
     def get_absolute_url(self):
-        return reverse('cultures_category_details', args=[str(self.id), str(self.title)])
+        return reverse('cultures_category_details', args=[str(self.slug), str(self.id)])
 
 
 class Culture(models.Model):
     title = models.CharField("Название", max_length=100)
+    slug = models.SlugField(null=True, unique=True)
     image = models.ImageField("Изображение", upload_to='culture_items')
     description = models.TextField("Описание")
     category = models.ForeignKey(CultureCategory, on_delete=models.CASCADE, verbose_name="Категория")
@@ -179,7 +186,7 @@ class Culture(models.Model):
         return self.title
 
     def get_absolute_url(self):
-        return reverse('culture_details', args=[str(self.category.title), str(self.id), str(self.title)])
+        return reverse('culture_details', args=[str(self.category.slug), str(self.slug), str(self.id)])
 
 
 class CultureBrands(models.Model):
@@ -213,6 +220,7 @@ class Publication(models.Model):
     )
     type = models.CharField("Тип публикации", max_length=100, choices=TYPE_CHOICES)
     title = models.CharField("Заголовок", max_length=100)
+    slug = models.SlugField(null=True)
     image = models.ImageField("Изображение (главное) или превью видео", upload_to='publications_main_images')
     video = models.FileField(upload_to="publications_videos", blank=True)
     description = models.TextField("Описание", max_length=600)
@@ -228,7 +236,7 @@ class Publication(models.Model):
         return self.title
 
     def get_absolute_url(self):
-        return reverse('publication_details', args=[str(self.id), str(self.type)])
+        return reverse('publication_details', args=[str(self.slug), str(self.id)])
 
 
 class PublicationImage(models.Model):

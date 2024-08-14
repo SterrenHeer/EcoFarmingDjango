@@ -112,11 +112,11 @@ class BrandsListView(ListView):
     template_name = 'product_brands.html'
 
     def get_queryset(self):
-        return Brand.objects.filter(product_category__title=self.kwargs['type'])
+        return Brand.objects.filter(product_category__slug=self.kwargs['type'])
 
     def get_context_data(self, *args, **kwargs):
         context = super().get_context_data(*args, **kwargs)
-        context["type"] = self.kwargs['type']
+        context["type"] = ProductCategory.objects.get(slug=self.kwargs['type']).title
         return context
 
 
@@ -126,7 +126,7 @@ class BrandDetailView(DetailView):
 
     def get_context_data(self, *args, **kwargs):
         context = super().get_context_data(*args, **kwargs)
-        context["type"] = self.kwargs['type']
+        context["type"] = ProductCategory.objects.get(slug=self.kwargs['type']).title
         return context
 
 
@@ -136,12 +136,12 @@ class HarmfulListView(ListView):
     template_name = 'harmful_list.html'
 
     def get_queryset(self):
-        return Harmful.objects.filter(category__type=self.kwargs['type'])
+        return Harmful.objects.filter(category__type=self.request.GET.get("type"))
 
     def get_context_data(self, *args, **kwargs):
         context = super().get_context_data(*args, **kwargs)
-        context["type"] = self.kwargs['type']
-        context["categories"] = HarmfulCategory.objects.all().filter(type=self.kwargs['type'])
+        context["type"] = self.request.GET.get("type")
+        context["categories"] = HarmfulCategory.objects.all().filter(type=self.request.GET.get("type"))
         return context
 
 
@@ -154,7 +154,7 @@ class HarmfulDetailView(DetailView):
         brands = self.get_brands()
         context['brands'] = brands
         context['page_obj'] = brands
-        context["type"] = self.kwargs['type']
+        context['type'] = HarmfulCategory.objects.all().filter(slug=self.kwargs['type']).values_list('type', flat=True).distinct()[0]
         return context
 
     def get_brands(self):
@@ -201,13 +201,18 @@ class CultureCategoryDetailView(DetailView):
         context['brands'] = self.object.culturebrands_set.all()
         context['categories'] = self.object.culturebrands_set.all().values_list('brand__product_category__title',
                                                                                 flat=True).distinct()
-        context["type"] = self.kwargs['type']
+        context['type'] = CultureCategory.objects.get(slug=self.kwargs['type']).title
         return context
 
 
 class CultureDetailView(DetailView):
     model = Culture
     template_name = 'culture_page.html'
+
+    def get_context_data(self, *args, **kwargs):
+        context = super().get_context_data(*args, **kwargs)
+        context['type'] = Culture.objects.get(slug=self.kwargs['title']).title
+        return context
 
 
 class PublicationView(ListView):
@@ -216,12 +221,12 @@ class PublicationView(ListView):
     template_name = 'publications.html'
 
     def get_queryset(self):
-        return Publication.objects.all().filter(type=self.kwargs['type'])
+        return Publication.objects.all().filter(type=self.request.GET.get("type"))
 
     def get_context_data(self, *args, **kwargs):
         context = super().get_context_data(*args, **kwargs)
-        context["type"] = self.kwargs['type']
-        context["categories"] = Publication.objects.all().filter(type=self.kwargs['type']).values_list(
+        context["type"] = self.request.GET.get("type")
+        context["categories"] = Publication.objects.all().filter(type=self.request.GET.get("type")).values_list(
             'category__title', flat=True).distinct()
         return context
 
@@ -245,6 +250,12 @@ class PublicationSubView(ListView):
 class PublicationDetailView(DetailView):
     model = Publication
     template_name = 'publication_page.html'
+
+    def get_context_data(self, *args, **kwargs):
+        context = super().get_context_data(*args, **kwargs)
+        context["type"] = Publication.objects.filter(slug=self.kwargs['type']).values_list(
+            "type", flat=True).distinct()[0]
+        return context
 
 
 class SearchResultsView(TemplateView):

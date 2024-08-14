@@ -6,14 +6,6 @@ if (document.querySelector('.burger') != null) {
     modal('.burger_button', 'data-close', '.burger');
 }
 
-if (document.querySelector('.others') != null) {
-    document.querySelectorAll('.others a').forEach((element) => {
-        if (location.pathname.includes(encodeURIComponent(element.innerHTML))) {
-            element.classList.add('active')
-        }
-    });
-}
-
 if (location.pathname.includes('brand')) {
     document.querySelector('.others.products').style.display = 'flex';
 } else if (location.pathname.includes('harmful/items') || location.pathname.includes('harmful_page')) {

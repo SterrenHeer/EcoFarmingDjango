@@ -10,7 +10,7 @@
     <div class="container">
         <div class="flex">
             <div class="title title_48 semi-bold">{{ publication.title }}</div>
-            <button class="button button_back" onclick="location='{% url 'publications' publication.type %}'">Назад</button>
+            <button class="button button_back" onclick="location='{% url 'publications' %}?type={{ type }}'">Назад</button>
         </div>
         <div class="publications_wrapper">
             <div class="publications_text">

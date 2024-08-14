@@ -8,7 +8,7 @@
 {% block content %}
 <section class="culture">
     <div class="container">
-        <div class="title title_48 semi-bold">{{ culture.title }}</div>
+        <div class="title title_48 semi-bold">{{ type }}{{ culture.title }}</div>
         <div class="culture_text small title title_20">{{ culture.description }}</div>
         <div class="culture_icon big">
             <img src="{{ culture.category.icon.url }}" alt="icon">

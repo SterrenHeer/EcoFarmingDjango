@@ -15,13 +15,13 @@
             <div class="header_top_content">
                 <div class="header_socials full">
                     <div>
-                        <a href="#"><img src="{% static 'icons/inst_footer.svg' %}" alt="instagram"></a>
+                        <a href="https://www.instagram.com/grodnoekofarming/?igsh=MTFudHh1MnBtbzh4YQ%3D%3D"><img src="{% static 'icons/inst_footer.svg' %}" alt="instagram"></a>
                     </div>
                     <div>
-                        <a href="#"><img src="{% static 'icons/tube_footer.svg' %}" alt="youtube"></a>
+                        <a href="https://youtube.com/@aleksandrbondarenko7430?si=cUzTs3LBUzMjZyTe"><img src="{% static 'icons/tube_footer.svg' %}" alt="youtube"></a>
                     </div>
                     <div>
-                        <a href="#"><img src="{% static 'icons/viber_footer.svg' %}" alt="viber"></a>
+                        <a href="https://invite.viber.com/?g2=AQBAHO0JnUR1BEzpWJPfbZlG3ZT6E%2F2H99IObgxZFxqidEP%2FJd8FVug54Y%2FGi5aP"><img src="{% static 'icons/viber_footer.svg' %}" alt="viber"></a>
                     </div>
                 </div>
                 <div class="title title_48 semi-bold">ОПТОВАЯ ТОРГОВЛЯ СРЕДСТВАМИ<br>ЗАЩИТЫ РАСТЕНИЙ</div>
@@ -58,9 +58,9 @@
             </div>
         </div>
         <div class="container others all">
-            <a href="{% url 'product_categories' 'Продукты' %}" class="title title_24 semi-bold">Продукты</a>
-            <a href="{% url 'culture_categories' 'Культуры' %}" class="title title_24 semi-bold">Культуры</a>
-            <a href="{% url 'harmful_categories' 'Вредные объекты' %}" class="title title_24 semi-bold">Вредные объекты</a>
+            <a href="{% url 'product_categories' %}?type=Продукты" class="title title_24 semi-bold">Продукты</a>
+            <a href="{% url 'culture_categories' %}?type=Культуры" class="title title_24 semi-bold">Культуры</a>
+            <a href="{% url 'harmful_categories' %}?type=Вредные объекты' %}" class="title title_24 semi-bold">Вредные объекты</a>
         </div>
         <div class="container others products">
             {% for category in product_categories %}
@@ -68,15 +68,15 @@
             {% endfor %}
         </div>
         <div class="container others harmful">
-            <a href="{% url 'harmful_items' 'Сорняки' %}" class="title title_24 semi-bold">Сорняки</a>
-            <a href="{% url 'harmful_items' 'Болезни' %}" class="title title_24 semi-bold">Болезни</a>
-            <a href="{% url 'harmful_items' 'Вредители' %}" class="title title_24 semi-bold">Вредители</a>
+            <a href="{% url 'harmful_items' %}?type=Сорняки" class="title title_24 semi-bold">Сорняки</a>
+            <a href="{% url 'harmful_items' %}?type=Болезни" class="title title_24 semi-bold">Болезни</a>
+            <a href="{% url 'harmful_items' %}?type=Вредители" class="title title_24 semi-bold">Вредители</a>
         </div>
         <div class="container others company">
             <a href="#" class="title title_24 semi-bold">Компания</a>
-            <a href="{% url 'publications' 'Наука' %}" class="title title_24 semi-bold">Наука</a>
-            <a href="{% url 'publications' 'Публикации' %}" class="title title_24 semi-bold">Публикации</a>
-            <a href="{% url 'publications' 'Видеоматериалы' %}" class="title title_24 semi-bold">Видеоматериалы</a>
+            <a href="{% url 'publications' %}?type=Наука" class="title title_24 semi-bold">Наука</a>
+            <a href="{% url 'publications' %}?type=Публикации" class="title title_24 semi-bold">Публикации</a>
+            <a href="{% url 'publications' %}?type=Видеоматериалы" class="title title_24 semi-bold">Видеоматериалы</a>
             <a href="{% url 'contacts' %}" class="title title_24 semi-bold">Контакты</a>
         </div>
         <div class="container others cultures_details">
@@ -104,14 +104,14 @@
                 <input class="burger_search" type="text" name="search" placeholder="Введите поисковой запрос" onchange="submit();">
             </form>
             <ul class="burger_menu">
-                <li><a href="{% url 'product_categories' 'Продукты' %}" class="title title_20 semi-bold">Продукты</a>
+                <li><a href="{% url 'product_categories' %}?type=Продукты" class="title title_20 semi-bold">Продукты</a>
                     <ul>
                         {% for category in product_categories %}
                         <li><a href="{{ category.get_absolute_url }}" class="title medium">{{ category.title }}</a></li>
                         {% endfor %}
                     </ul>
                 </li>
-                <li><a href="{% url 'culture_categories' 'Культуры' %}" class="title title_20 semi-bold">Культуры</a>
+                <li><a href="{% url 'culture_categories' %}?type=Культуры" class="title title_20 semi-bold">Культуры</a>
                     <ul>
                         {% for category in culture_categories %}
                         <li><a href="{{ category.get_absolute_url }}" class="title medium">{{ category.title }}</a></li>
@@ -121,30 +121,30 @@
                 <li><a href="#" class="title title_20 semi-bold">О нас</a>
                     <ul>
                         <li><a href="#" class="title medium">Компания</a></li>
-                        <li><a href="{% url 'publications' 'Наука' %}" class="title medium">Наука</a></li>
-                        <li><a href="{% url 'publications' 'Публикации' %}" class="title medium">Публикации</a></li>
-                        <li><a href="{% url 'publications' 'Видеоматериалы' %}" class="title medium">Видеоматериалы</a></li>
+                        <li><a href="{% url 'publications' %}?type=Наука" class="title medium">Наука</a></li>
+                        <li><a href="{% url 'publications' %}?type=Публикации" class="title medium">Публикации</a></li>
+                        <li><a href="{% url 'publications' %}?type=Видеоматериалы" class="title medium">Видеоматериалы</a></li>
                         <li><a href="{% url 'contacts' %}" class="title medium">Контакты</a></li>
                     </ul>
                 </li>
-                <li><a href="{% url 'harmful_categories' 'Вредные объекты' %}" class="title title_20 semi-bold">Вредные объекты</a>
+                <li><a href="{% url 'harmful_categories' %}?type=Вредные объекты" class="title title_20 semi-bold">Вредные объекты</a>
                     <ul>
-                        <li><a href="{% url 'harmful_items' 'Сорняки' %}" class="title medium">Сорняки</a></li>
-                        <li><a href="{% url 'harmful_items' 'Болезни' %}" class="title medium">Болезни</a></li>
-                        <li><a href="{% url 'harmful_items' 'Вредители' %}" class="title medium">Вредители</a></li>
+                        <li><a href="{% url 'harmful_items' %}?type=Сорняки" class="title medium">Сорняки</a></li>
+                        <li><a href="{% url 'harmful_items' %}?type=Болезни" class="title medium">Болезни</a></li>
+                        <li><a href="{% url 'harmful_items' %}?type=Вредители" class="title medium">Вредители</a></li>
                     </ul>
                 </li>
             </ul>
             <div class="burger_bottom">
                 <div class="header_socials">
                     <div>
-                        <a href="#"><img src="{% static 'icons/inst_footer.svg' %}" alt="instagram"></a>
+                        <a href="https://www.instagram.com/grodnoekofarming/?igsh=MTFudHh1MnBtbzh4YQ%3D%3D"><img src="{% static 'icons/inst_footer.svg' %}" alt="instagram"></a>
                     </div>
                     <div>
-                        <a href="#"><img src="{% static 'icons/tube_footer.svg' %}" alt="youtube"></a>
+                        <a href="https://youtube.com/@aleksandrbondarenko7430?si=cUzTs3LBUzMjZyTe"><img src="{% static 'icons/tube_footer.svg' %}" alt="youtube"></a>
                     </div>
                     <div>
-                        <a href="#"><img src="{% static 'icons/viber_footer.svg' %}" alt="viber"></a>
+                        <a href="https://invite.viber.com/?g2=AQBAHO0JnUR1BEzpWJPfbZlG3ZT6E%2F2H99IObgxZFxqidEP%2FJd8FVug54Y%2FGi5aP"><img src="{% static 'icons/viber_footer.svg' %}" alt="viber"></a>
                     </div>
                 </div>
                 <div class="header_top_brochure">

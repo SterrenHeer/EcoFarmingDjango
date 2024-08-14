@@ -126,7 +126,9 @@
                             {% endfor %}
                         {% endif %}
                     </div>
-                    <div class="title title_24 regular">Текст</div>
+                    {% if brand.effect %}
+                    <div class="title title_24 regular">{{ brand.effect }}</div>
+                    {% endif %}
                 </div>
             </div>
         </div>

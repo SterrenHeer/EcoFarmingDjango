@@ -10,15 +10,15 @@
     <div class="container">
         <div class="title title_48 semi-bold">Вредные объекты</div>
         <div class="categories_wrapper">
-            <div class="categories_item other white" onclick="location='{% url 'harmful_items' 'Сорняки' %}'">
+            <div class="categories_item other white" onclick="location='{% url 'harmful_items' %}?type=Сорняки'">
                 <img src="{% static 'img/categories/harmful/harmful_1.png' %}" alt="category">
                 <div class="title title_36 semi-bold">Сорняки</div>
             </div>
-            <div class="categories_item other white" onclick="location='{% url 'harmful_items' 'Болезни' %}'">
+            <div class="categories_item other white" onclick="location='{% url 'harmful_items' %}?type=Болезни'">
                 <img src="{% static 'img/categories/harmful/harmful_2.png' %}" alt="category">
                 <div class="title title_36 semi-bold">Болезни</div>
             </div>
-            <div class="categories_item other white" onclick="location='{% url 'harmful_items' 'Вредители' %}'">
+            <div class="categories_item other white" onclick="location='{% url 'harmful_items' %}?type=Вредители'">
                 <img src="{% static 'img/categories/harmful/harmful_3.png' %}" alt="category">
                 <div class="title title_36 semi-bold">Вредители</div>
             </div>

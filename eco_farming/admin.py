@@ -3,15 +3,26 @@ from eco_farming.models import (WeatherSlide, Brand, ProductCategory, BrandEffec
                                 Harmful, HarmfulImage, HarmfulCategory, Culture, CultureCategory, CultureBrands,
                                 Publication, PublicationCategory, PublicationImage, HeaderImage)
 
-admin.site.register(ProductCategory)
-admin.site.register(HarmfulCategory)
 admin.site.register(PublicationCategory)
+
+
+@admin.register(HarmfulCategory)
+class HarmfulCategoryAdmin(admin.ModelAdmin):
+    model = HarmfulCategory
+    prepopulated_fields = {'slug': ('type',)}
+
+
+@admin.register(ProductCategory)
+class ProductCategoryAdmin(admin.ModelAdmin):
+    model = ProductCategory
+    prepopulated_fields = {'slug': ('title',)}
 
 
 @admin.register(Culture)
 class CultureAdmin(admin.ModelAdmin):
     model = Culture
     list_display = ('title', 'category')
+    prepopulated_fields = {'slug': ('title',)}
 
 
 @admin.register(HeaderImage)
@@ -64,6 +75,7 @@ class BrandAdmin(admin.ModelAdmin):
         BrandUsageItemInline,
         BrandEffectImageInline,
     ]
+    prepopulated_fields = {'slug': ('title',)}
 
 
 class HarmfulAdmin(admin.ModelAdmin):
@@ -71,12 +83,14 @@ class HarmfulAdmin(admin.ModelAdmin):
     inlines = [
         HarmfulImageInline,
     ]
+    prepopulated_fields = {'slug': ('title',)}
 
 
 class CultureCategoryAdmin(admin.ModelAdmin):
     inlines = [
         CultureBrandsInline,
     ]
+    prepopulated_fields = {'slug': ('title',)}
 
 
 class PublicationAdmin(admin.ModelAdmin):
@@ -84,6 +98,7 @@ class PublicationAdmin(admin.ModelAdmin):
     inlines = [
         PublicationImageInline,
     ]
+    prepopulated_fields = {'slug': ('type',)}
 
 
 admin.site.register(BrandEffectImage)
