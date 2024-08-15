@@ -170,20 +170,19 @@ class HarmfulSearch(ListView):
 
     def get_queryset(self):
         search = self.request.GET.get("search")
-        return Harmful.objects.filter(category__type=self.kwargs['type']).filter(Q(title__iregex=search) |
+        return Harmful.objects.filter(category__type=self.request.GET.get('type')).filter(Q(title__iregex=search) |
                                                                                  Q(title_latin__iregex=search) |
                                                                                  Q(description__iregex=search) |
                                                                                  Q(family__iregex=search) |
                                                                                  Q(subtype__iregex=search) |
                                                                                  Q(bio_group__iregex=search) |
-                                                                                 Q(biology__iregex=search)).order_by(
-            'title')
+                                                                                 Q(biology__iregex=search)).order_by('title')
 
     def get_context_data(self, *args, **kwargs):
         context = super().get_context_data(*args, **kwargs)
-        context["search"] = f"search={self.request.GET.get('search')}&"
-        context["type"] = self.kwargs['type']
-        context["categories"] = HarmfulCategory.objects.all().filter(type=self.kwargs['type'])
+        context["search"] = self.request.GET.get('search')
+        context["type"] = self.request.GET.get('type')
+        context["categories"] = HarmfulCategory.objects.all().filter(type=self.request.GET.get('type'))
         return context
 
 
@@ -233,16 +232,18 @@ class PublicationView(ListView):
 
 class PublicationSubView(ListView):
     model = Publication
-    paginate_by = 2
+    paginate_by = 1
     template_name = 'publications.html'
 
     def get_queryset(self):
-        return Publication.objects.all().filter(type=self.kwargs['type'], category__title=self.kwargs['category'])
+        return Publication.objects.all().filter(type=self.request.GET.get("type"),
+                                                category__title=self.request.GET.get("category"))
 
     def get_context_data(self, *args, **kwargs):
         context = super().get_context_data(*args, **kwargs)
-        context["type"] = self.kwargs['type']
-        context["categories"] = Publication.objects.all().filter(type=self.kwargs['type']).values_list(
+        context["type"] = self.request.GET.get("type")
+        context["category_sub"] = self.request.GET.get("category")
+        context["categories"] = Publication.objects.all().filter(type=self.request.GET.get("type")).values_list(
             'category__title', flat=True).distinct()
         return context
 

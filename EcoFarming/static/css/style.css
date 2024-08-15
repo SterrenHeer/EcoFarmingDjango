@@ -1816,6 +1816,9 @@ a {
   display: flex;
   flex-direction: column;
 }
+.footer_contact a:hover {
+  color: #7BA254;
+}
 .footer_contact img {
   height: 1.822vw;
 }

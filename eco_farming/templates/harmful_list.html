@@ -8,7 +8,7 @@
 {% block content %}
 <section class="weeds">
     <div class="container">
-        <div class="weeds_wrapper">
+        <div class="weeds_wrapper" id="result">
             <div class="weeds_others">
                 <div class="title title_48 semi-bold">{{ type }}</div>
                 {% if categories %}
@@ -30,7 +30,8 @@
                 {% endif %}
             </div>
             <div class="weeds_catalog">
-                <form action="{% url 'harmful_search' type %}" class="weeds_search" method="get">
+                <form action="{% url 'harmful_search' %}#result" class="weeds_search" method="get">
+                    <input type="hidden" name="type" value="{{ type }}">
                     <input type="text" placeholder="Поиск" name="search" onchange="submit();">
                     <img src="{% static 'icons/search.svg' %}" alt="search">
                 </form>
@@ -48,7 +49,11 @@
                 </div>
                 <div class="pagination">
                     {% if page_obj.has_previous %}
-                    <a href="?page={{ page_obj.previous_page_number }}" class="pagination_prev rotate">
+                    {% if search %}
+                    <a href="?type={{ type }}&search={{ search }}&page={{ page_obj.previous_page_number }}#result" class="pagination_prev rotate">
+                    {% else %}
+                    <a href="?type={{ type }}&page={{ page_obj.previous_page_number }}#result" class="pagination_prev rotate">
+                    {% endif %}
                         <img src="{% static 'icons/pag_next.svg' %}" alt="prev">
                     </a>
                     {% else %}
@@ -60,11 +65,19 @@
                         {% if page == page_obj.number %}
                         <div class="pagination_item active">{{ page }}</div>
                         {% else %}
-                        <a href="?page={{ page }}" class="pagination_item">{{ page }}</a>
+                            {% if search %}
+                            <a href="?type={{ type }}&search={{ search }}&page={{ page }}#result" class="pagination_item">{{ page }}</a>
+                            {% else %}
+                            <a href="?type={{ type }}&page={{ page }}#result" class="pagination_item">{{ page }}</a>
+                            {% endif %}
                         {% endif %}
                     {% endfor %}
                     {% if page_obj.has_next %}
-                    <a href="?page={{ page_obj.next_page_number }}" class="pagination_next">
+                    {% if search %}
+                    <a href="?type={{ type }}&search={{ search }}&page={{ page_obj.next_page_number }}#result" class="pagination_next">
+                    {% else %}
+                    <a href="?type={{ type }}&page={{ page_obj.next_page_number }}#result" class="pagination_next">
+                    {% endif %}
                         <img src="{% static 'icons/pag_next.svg' %}" alt="next">
                     </a>
                     {% else %}

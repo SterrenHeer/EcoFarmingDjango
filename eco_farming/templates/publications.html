@@ -14,11 +14,11 @@
                 {% if categories %}
                 <div class="title title_32 bold">
                     по категориям
-                    <img class="mobile" src="icons/product_drop.svg" alt="drop">
+                    <img class="mobile" src="{% static 'icons/product_drop.svg' %}" alt="drop">
                 </div>
                 <div class="publications_links">
                     {% for category in categories %}
-                    <a href="{% url 'publications_sub' type category  %}" class="title title_20 medium">{{ category }}</a>
+                    <a href="{% url 'publications_sub' %}?type={{ type }}&category={{ category }}" class="title title_20 medium">{{ category }}</a>
                     {% endfor %}
                 </div>
                 {% endif %}
@@ -55,7 +55,11 @@
                 </div>
                 <div class="pagination">
                     {% if page_obj.has_previous %}
-                    <a href="?page={{ page_obj.previous_page_number }}" class="pagination_prev rotate">
+                        {% if category_sub %}
+                        <a href="?type={{ type }}&category={{ category_sub }}&page={{ page_obj.previous_page_number }}" class="pagination_prev rotate">
+                        {% else %}
+                        <a href="?type={{ type }}&page={{ page_obj.previous_page_number }}" class="pagination_prev rotate">
+                        {% endif %}
                         <img src="{% static 'icons/pag_next.svg' %}" alt="prev">
                     </a>
                     {% else %}
@@ -67,11 +71,19 @@
                         {% if page == page_obj.number %}
                         <div class="pagination_item active">{{ page }}</div>
                         {% else %}
-                        <a href="?page={{ page }}" class="pagination_item">{{ page }}</a>
+                            {% if category_sub %}
+                            <a href="?type={{ type }}&category={{ category_sub }}&page={{ page }}" class="pagination_item">{{ page }}</a>
+                            {% else %}
+                            <a href="?type={{ type }}&page={{ page }}" class="pagination_item">{{ page }}</a>
+                            {% endif %}
                         {% endif %}
                     {% endfor %}
                     {% if page_obj.has_next %}
-                    <a href="?page={{ page_obj.next_page_number }}" class="pagination_next">
+                        {% if category_sub %}
+                        <a href="?type={{ type }}&category={{ category_sub }}&page={{ page_obj.next_page_number }}" class="pagination_next">
+                        {% else %}
+                        <a href="?type={{ type }}&page={{ page_obj.next_page_number }}" class="pagination_next">
+                        {% endif %}
                         <img src="{% static 'icons/pag_next.svg' %}" alt="next">
                     </a>
                     {% else %}
