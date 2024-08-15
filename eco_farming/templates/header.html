@@ -3,7 +3,7 @@
     <div class="header_top">
         {% if header_images %}
             {% for image in header_images %}
-                {% if image.path in request.path %}
+                {% if image.path in request.get_full_path|unquote_new %}
                 <img src="{{ image.image.url }}" class="header_bg" alt="header_bg">
                 {% endif %}
             {% endfor %}

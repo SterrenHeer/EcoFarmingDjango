@@ -295,7 +295,6 @@ class SearchResultsView(TemplateView):
                                                      Q(category__title__iregex=q)).order_by('title')
         result_set = list(chain(product_category_set, brand_set, harmful_set,
                                 culture_category_set, culture_set, publication_set))
-        print(result_set)
         paginator = Paginator(result_set, 6)
         page = self.request.GET.get('page')
         result = paginator.get_page(page)

@@ -1,4 +1,11 @@
 from eco_farming.models import CultureCategory, ProductCategory, HeaderImage
+from django.template.defaultfilters import register
+from urllib.parse import unquote
+
+
+@register.filter
+def unquote_new(value):
+    return unquote(value)
 
 
 def header_categories(request):
@@ -14,7 +21,7 @@ def header_categories(request):
 
 def header_images(request):
     is_exists = False
-    path = request.path
+    path = unquote(request.get_full_path())
     header_all_path = HeaderImage.objects.all().values_list('path', flat=True)
     for all_path in header_all_path:
         if all_path in path:

@@ -6,7 +6,7 @@
 {% endblock %}
 
 {% block content %}
-<section class="product_brands">
+<section class="product_brands" id="result">
     <div class="container">
         <div class="title title_48 semi-bold">{{ type }}</div>
         <div class="product_brands_wrapper">
@@ -27,7 +27,7 @@
         </div>
         <div class="pagination">
             {% if page_obj.has_previous %}
-            <a href="?page={{ page_obj.previous_page_number }}" class="pagination_prev rotate">
+            <a href="?page={{ page_obj.previous_page_number }}#result" class="pagination_prev rotate">
                 <img src="{% static 'icons/pag_next.svg' %}" alt="prev">
             </a>
             {% else %}
@@ -39,11 +39,11 @@
                 {% if page == page_obj.number %}
                 <div class="pagination_item active">{{ page }}</div>
                 {% else %}
-                <a href="?page={{ page }}" class="pagination_item">{{ page }}</a>
+                <a href="?page={{ page }}#result" class="pagination_item">{{ page }}</a>
                 {% endif %}
             {% endfor %}
             {% if page_obj.has_next %}
-            <a href="?page={{ page_obj.next_page_number }}" class="pagination_next">
+            <a href="?page={{ page_obj.next_page_number }}#result" class="pagination_next">
                 <img src="{% static 'icons/pag_next.svg' %}" alt="next">
             </a>
             {% else %}

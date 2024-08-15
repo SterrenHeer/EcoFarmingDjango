@@ -554,8 +554,10 @@ a {
   text-decoration: underline;
 }
 .burger_search {
-  width: 76%;
-  border: none;
+  padding: 0.145vw 1.166vw;
+  width: calc(50% - 1.166vw - 1.166vw);
+  border: 1px solid #757575;
+  border-radius: 0.52vw;
   font-weight: 400;
   font-size: 1.25vw;
   color: #757575;
@@ -2112,7 +2114,9 @@ a {
     font-size: 5.555vw;
   }
   .burger_search {
-    width: 64%;
+    padding: 1vw 2vw;
+    width: calc(80% - 2vw - 2vw);
+    border-radius: 2.777vw;
     font-size: 4.444vw;
   }
   .burger_search::-moz-placeholder {
