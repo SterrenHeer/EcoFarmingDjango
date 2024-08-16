@@ -1,6 +1,6 @@
 from django.views.generic import ListView, DetailView, TemplateView
 from .models import (WeatherSlide, ProductCategory, Brand, Harmful, HarmfulCategory, Culture, CultureCategory,
-                     Publication)
+                     Publication, ContactsPage)
 from django.core.paginator import Paginator
 from django.db.models import Q
 import requests
@@ -301,6 +301,16 @@ class SearchResultsView(TemplateView):
         context['search_results'] = result
         context['page_obj'] = result
         context['search'] = q
+        return context
+
+
+class ContactsPageDetailView(ListView):
+    model = ContactsPage
+    template_name = 'contacts.html'
+
+    def get_context_data(self, *args, **kwargs):
+        context = super().get_context_data(*args, **kwargs)
+        context["numbers"] = ContactsPage.objects.all().values_list('phone_numbers', flat=True).distinct()[0].split('\r\n')
         return context
 
 

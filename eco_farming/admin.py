@@ -1,7 +1,8 @@
 from django.contrib import admin
-from eco_farming.models import (WeatherSlide, Brand, ProductCategory, BrandEffectImage, BrandUsageItem, BrandAdvantage,
+from eco_farming.models import (Brand, ProductCategory, BrandEffectImage, BrandUsageItem, BrandAdvantage,
                                 Harmful, HarmfulImage, HarmfulCategory, Culture, CultureCategory, CultureBrands,
-                                Publication, PublicationCategory, PublicationImage, HeaderImage)
+                                Publication, PublicationCategory, PublicationImage, HeaderImage, ContactsPage,
+                                ContactsPageItem)
 
 admin.site.register(PublicationCategory)
 
@@ -67,6 +68,11 @@ class PublicationImageInline(admin.StackedInline):
     extra = 1
 
 
+class ContactsPageItemInline(admin.StackedInline):
+    model = ContactsPageItem
+    extra = 1
+
+
 class BrandAdmin(admin.ModelAdmin):
     list_display = ('title', 'product_category', 'type', 'substance', 'preparative', 'consumption', 'packaging',
                     'expiration')
@@ -101,9 +107,16 @@ class PublicationAdmin(admin.ModelAdmin):
     prepopulated_fields = {'slug': ('type',)}
 
 
+class ContactsPageAdmin(admin.ModelAdmin):
+    inlines = [
+        ContactsPageItemInline,
+    ]
+
+
 admin.site.register(BrandEffectImage)
 admin.site.register(BrandAdvantage)
 admin.site.register(Brand, BrandAdmin)
 admin.site.register(Harmful, HarmfulAdmin)
 admin.site.register(CultureCategory, CultureCategoryAdmin)
 admin.site.register(Publication, PublicationAdmin)
+admin.site.register(ContactsPage, ContactsPageAdmin)

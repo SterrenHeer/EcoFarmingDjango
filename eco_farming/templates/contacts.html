@@ -9,6 +9,8 @@
 <section class="contacts">
     <div class="container">
         <div class="title title_48 semi-bold">Контакты</div>
+        {% if contactspage_list %}
+        {% for contact in contactspage_list %}
         <div class="contacts_wrapper">
             <iframe class="contacts_map" src="https://yandex.by/map-widget/v1/?indoorLevel=1&ll=23.833410%2C53.699221&mode=search&ol=geo&ouri=ymapsbm1%3A%2F%2Fgeo%3Fdata%3DCgg2NjY1MDk1NBJK0JHQtdC70LDRgNGD0YHRjCwg0JPRgNC-0LTQvdCwLCDQt9Cw0LLRg9C70LDQuiDQlNC30Y_RgNC20YvQvdGB0LrQsNCz0LAsIDkiCg3Tqr5BFQDMVkI%2C&z=17.06" frameborder="1" allowfullscreen="true"></iframe>
             <div class="contacts_content">
@@ -16,54 +18,36 @@
                     <div class="contacts_item">
                         <div class="title medium">Телефоны для связи:</div>
                         <div class="wrap">
-                            <a href="tel:+375152688156" class="title title_24 semi-bold">+375 152 68-81-56</a>
-                            <a href="tel:+375447959686" class="title title_24 semi-bold">+375 44 795-96-86</a>
+                            {% for number in numbers %}
+                            <a href="tel:{{ number }}" class="title title_24 semi-bold">{{ number }}</a>
+                            {% endfor %}
                         </div>
                     </div>
                     <div class="contacts_item">
                         <div class="title medium">Почта:</div>
-                        <a href="mailto:ekofarming@mail.ru" class="title title_24 semi-bold">ekofarming@mail.ru</a>
+                        <a href="mailto:{{ contact.email }}" class="title title_24 semi-bold">{{ contact.email }}</a>
                     </div>
                 </div>
+                {% if contact.contactspageitem_set %}
+                {% for item in contact.contactspageitem_set.all %}
                 <div class="contacts_item">
-                    <div class="title medium">Директор:</div>
-                    <div class="title title_24 semi-bold">Бондаренко Алла Анатольевна</div>
-                </div>
-                <div class="contacts_item">
-                    <div class="title medium">Агроном — консультант:</div>
+                    <div class="title medium">{{ item.title }}</div>
                     <div class="wrap">
-                        <div class="title title_24 semi-bold">Шаганов Иван Андреевич</div>
-                        <a href="tel:+375447682814" class="title title_24 semi-bold">+375 (44) 7-68-28-14</a>
+                        <div class="title title_24 semi-bold">{{ item.description|safe|linebreaks }}</div>
+                        {% if item.phone_number %}
+                        <a href="tel:{{ item.phone_number }}" class="title title_24 semi-bold">{{ item.phone_number }}</a>
+                        {% endif %}
                     </div>
                 </div>
-                <div class="contacts_item">
-                    <div class="title medium">Заместитель директора по коммерческим вопросам:</div>
-                    <div class="title title_24 semi-bold">Бондаренко Александр Леонидович</div>
-                </div>
-                <div class="contacts_item">
-                    <div class="title medium">Заместитель директора по логистике:</div>
-                    <div class="title title_24 semi-bold">Бондаренко Сергей Леонидович</div>
-                </div>
-                <div class="contacts_item">
-                    <div class="title medium">Менеджеры:</div>
-                    <div class="wrap">
-                        <div class="title title_24 semi-bold">Гродненская область</div>
-                        <div class="title title_24 semi-bold">Рук Владислав Эдвардович</div>
-                        <a href="tel:+375445540222" class="title title_24 semi-bold">+375 (44) 5-54-02-22</a>
-                    </div>
-                    <div class="wrap">
-                        <div class="title title_24 semi-bold">Брестская область</div>
-                        <div class="title title_24 semi-bold">Гордиевич Виталий Константинович</div>
-                        <a href="tel:+375293023827" class="title title_24 semi-bold">+375 (29) 3-02-38-27</a>
-                    </div>
-                </div>
+                {% endfor %}
+                {% endif %}
             </div>
         </div>
         <div class="contacts_info">
-            <div class="title title_20 semi-bold">Общество с ограниченной ответственностью «ЭкоФарминг»<br>230023, Республика Беларусь, г. Гродно, Пер. Дзержинского 9, офис 307<br>УНП 591026635</div>
-            <div class="title title_20 semi-bold">-р/с BY52MMBN 30123102100100000000<br>ОАО «Банк Дабрабыт» Управление по Гродненской области<br>БИК: MMBN BY 22</div>
-            <div class="title title_20 semi-bold">р/с BY 14 ВАРВ 30126491800100000000<br>в ЦБУ №401 в г.Гродно Региональной дирекции по Гродненской области ОАО «Белагропромбанк», г.Гродно, ул.Советских пограничнико, 110<br>БИК: ВАРВВY2Х</div>
+            <div class="title title_20 semi-bold">{{ contact.description|safe|linebreaks }}</div>
         </div>
+        {% endfor %}
+        {% endif %}
         <div class="title title_32 bold upper">ОБРАТНАЯ СВЯЗЬ</div>
         <div class="contacts_questions">
             <div class="title title_24">Если у Вас есть ещё вопросы, задайте их нашему менеджеру по телефону либо заполните форму ниже.</div>

@@ -262,3 +262,30 @@ class HeaderImage(models.Model):
 
     def __str__(self):
         return self.title
+
+
+class ContactsPage(models.Model):
+    phone_numbers = models.TextField("Телефоны для связи:", max_length=600)
+    email = models.EmailField("Почта:", max_length=254)
+    description = models.TextField("Описание", max_length=2000)
+
+    class Meta:
+        verbose_name = 'страница контактов'
+        verbose_name_plural = 'Страницы контактов'
+
+    def __str__(self):
+        return 'Страница контактов'
+
+
+class ContactsPageItem(models.Model):
+    page = models.ForeignKey(ContactsPage, on_delete=models.CASCADE, verbose_name="Страница")
+    title = models.CharField("Наименование", max_length=200)
+    description = models.TextField("Контактные данные", max_length=600)
+    phone_number = models.CharField("Номер телефона", max_length=200, blank=True, null=True)
+
+    class Meta:
+        verbose_name = 'контактное лицо'
+        verbose_name_plural = 'контактные лица'
+
+    def __str__(self):
+        return self.title

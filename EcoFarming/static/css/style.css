@@ -1363,15 +1363,16 @@ a {
   display: flex;
   gap: 4.01vw;
 }
+.contacts_content a:hover {
+  color: #7BA254;
+}
 .contacts_item {
   display: flex;
   flex-direction: column;
   gap: 0.485vw;
 }
-.contacts_item .wrap {
-  display: flex;
-  flex-direction: column;
-  gap: 0.285vw;
+.contacts_item .wrap .title_24 {
+  line-height: 2.083vw;
 }
 .contacts_info {
   display: flex;
@@ -2597,6 +2598,9 @@ a {
   }
   .contacts_item .wrap {
     gap: 0;
+  }
+  .contacts_item .wrap .title_24 {
+    line-height: 7.222vw;
   }
   .contacts_item .title_24 {
     font-size: 5.524vw;
