@@ -1,6 +1,6 @@
 from django.views.generic import ListView, DetailView, TemplateView
 from .models import (WeatherSlide, ProductCategory, Brand, Harmful, HarmfulCategory, Culture, CultureCategory,
-                     Publication, ContactsPage)
+                     Publication, ContactsPage, CompanyPage)
 from django.core.paginator import Paginator
 from django.db.models import Q
 import requests
@@ -312,6 +312,11 @@ class ContactsPageDetailView(ListView):
         context = super().get_context_data(*args, **kwargs)
         context["numbers"] = ContactsPage.objects.all().values_list('phone_numbers', flat=True).distinct()[0].split('\r\n')
         return context
+
+
+class CompanyPageDetailView(ListView):
+    model = CompanyPage
+    template_name = 'company.html'
 
 
 class SendTelegramMessageView(TemplateView):

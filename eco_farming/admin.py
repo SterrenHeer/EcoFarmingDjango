@@ -2,7 +2,7 @@ from django.contrib import admin
 from eco_farming.models import (Brand, ProductCategory, BrandEffectImage, BrandUsageItem, BrandAdvantage,
                                 Harmful, HarmfulImage, HarmfulCategory, Culture, CultureCategory, CultureBrands,
                                 Publication, PublicationCategory, PublicationImage, HeaderImage, ContactsPage,
-                                ContactsPageItem)
+                                ContactsPageItem, CompanyPage)
 
 admin.site.register(PublicationCategory)
 
@@ -120,3 +120,4 @@ admin.site.register(Harmful, HarmfulAdmin)
 admin.site.register(CultureCategory, CultureCategoryAdmin)
 admin.site.register(Publication, PublicationAdmin)
 admin.site.register(ContactsPage, ContactsPageAdmin)
+admin.site.register(CompanyPage)

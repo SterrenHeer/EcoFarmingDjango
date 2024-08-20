@@ -8,6 +8,7 @@ urlpatterns = [
     path("", views.WeatherSlideListView.as_view(), name="index"),
     path("harmful/categories/", TemplateView.as_view(template_name="harmful.html"), name="harmful_categories"),
     path("contacts/", views.ContactsPageDetailView.as_view(), name="contacts"),
+    path("company/", views.CompanyPageDetailView.as_view(), name="company"),
     path('harmful/items/', views.HarmfulListView.as_view(), name='harmful_items'),
     path('harmful_page/details/<slug:type>/<int:pk>/', views.HarmfulDetailView.as_view(), name='harmful_details'),
     path('harmful/items/search/', views.HarmfulSearch.as_view(), name='harmful_search'),

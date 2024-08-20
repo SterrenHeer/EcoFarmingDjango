@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}
+    Компания
+{% endblock %}
+
+{% block content %}
+<section class="company">
+    <div class="container">
+        <div class="title title_48">
+            Контакты
+            <img class="mobile" src="{% static 'img/logo.png' %}" alt="logo">
+        </div>
+        {% if companypage_list %}
+        {% for company in companypage_list %}
+        <div class="company_top">
+            <div class="title title_24 regular">{{ company.description }}</div>
+            <img src="{% static 'img/logo.png' %}" alt="logo">
+        </div>
+        <img src="{{ company.image.url }}" alt="image" data-fancybox data-src="{{ company.image.url }}">
+        <div class="title title_24 regular">{{ company.description_2 }}</div>
+        {% endfor %}
+        {% endif %}
+    </div>
+</section>
+{% endblock %}

@@ -33,7 +33,7 @@
             </div>
             <div class="footer_links">
                 <a href="#" class="title title_20 semi_bold">О нас</a>
-                <a href="#" class="title">Компания</a>
+                <a href="{% url 'company' %}" class="title">Компания</a>
                 <a href="{% url 'publications' %}?type=Наука" class="title">Наука</a>
                 <a href="{% url 'publications' %}?type=Публикации" class="title">Публикации</a>
                 <a href="{% url 'publications' %}?type=Видеоматериалы" class="title">Видеоматериалы</a>
@@ -77,6 +77,10 @@
             if ('{{ type|escapejs }}' !== '' && element.innerHTML.includes('{{ type|escapejs }}')) {
                 element.classList.add('active')
             } else if (element.innerHTML.includes(type)) {
+                element.classList.add('active')
+            } else if (location.pathname.includes('company') && element.innerHTML.includes('Компания')) {
+                element.classList.add('active')
+            } else if (location.pathname.includes('contacts') && element.innerHTML.includes('Контакты')) {
                 element.classList.add('active')
             }
         });

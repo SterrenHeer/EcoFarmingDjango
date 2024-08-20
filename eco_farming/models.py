@@ -271,10 +271,23 @@ class ContactsPage(models.Model):
 
     class Meta:
         verbose_name = 'страница контактов'
-        verbose_name_plural = 'Страницы контактов'
+        verbose_name_plural = 'Страница контактов'
 
     def __str__(self):
         return 'Страница контактов'
+
+
+class CompanyPage(models.Model):
+    description = models.TextField("Описание", max_length=2000)
+    image = models.ImageField("Изображение", upload_to='company_images')
+    description_2 = models.TextField("Описание", max_length=3000)
+
+    class Meta:
+        verbose_name = 'страница компании'
+        verbose_name_plural = 'Страница компании'
+
+    def __str__(self):
+        return 'Страница компании'
 
 
 class ContactsPageItem(models.Model):
