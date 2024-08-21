@@ -7,6 +7,15 @@
 
 {% block content %}
 <section class="culture">
+    <div class="container static">
+        <div class="hierarhy">
+            <a href="{% url 'index' %}" class="title title_16">Главная</a>
+            <div class="title title_16">/</div>
+            <a href="{% url 'culture_categories' %}" class="title title_16">Культуры</a>
+            <div class="title title_16">/</div>
+            <div class="title title_16">{{ culturecategory.title }}</div>
+        </div>
+    </div>
     <div class="container">
         <div class="title title_48 semi-bold">{{ culturecategory.title }}</div>
         <div class="culture_wrapper">

@@ -8,6 +8,15 @@
 {% block content %}
 <section class="brand">
     <div class="container">
+        <div class="hierarhy">
+            <a href="{% url 'index' %}" class="title title_16">Главная</a>
+            <div class="title title_16">/</div>
+            <a href="{% url 'product_categories' %}" class="title title_16">Продукты</a>
+            <div class="title title_16">/</div>
+            <a href="{% url 'product_brands' brand.product_category.slug %}" class="title title_16">{{ type }}</a>
+        </div>
+    </div>
+    <div class="container">
         <div class="brand_wrapper">
             <div class="brand_others">
                 <div class="title title_32 bold">

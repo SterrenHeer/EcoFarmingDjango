@@ -8,6 +8,13 @@
 {% block content %}
 <section class="publications">
     <div class="container">
+        <div class="hierarhy">
+            <a href="{% url 'index' %}" class="title title_16">Главная</a>
+            <div class="title title_16">/</div>
+            <div class="title title_16">{{ type }}</div>
+        </div>
+    </div>
+    <div class="container">
         <div class="title title_48 semi-bold">{{ type }}</div>
         <div class="publications_wrapper">
             <div class="publications_others">

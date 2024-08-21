@@ -8,6 +8,15 @@
 {% block content %}
 <section class="weeds">
     <div class="container">
+        <div class="hierarhy">
+            <a href="{% url 'index' %}" class="title title_16">Главная</a>
+            <div class="title title_16">/</div>
+            <a href="{% url 'harmful_categories' %}" class="title title_16">Вредные объекты</a>
+            <div class="title title_16">/</div>
+            <a href="{% url 'harmful_items' %}?type={{ type }}" class="title title_16">{{ type }}</a>
+        </div>
+    </div>
+    <div class="container">
         <div class="weeds_wrapper">
             <div class="weeds_others">
                 <div class="title title_32 bold nomt">

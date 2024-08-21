@@ -19,6 +19,7 @@
                     </div>
                 </div>
             </div>
+            <a href="{% url 'index' %}" class="title title_20 semi-bold under footer_main">ГЛАВНАЯ</a>
             <div class="footer_links">
                 <a href="{% url 'culture_categories' %}?type=Продукты" class="title title_20 semi_bold">Продукты</a>
                 {% for category in product_categories %}
@@ -44,6 +45,9 @@
                 <a href="{% url 'harmful_items' %}?type=Болезни" class="title">Болезни</a>
                 <a href="{% url 'harmful_items' %}?type=Вредители" class="title">Вредители</a>
                 <a href="{% url 'harmful_items' %}?type=Сорняки" class="title">Сорняки</a>
+            </div>
+            <div class="footer_links main">
+                <a href="{% url 'index' %}" class="title title_20 semi-bold under">ГЛАВНАЯ</a>
             </div>
             <div class="footer_right">
                 <div class="footer_contacts">

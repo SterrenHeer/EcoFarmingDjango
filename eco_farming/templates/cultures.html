@@ -8,6 +8,13 @@
 {% block content %}
 <section class="categories">
     <div class="container">
+        <div class="hierarhy">
+            <a href="{% url 'index' %}" class="title title_16">Главная</a>
+            <div class="title title_16">/</div>
+            <div class="title title_16">Культуры</div>
+        </div>
+    </div>
+    <div class="container">
         <div class="title title_48 semi-bold">Культуры</div>
         <div class="categories_wrapper">
             {% if culturecategory_list %}
