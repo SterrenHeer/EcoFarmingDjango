@@ -107,7 +107,7 @@ class ProductCategoryView(ListView):
 
 class BrandsListView(ListView):
     model = Brand
-    paginate_by = 2
+    paginate_by = 8
     context_object_name = 'brands_list'
     template_name = 'product_brands.html'
 
@@ -132,7 +132,7 @@ class BrandDetailView(DetailView):
 
 class HarmfulListView(ListView):
     model = Harmful
-    paginate_by = 2
+    paginate_by = 8
     template_name = 'harmful_list.html'
 
     def get_queryset(self):
@@ -159,7 +159,7 @@ class HarmfulDetailView(DetailView):
 
     def get_brands(self):
         queryset = self.object.product_category.brand_set.all()
-        paginator = Paginator(queryset, 2)
+        paginator = Paginator(queryset, 8)
         page = self.request.GET.get('page')
         brands = paginator.get_page(page)
         return brands
@@ -216,7 +216,7 @@ class CultureDetailView(DetailView):
 
 class PublicationView(ListView):
     model = Publication
-    paginate_by = 2
+    paginate_by = 5
     template_name = 'publications.html'
 
     def get_queryset(self):
@@ -232,7 +232,7 @@ class PublicationView(ListView):
 
 class PublicationSubView(ListView):
     model = Publication
-    paginate_by = 1
+    paginate_by = 5
     template_name = 'publications.html'
 
     def get_queryset(self):
@@ -295,7 +295,7 @@ class SearchResultsView(TemplateView):
                                                      Q(category__title__iregex=q)).order_by('title')
         result_set = list(chain(product_category_set, brand_set, harmful_set,
                                 culture_category_set, culture_set, publication_set))
-        paginator = Paginator(result_set, 6)
+        paginator = Paginator(result_set, 8)
         page = self.request.GET.get('page')
         result = paginator.get_page(page)
         context['search_results'] = result

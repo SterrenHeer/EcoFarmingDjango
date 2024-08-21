@@ -90,41 +90,27 @@
                         </ul>
                     </div>
                 </div>
-                <div class="brand_tab table">
+                <div class="brand_tab">
                     <div class="brand_table">
-                        <div class="brand_table_column">
-                            <div class="title title_24 bold left">Культура</div>
-                            {% if brand.brandusageitem_set %}
-                                {% for usage_item in brand.brandusageitem_set.all %}
-                                    <div class="title title_20 regular">{{ usage_item.culture }}</div>
-                                {% endfor %}
-                            {% endif %}
-                        </div>
-                        <div class="brand_table_column">
-                            <div class="title title_24 bold left">Вредитель</div>
-                            {% if brand.brandusageitem_set %}
-                                {% for usage_item in brand.brandusageitem_set.all %}
-                                    <div class="title title_20 regular">{{ usage_item.saboteur }}</div>
-                                {% endfor %}
-                            {% endif %}
-                        </div>
-                        <div class="brand_table_column">
-                            <div class="title title_24 bold top"><span>Препарата</span></div>
-                            {% if brand.brandusageitem_set %}
-                                {% for usage_item in brand.brandusageitem_set.all %}
-                                    <div class="title title_20 regular">{{ usage_item.drug_consumption }}</div>
-                                {% endfor %}
-                            {% endif %}
-                            <div class="title title_32 bold">Норма расхода, л/т</div>
-                        </div>
-                        <div class="brand_table_column">
+                        <div class="brand_table_row">
+                            <div class="title title_24 bold">Культура</div>
+                            <div class="title title_24 bold">Вредитель</div>
+                            <div class="title title_24 bold top">
+                                <div class="title title_32 bold">Норма расхода, л/т</div>
+                                <span>Препарата</span>
+                            </div>
                             <div class="title title_24 bold top"><span>Рабочего р-ра</span></div>
-                            {% if brand.brandusageitem_set %}
-                                {% for usage_item in brand.brandusageitem_set.all %}
-                                    <div class="title title_20 regular">{{ usage_item.solution_consumption }}</div>
-                                {% endfor %}
-                            {% endif %}
                         </div>
+                        {% if brand.brandusageitem_set %}
+                        {% for usage_item in brand.brandusageitem_set.all %}
+                        <div class="brand_table_row">
+                            <div class="title title_20 regular">{{ usage_item.culture }}</div>
+                            <div class="title title_20 regular">{{ usage_item.saboteur }}</div>
+                            <div class="title title_20 regular">{{ usage_item.drug_consumption }}</div>
+                            <div class="title title_20 regular">{{ usage_item.solution_consumption }}</div>
+                        </div>
+                        {% endfor %}
+                        {% endif %}
                     </div>
                 </div>
                 <div class="brand_tab images">

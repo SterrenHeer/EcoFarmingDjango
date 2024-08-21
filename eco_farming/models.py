@@ -35,7 +35,7 @@ class ProductCategory(models.Model):
 class Brand(models.Model):
     title = models.CharField("Название", max_length=100)
     slug = models.SlugField(null=True, unique=True)
-    description = models.TextField("Описание", max_length=400)
+    description = models.TextField("Описание")
     image = models.ImageField("Логотип", upload_to='brand_logos')
     type = models.CharField("Тип продукта", max_length=100)
     substance = models.CharField("Действующее вещество", max_length=100)
@@ -43,7 +43,7 @@ class Brand(models.Model):
     consumption = models.CharField("Норма расхода", max_length=100)
     packaging = models.CharField("Упаковка", max_length=100)
     expiration = models.CharField("Срок годности", max_length=100)
-    effect = models.TextField("Действие", max_length=600, null=True, blank=True)
+    effect = models.TextField("Действие", null=True, blank=True)
     product_category = models.ForeignKey(ProductCategory, on_delete=models.CASCADE, verbose_name="Категория")
 
     class Meta:
@@ -267,7 +267,7 @@ class HeaderImage(models.Model):
 class ContactsPage(models.Model):
     phone_numbers = models.TextField("Телефоны для связи:", max_length=600)
     email = models.EmailField("Почта:", max_length=254)
-    description = models.TextField("Описание", max_length=2000)
+    description = models.TextField("Описание")
 
     class Meta:
         verbose_name = 'страница контактов'
@@ -278,9 +278,9 @@ class ContactsPage(models.Model):
 
 
 class CompanyPage(models.Model):
-    description = models.TextField("Описание", max_length=2000)
+    description = models.TextField("Описание")
     image = models.ImageField("Изображение", upload_to='company_images')
-    description_2 = models.TextField("Описание", max_length=3000)
+    description_2 = models.TextField("Описание")
 
     class Meta:
         verbose_name = 'страница компании'

@@ -6,7 +6,7 @@
                 <a href="{% url 'index' %}" class="footer_logo">
                     <img src="{% static 'img/logo.png' %}" alt="logo">
                 </a>
-                <a href="#" class="footer_policy title light">Политика конфиденциальности</a>
+                <a href="{% static 'files/policy.pdf' %}" target="_blank" class="footer_policy title light">Политика конфиденциальности</a>
                 <div class="footer_socials">
                     <div>
                         <a href="https://www.instagram.com/grodnoekofarming/?igsh=MTFudHh1MnBtbzh4YQ%3D%3D"><img src="{% static 'icons/inst_footer.svg' %}" alt="instagram"></a>
@@ -21,13 +21,13 @@
             </div>
             <a href="{% url 'index' %}" class="title title_20 semi-bold under footer_main">ГЛАВНАЯ</a>
             <div class="footer_links">
-                <a href="{% url 'culture_categories' %}?type=Продукты" class="title title_20 semi_bold">Продукты</a>
+                <a href="{% url 'product_categories' %}?type=Продукты" class="title title_20 semi_bold">Продукты</a>
                 {% for category in product_categories %}
                 <a href="{{ category.get_absolute_url }}" class="title">{{ category.title }}</a>
                 {% endfor %}
             </div>
             <div class="footer_links">
-                <a href="{% url 'product_categories' %}?type=Культуры" class="title title_20 semi_bold">Культуры</a>
+                <a href="{% url 'culture_categories' %}?type=Культуры" class="title title_20 semi_bold">Культуры</a>
                 {% for category in culture_categories %}
                     <a href="{{ category.get_absolute_url }}" class="title">{{ category.title }}</a>
                 {% endfor %}

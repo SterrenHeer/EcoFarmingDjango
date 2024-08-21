@@ -6,6 +6,6 @@ urlpatterns = [
     path('', include('eco_farming.urls'))
 ]
 
-admin.site.site_header = "EcoFarming"
-admin.site.site_title = "EcoFarming"
-admin.site.index_title = "EcoFarming"
+admin.site.site_header = "ЭкоФарминг"
+admin.site.site_title = "ЭкоФарминг"
+admin.site.index_title = "ЭкоФарминг"

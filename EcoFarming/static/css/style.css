@@ -671,9 +671,9 @@ section {
 }
 .weather_right {
   position: relative;
-  padding: 3.591vw 2.291vw 4.01vw 2.604vw;
+  padding: 2.591vw 2.291vw 2.01vw 2.604vw;
   width: calc(51.35% - 2.291vw - 2.604vw);
-  height: 23.961vw;
+  height: 26.961vw;
 }
 .weather_right .button {
   margin-top: 3.385vw;
@@ -689,6 +689,9 @@ section {
   border-radius: 1.562vw;
   -o-object-fit: cover;
      object-fit: cover;
+}
+.weather_parameters {
+  margin-top: 1.181vw;
 }
 .weather_parameter {
   display: flex;
@@ -1088,38 +1091,52 @@ section {
 }
 .brand_table {
   display: flex;
+  flex-direction: column;
 }
-.brand_table_column {
+.brand_table_row {
   position: relative;
-  flex: 1;
+  display: flex;
 }
-.brand_table_column .title {
+.brand_table_row:nth-child(odd) .title_20 {
+  background: rgba(161, 90, 150, 0.38);
+}
+.brand_table_row .title {
   display: flex;
   align-items: center;
 }
-.brand_table_column .title_20 {
+.brand_table_row .title_20 {
   padding: 1.25vw 0.781vw;
-  height: 1.25vw;
 }
-.brand_table_column .title_20:nth-child(odd) {
-  background: rgba(161, 90, 150, 0.38);
+.brand_table_row .title_20:nth-child(1), .brand_table_row .title_20:nth-child(3), .brand_table_row .title_20:nth-child(4) {
+  width: 20%;
 }
-.brand_table_column .title_24 {
+.brand_table_row .title_20:nth-child(2) {
+  width: 40%;
+}
+.brand_table_row .title_24 {
   height: 7.708vw;
   background: #a15a96;
   text-wrap: nowrap;
   color: #fff;
 }
-.brand_table_column .title_32 {
+.brand_table_row .title_24:nth-child(1) {
+  width: calc(20% - 2.916vw);
+  padding-left: 2.916vw;
+}
+.brand_table_row .title_24:nth-child(2) {
+  width: calc(40% - 2.916vw);
+  padding-left: 2.916vw;
+}
+.brand_table_row .title_24:nth-child(3), .brand_table_row .title_24:nth-child(4) {
+  width: 20%;
+}
+.brand_table_row .title_32 {
   position: absolute;
   top: 1.406vw;
   text-wrap: nowrap;
   color: #fff;
 }
-.brand_table_column .left {
-  padding-left: 2.916vw;
-}
-.brand_table_column .top span {
+.brand_table_row .top span {
   padding-top: 2.968vw;
 }
 .brand_images {
@@ -2267,12 +2284,15 @@ section {
     height: auto;
   }
   .weather_right {
-    padding: 7.222vw 6.388vw 9.166vw 7.777vw;
+    padding: 4.222vw 6.388vw 6.166vw 7.777vw;
     width: calc(100% - 6.388vw - 7.777vw);
-    height: 96.112vw;
+    height: 100.723vw;
   }
   .weather_right .button {
     margin-top: 5.555vw;
+  }
+  .weather_right .title_24 {
+    font-size: 3.333vw;
   }
   .weather_form {
     margin-top: 5.555vw;
@@ -2291,6 +2311,9 @@ section {
   }
   .weather_bg {
     border-radius: 8.333vw;
+  }
+  .weather_parameters {
+    margin-top: 3.555vw;
   }
   .weather_parameter {
     margin-top: 5.555vw;
@@ -2420,23 +2443,6 @@ section {
     height: 0.833vw;
     border-radius: 1.388vw;
   }
-  .brand_tab.table {
-    overflow-x: auto;
-    padding-bottom: 8.611vw;
-  }
-  .brand_tab.table::-webkit-scrollbar {
-    height: 1.666vw;
-    background-color: #fff;
-  }
-  .brand_tab.table::-webkit-scrollbar-thumb {
-    border-radius: 1.388vw;
-    background: #015019;
-  }
-  .brand_tab.table::-webkit-scrollbar-track {
-    box-shadow: 0 0 4px 0 rgba(0, 0, 0, 0.25);
-    border-radius: 1.388vw;
-    background: #fff;
-  }
   .brand_params {
     flex-direction: column;
     gap: 8.333vw;
@@ -2462,28 +2468,55 @@ section {
   }
   .brand_table {
     min-width: 100%;
+    overflow-x: auto;
+    padding-bottom: 8.611vw;
   }
-  .brand_table_column {
-    min-width: 28.888vw;
+  .brand_table::-webkit-scrollbar {
+    height: 1.666vw;
+    background-color: #fff;
   }
-  .brand_table_column .title_20 {
+  .brand_table::-webkit-scrollbar-thumb {
+    border-radius: 1.388vw;
+    background: #015019;
+  }
+  .brand_table::-webkit-scrollbar-track {
+    box-shadow: 0 0 4px 0 rgba(0, 0, 0, 0.25);
+    border-radius: 1.388vw;
+    background: #fff;
+  }
+  .brand_table_row .title_20 {
     padding: 2.5vw 0.555vw;
-    height: 12.223vw;
+    width: auto;
     font-size: 2.777vw;
   }
-  .brand_table_column .title_24 {
+  .brand_table_row .title_20:nth-child(1), .brand_table_row .title_20:nth-child(3), .brand_table_row .title_20:nth-child(4) {
+    min-width: 28.89vw;
+  }
+  .brand_table_row .title_20:nth-child(2) {
+    min-width: 38.89vw;
+  }
+  .brand_table_row .title_24 {
+    width: auto;
     height: 27.5vw;
     font-size: 3.888vw;
   }
-  .brand_table_column .title_32 {
+  .brand_table_row .title_24:nth-child(1) {
+    min-width: 27.5vw;
+    padding-left: 2.5vw;
+  }
+  .brand_table_row .title_24:nth-child(2) {
+    min-width: 37.5vw;
+    padding-left: 2.5vw;
+  }
+  .brand_table_row .title_24:nth-child(3), .brand_table_row .title_24:nth-child(4) {
+    min-width: 30vw;
+  }
+  .brand_table_row .title_32 {
     z-index: 1;
     top: 11.111vw;
     font-size: 3.888vw;
   }
-  .brand_table_column .left {
-    padding-left: 2.5vw;
-  }
-  .brand_table_column .top span {
+  .brand_table_row .top span {
     padding-top: 9.555vw;
     font-size: 3.333vw;
   }
