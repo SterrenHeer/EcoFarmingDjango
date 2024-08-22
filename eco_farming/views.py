@@ -4,6 +4,7 @@ from .models import (WeatherSlide, ProductCategory, Brand, Harmful, HarmfulCateg
 from django.core.paginator import Paginator
 from django.core.mail import send_mail
 from django.conf import settings
+from django.shortcuts import redirect
 from django.db.models import Q
 from datetime import datetime
 from itertools import chain
@@ -323,17 +324,19 @@ class CompanyPageDetailView(ListView):
 class SendTelegramMessageView(TemplateView):
     template_name = "contacts.html"
 
-    def get_context_data(self):
+    def get(self, request, *args, **kwargs):
         data = get_form_data(self)
         send_telegram_message(data)
+        return redirect('contacts')
 
 
 class SendEmailMessageView(TemplateView):
     template_name = "contacts.html"
 
-    def get_context_data(self):
+    def get(self, request, *args, **kwargs):
         data = get_form_data(self)
         send_mail('Сообщение с сайта ekofarming.by', data, settings.EMAIL_HOST_USER, ['sterrenheer@gmail.com'])
+        return redirect('contacts')
 
 
 def get_form_data(self):

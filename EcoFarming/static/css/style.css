@@ -943,14 +943,14 @@ section {
   cursor: pointer;
 }
 .product_brands_item img {
-  width: 5.989vw;
-  height: 5.989vw;
+  width: 2.994vw;
+  height: 2.994vw;
 }
 .product_brands_content {
   display: flex;
   flex-direction: column;
   gap: 0.625vw;
-  width: 34.166vw;
+  width: 37.866vw;
 }
 .product_brands_content .title {
   color: #757575;
@@ -974,12 +974,12 @@ section {
     width: 100%;
   }
   .product_brands_item img {
-    width: 19.166vw;
-    height: 19.166vw;
+    width: 9.583vw;
+    height: 9.583vw;
   }
   .product_brands_content {
     gap: 1.666vw;
-    width: 64.166vw;
+    width: 74.166vw;
   }
   .product_brands_content .title {
     font-size: 2.777vw;
@@ -1028,12 +1028,12 @@ section {
 }
 .brand_title {
   display: flex;
-  align-items: end;
+  align-items: center;
   gap: 1.822vw;
 }
 .brand_title img {
-  width: 3.541vw;
-  height: 3.541vw;
+  width: 2.36vw;
+  height: 2.36vw;
 }
 .brand_headers {
   display: flex;
@@ -1339,12 +1339,12 @@ section {
 }
 .weeds_medication_item {
   display: flex;
-  gap: 2.604vw;
+  gap: 1.104vw;
   cursor: pointer;
 }
 .weeds_medication_item img {
-  width: 5.989vw;
-  height: 5.989vw;
+  width: 2.994vw;
+  height: 2.994vw;
 }
 .weeds_medication_content {
   display: flex;
@@ -1724,18 +1724,18 @@ section {
 }
 .culture_tab_item {
   display: flex;
-  gap: 2.604vw;
+  gap: 1.104vw;
   cursor: pointer;
 }
 .culture_tab_item img {
-  width: 5.989vw;
-  height: 5.989vw;
+  width: 2.994vw;
+  height: 2.994vw;
 }
 .culture_tab_content {
   display: flex;
   flex-direction: column;
   gap: 0.625vw;
-  width: 30.572vw;
+  width: 38.166vw;
 }
 .culture_tab_content .title {
   color: #757575;
@@ -2420,8 +2420,8 @@ section {
     gap: 6.666vw;
   }
   .brand_title img {
-    width: 15.555vw;
-    height: 15.555vw;
+    width: 10.37vw;
+    height: 10.37vw;
   }
   .brand_title .title_48 {
     font-size: 6.666vw;
@@ -2663,8 +2663,8 @@ section {
     gap: 3.333vw;
   }
   .weeds_medication_item img {
-    width: 19.166vw;
-    height: 19.166vw;
+    width: 9.583vw;
+    height: 9.583vw;
   }
   .weeds_medication_content {
     gap: 1.666vw;
@@ -2955,14 +2955,14 @@ section {
     gap: 3.333vw;
   }
   .culture_tab_item img {
-    width: 19.166vw;
-    height: 19.166vw;
+    width: 9.583vw;
+    height: 9.583vw;
   }
   .culture_tab_content {
     display: flex;
     flex-direction: column;
     gap: 0.625vw;
-    width: 74%;
+    width: 74.166vw;
   }
   .culture_tab_content .title {
     font-size: 2.777vw;
