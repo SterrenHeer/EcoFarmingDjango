@@ -2,11 +2,13 @@ from django.views.generic import ListView, DetailView, TemplateView
 from .models import (WeatherSlide, ProductCategory, Brand, Harmful, HarmfulCategory, Culture, CultureCategory,
                      Publication, ContactsPage, CompanyPage)
 from django.core.paginator import Paginator
+from django.core.mail import send_mail
+from django.conf import settings
 from django.db.models import Q
-import requests
 from datetime import datetime
 from itertools import chain
 import urllib.request
+import requests
 import json
 
 
@@ -322,16 +324,31 @@ class SendTelegramMessageView(TemplateView):
     template_name = "contacts.html"
 
     def get_context_data(self):
-        data = ''
-        for item in self.request.GET.items():
-            if not item[1]:
-                continue
-            elif item[0] == 'theme':
-                data += f'Тема: {item[1]}\n'
-            elif item[0] == 'name':
-                data += f'Имя: {item[1]}\n'
-            elif item[0] == 'message':
-                data += f'Сообщение: {item[1]}\n'
-            else:
-                data += f'{item[0]}: {item[1]}\n'
+        data = get_form_data(self)
         send_telegram_message(data)
+
+
+class SendEmailMessageView(TemplateView):
+    template_name = "contacts.html"
+
+    def get_context_data(self):
+        data = get_form_data(self)
+        send_mail('Сообщение с сайта ekofarming.by', data, settings.EMAIL_HOST_USER, ['sterrenheer@gmail.com'])
+
+
+def get_form_data(self):
+    data = ''
+    for item in self.request.GET.items():
+        if not item[1]:
+            continue
+        elif item[0] == 'theme':
+            data += f'Тема: {item[1]}\n'
+        elif item[0] == 'name':
+            data += f'Имя: {item[1]}\n'
+        elif item[0] == 'email':
+            data += f'E-mail: {item[1]}\n'
+        elif item[0] == 'message':
+            data += f'Сообщение: {item[1]}\n'
+        else:
+            data += f'{item[0]}: {item[1]}\n'
+    return data
