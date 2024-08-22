@@ -22,19 +22,17 @@
                 <div class="title title_48 semi-bold">{{ type }}</div>
                 {% if categories %}
                     {% for category in categories %}
+                        {% if category.get_items %}
                         <div class="title title_32 bold">
                             {{ category.title }}
                             <img class="mobile" src="{% static 'icons/product_drop.svg' %}" alt="drop">
                         </div>
                         <div class="weeds_links">
-                        {% if category.get_items %}
                         {% for item in category.get_items %}
                             <a href="{{ item.get_absolute_url }}" class="title title_20 medium">{{ item }}</a>
                         {% endfor %}
-                        {% else %}
-                        <div class="title title_20 regular">Нет записей</div>
-                        {% endif %}
                         </div>
+                        {% endif %}
                     {% endfor %}
                 {% endif %}
             </div>

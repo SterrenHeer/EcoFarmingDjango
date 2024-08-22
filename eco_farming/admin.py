@@ -1,6 +1,6 @@
 from django.contrib import admin
 from eco_farming.models import (Brand, ProductCategory, BrandEffectImage, BrandUsageItem, BrandAdvantage,
-                                Harmful, HarmfulImage, HarmfulCategory, Culture, CultureCategory, CultureBrands,
+                                Harmful, HarmfulImage, HarmfulCategory, Culture, CultureCategory,
                                 Publication, PublicationCategory, PublicationImage, HeaderImage, ContactsPage,
                                 ContactsPageItem, CompanyPage)
 
@@ -24,6 +24,7 @@ class CultureAdmin(admin.ModelAdmin):
     model = Culture
     list_display = ('title', 'category')
     prepopulated_fields = {'slug': ('title',)}
+    filter_horizontal = ('brand',)
 
 
 @admin.register(HeaderImage)
@@ -50,11 +51,6 @@ class BrandUsageItemInline(admin.TabularInline):
 
 class BrandAdvantageInline(admin.StackedInline):
     model = BrandAdvantage
-    extra = 1
-
-
-class CultureBrandsInline(admin.StackedInline):
-    model = CultureBrands
     extra = 1
 
 
@@ -90,13 +86,12 @@ class HarmfulAdmin(admin.ModelAdmin):
         HarmfulImageInline,
     ]
     prepopulated_fields = {'slug': ('title',)}
+    filter_horizontal = ('brand',)
 
 
 class CultureCategoryAdmin(admin.ModelAdmin):
-    inlines = [
-        CultureBrandsInline,
-    ]
     prepopulated_fields = {'slug': ('title',)}
+    filter_horizontal = ('brand',)
 
 
 class PublicationAdmin(admin.ModelAdmin):

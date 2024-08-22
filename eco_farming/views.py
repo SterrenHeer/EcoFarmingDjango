@@ -158,7 +158,7 @@ class HarmfulDetailView(DetailView):
         return context
 
     def get_brands(self):
-        queryset = self.object.product_category.brand_set.all()
+        queryset = self.object.brand.all()
         paginator = Paginator(queryset, 8)
         page = self.request.GET.get('page')
         brands = paginator.get_page(page)
@@ -197,9 +197,7 @@ class CultureCategoryDetailView(DetailView):
 
     def get_context_data(self, *args, **kwargs):
         context = super().get_context_data(*args, **kwargs)
-        context['brands'] = self.object.culturebrands_set.all()
-        context['categories'] = self.object.culturebrands_set.all().values_list('brand__product_category__title',
-                                                                                flat=True).distinct()
+        context['categories'] = self.object.brand.all().values_list('product_category__title', flat=True).distinct()
         context['type'] = CultureCategory.objects.get(slug=self.kwargs['type']).title
         return context
 
@@ -210,6 +208,7 @@ class CultureDetailView(DetailView):
 
     def get_context_data(self, *args, **kwargs):
         context = super().get_context_data(*args, **kwargs)
+        context['categories'] = self.object.brand.all().values_list('product_category__title', flat=True).distinct()
         context['type'] = Culture.objects.get(slug=self.kwargs['title']).title
         return context
 

@@ -127,8 +127,8 @@ class Harmful(models.Model):
     subtype = models.CharField("Подтип", max_length=100)
     bio_group = models.CharField("Биологическая группа", max_length=100)
     biology = models.TextField("Биология", max_length=400)
-    product_category = models.ForeignKey(ProductCategory, on_delete=models.CASCADE, verbose_name="Продукт")
     category = models.ForeignKey(HarmfulCategory, on_delete=models.CASCADE, verbose_name="Категория")
+    brand = models.ManyToManyField('Brand', verbose_name="Продукты (опционально)", blank=True)
 
     class Meta:
         verbose_name = 'вредный объект'
@@ -159,6 +159,7 @@ class CultureCategory(models.Model):
     image = models.ImageField("Изображение", upload_to='culture_categories')
     icon = models.ImageField("Иконка", upload_to='culture_categories')
     description = models.TextField("Описание")
+    brand = models.ManyToManyField('Brand', verbose_name="Продукты (опционально)", blank=True)
 
     class Meta:
         verbose_name = 'категория культур'
@@ -177,6 +178,7 @@ class Culture(models.Model):
     image = models.ImageField("Изображение", upload_to='culture_items')
     description = models.TextField("Описание")
     category = models.ForeignKey(CultureCategory, on_delete=models.CASCADE, verbose_name="Категория")
+    brand = models.ManyToManyField('Brand', verbose_name="Продукты (опционально)", blank=True)
 
     class Meta:
         verbose_name = 'культура'
@@ -187,18 +189,6 @@ class Culture(models.Model):
 
     def get_absolute_url(self):
         return reverse('culture_details', args=[str(self.category.slug), str(self.slug), str(self.id)])
-
-
-class CultureBrands(models.Model):
-    category = models.ForeignKey(CultureCategory, on_delete=models.CASCADE, verbose_name="Культура")
-    brand = models.ForeignKey(Brand, on_delete=models.CASCADE, verbose_name="Препарат")
-
-    class Meta:
-        verbose_name = 'препарат для категории культур'
-        verbose_name_plural = 'Препараты для категории культур'
-
-    def __str__(self):
-        return self.brand.title
 
 
 class PublicationCategory(models.Model):
