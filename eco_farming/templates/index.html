@@ -125,7 +125,7 @@
                         {% for slide in news %}
                             <div class="weather_slide" onclick="location='{{ slide.get_absolute_url }}'">
                                 <div class="title title_40 semi-bold">{{ slide.title }}</div>
-                                <div class="title title_20 regular">{{ slide.description|truncatechars:280|safe }}</div>
+                                <div class="title title_20 regular">{{ slide.description|truncatechars:192|safe }}</div>
                                 <img src="{{ slide.image.url }}" alt="template">
                             </div>
                         {% endfor %}
