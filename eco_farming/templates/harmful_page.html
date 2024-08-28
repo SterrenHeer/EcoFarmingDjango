@@ -68,11 +68,11 @@
                         </div>
                         <div class="weeds_descr_prop">
                             <div class="title title_20 semi-bold">Описание:</div>
-                            <div class="title title_20">{{ harmful.description }}</div>
+                            <div class="title title_20">{{ harmful.description|safe|linebreaksbr }}</div>
                         </div>
                         <div class="weeds_descr_prop">
                             <div class="title title_20 semi-bold">Биология:</div>
-                            <div class="title title_20">{{ harmful.biology}}</div>
+                            <div class="title title_20">{{ harmful.biology|safe|linebreaksbr }}</div>
                         </div>
                     </div>
                 </div>

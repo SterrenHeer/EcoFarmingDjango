@@ -94,9 +94,9 @@
                     <div class="brand_table">
                         <div class="brand_table_row">
                             <div class="title title_24 bold">Культура</div>
-                            <div class="title title_24 bold">Вредитель</div>
+                            <div class="title title_24 bold">Вредный объект</div>
                             <div class="title title_24 bold top">
-                                <div class="title title_32 bold">Норма расхода, л/т</div>
+                                <div class="title title_32 bold">Норма расхода</div>
                                 <span>Препарата</span>
                             </div>
                             <div class="title title_24 bold top"><span>Рабочего р-ра</span></div>
@@ -122,7 +122,7 @@
                         {% endif %}
                     </div>
                     {% if brand.effect %}
-                    <div class="title title_24 regular">{{ brand.effect }}</div>
+                    <div class="title title_24 regular">{{ brand.effect|safe|linebreaksbr }}</div>
                     {% endif %}
                 </div>
             </div>

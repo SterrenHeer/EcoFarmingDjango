@@ -51,7 +51,7 @@
                             <div class="publications_item_content">
                                 <div class="title full">{{ publication.date }}</div>
                                 <div class="title title_24 semi-bold">{{ publication.title }}</div>
-                                <div class="title">{{ publication.description }}</div>
+                                <div class="title">{{ publication.description|safe|linebreaksbr  }}</div>
                             </div>
                         </div>
                     </div>

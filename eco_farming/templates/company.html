@@ -22,11 +22,11 @@
         {% if companypage_list %}
         {% for company in companypage_list %}
         <div class="company_top">
-            <div class="title title_24 regular">{{ company.description }}</div>
+            <div class="title title_24 regular">{{ company.description|safe|linebreaksbr  }}</div>
             <img src="{% static 'img/logo.png' %}" alt="logo">
         </div>
         <img src="{{ company.image.url }}" alt="image" data-fancybox data-src="{{ company.image.url }}">
-        <div class="title title_24 regular">{{ company.description_2 }}</div>
+        <div class="title title_24 regular">{{ company.description_2|safe|linebreaksbr  }}</div>
         {% endfor %}
         {% endif %}
     </div>

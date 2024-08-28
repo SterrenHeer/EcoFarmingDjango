@@ -34,7 +34,7 @@
                         <img src="{{ brand.image.url }}" alt="brand">
                         <div class="culture_tab_content">
                             <div class="title title_32 semi-bold">{{ brand.title }}</div>
-                            <div class="title title_20 regular">{{ brand.description }}</div>
+                            <div class="title title_20 regular">{{ brand.description|safe|linebreaksbr  }}</div>
                             <div class="title regular">{{ brand.substance }}</div>
                         </div>
                     </div>

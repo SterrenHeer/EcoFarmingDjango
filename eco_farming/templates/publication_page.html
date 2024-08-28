@@ -21,7 +21,7 @@
         </div>
         <div class="publications_wrapper">
             <div class="publications_text">
-                <div class="title title_24 medium">{{ publication.description|safe|linebreaks }}</div>
+                <div class="title title_24 medium">{{ publication.description|safe|linebreaksbr }}</div>
             </div>
             <div class="publications_images">
                 {% for image in publication.publicationimage_set.all %}
@@ -43,7 +43,7 @@
             </div>
         </div>
         <div class="publications_info">
-            <div class="title title_24 medium">{{ publication.description_2|safe|linebreaks }}</div>
+            <div class="title title_24 medium">{{ publication.description_2|safe|linebreaksbr }}</div>
         </div>
     </div>
 </section>
